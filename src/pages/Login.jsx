@@ -2,7 +2,15 @@ import { useEffect, useState } from 'react'
 import useStore from '../store/useStore'
 import trackLogoBlue from "../assets/track-logo-blue.png";
 import infoBlue from "../assets/info-blue.png";
-import '../styles/global.css';
+import {
+    loginButton,
+    loginInfo,
+    loginInfoImg, loginInput,
+    loginLogo,
+    loginLogoImg, loginLogoText, loginExtraText,
+    loginTitle,
+    loginWrapper
+} from "../styles/pages/loginStyle.js";
 
 
 function Login() {
@@ -28,15 +36,15 @@ function Login() {
     const isValid = username.trim() && password.trim()
 
     return (
-        <div className="login-wrapper">
-            <div className="login-logo">
-                <img src={trackLogoBlue} alt="trackLogo" />
-                <span className="login-title">DeltiStore</span>
+        <div className={loginWrapper}>
+            <div className={loginLogo}>
+                <img className={loginLogoImg} src={trackLogoBlue} alt="trackLogo" />
+                <span className={loginLogoText}>DeltiStore</span>
             </div>
-            <h1 className="login-title">Login to DeltiStore</h1>
+            <h1 className={loginTitle}>Login to DeltiStore</h1>
             <label htmlFor="username">Username</label>
             <input
-                className="login-input"
+                className={loginInput}
                 type="text"
                 id="username"
                 placeholder="Enter your username"
@@ -45,19 +53,19 @@ function Login() {
             />
             <label htmlFor="pas">Password</label>
             <input
-                className="login-input"
+                className={loginInput}
                 type="password"
                 id="pas"
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
-            <button className="login-button" onClick={handleLogin} disabled={!isValid}>
+            <button className={loginButton} onClick={handleLogin} disabled={!isValid}>
                 Login
             </button>
-            <p>Auto-login enabled when session data is available</p>
-            <div className="login-info">
-                <img src={infoBlue} alt="trackLogo" />
+            <p className={loginExtraText}>Auto-login enabled when session data is available</p>
+            <div className={loginInfo}>
+                <img className={loginInfoImg} src={infoBlue} alt="trackLogo" />
                 <span>For MVP, the system will automatically log you in if session data is available.</span>
             </div>
         </div>

@@ -1,21 +1,21 @@
 import home from "../assets/home.png";
 import jobs from "../assets/jobs.png";
 import profile from "../assets/profile.png";
-import '../styles/global.css';
+import {footerImg, footerImgWrap} from "../styles/components/footerStyle.js";
 
 export default function Footer() {
     return (
         <>
-            <div className="f-img-wrap">
-                <img src={home} alt="trackLogo"/>
+            <div className={footerImgWrap}>
+                <img className={footerImg} src={home} alt="trackLogo"/>
                 Home
             </div>
-            <div className="f-img-wrap">
-                <img src={jobs} alt="trackLogo"/>
+            <div className={footerImgWrap}>
+                <img className={footerImg} src={jobs} alt="trackLogo"/>
                 Jobs
             </div>
-            <div className="f-img-wrap">
-                <img src={profile} alt="trackLogo"/>
+            <div className={footerImgWrap}>
+                <img className={footerImg} src={profile} alt="trackLogo"/>
                 Profile
             </div>
         </>

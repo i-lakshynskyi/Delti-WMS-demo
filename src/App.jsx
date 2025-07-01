@@ -1,21 +1,25 @@
 import Header from './components/Header'
 import Footer from './components/Footer.jsx'
 import Login from './pages/Login'
-import './styles/global.css'
-
+import {
+    appContainer,
+    headerStyle,
+    mainStyle,
+    footerStyle
+} from "./styles/components/appStyles.js"
 
 function App() {
     return (
-        <div className="app-container">
-            <header className="header-style">
+        <div className={appContainer}>
+            <header className={headerStyle}>
                 <Header />
             </header>
 
-            <main className="main-style">
+            <main className={mainStyle}>
                 <Login />
             </main>
 
-            <footer className="footer-style">
+            <footer className={footerStyle}>
                 <Footer />
             </footer>
         </div>
