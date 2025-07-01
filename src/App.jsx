@@ -1,6 +1,7 @@
 import Header from './components/Header'
 import Footer from './components/Footer.jsx'
-import Login from './pages/Login'
+import Login from './pages/login/Login.jsx'
+import GoodsReceivingJobs from "./pages/goodsReceivingJobs/GoodsReceivingJobs.jsx";
 import {
     appContainer,
     headerStyle,
@@ -16,7 +17,8 @@ function App() {
             </header>
 
             <main className={mainStyle}>
-                <Login />
+                {/*<Login />*/}
+                <GoodsReceivingJobs/>
             </main>
 
             <footer className={footerStyle}>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import useStore from '../store/useStore'
-import trackLogoBlue from "../assets/track-logo-blue.png";
-import infoBlue from "../assets/info-blue.png";
+import useStore from '../../store/useStore.js'
+import trackLogoBlue from "../../assets/track-logo-blue.png";
+import infoBlue from "../../assets/info-blue.png";
 import {
     loginButton,
     loginInfo,
@@ -9,8 +9,8 @@ import {
     loginLogo,
     loginLogoImg, loginLogoText, loginExtraText,
     loginTitle,
-    loginWrapper
-} from "../styles/pages/loginStyle.js";
+    loginWrapper, loginButtonDisabled, loginLabel
+} from "../../styles/pages/loginStyle.js";
 
 
 function Login() {
@@ -31,6 +31,7 @@ function Login() {
         setUser(user)
         localStorage.setItem('user', JSON.stringify(user))
         window.location.href = '/jobs'
+
     }
 
     const isValid = username.trim() && password.trim()
@@ -42,7 +43,7 @@ function Login() {
                 <span className={loginLogoText}>DeltiStore</span>
             </div>
             <h1 className={loginTitle}>Login to DeltiStore</h1>
-            <label htmlFor="username">Username</label>
+            <label className={loginLabel} htmlFor="username">Username</label>
             <input
                 className={loginInput}
                 type="text"
@@ -51,7 +52,7 @@ function Login() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
             />
-            <label htmlFor="pas">Password</label>
+            <label className={loginLabel} htmlFor="pas">Password</label>
             <input
                 className={loginInput}
                 type="password"
@@ -60,7 +61,7 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
-            <button className={loginButton} onClick={handleLogin} disabled={!isValid}>
+            <button className={isValid ? loginButton : loginButtonDisabled} onClick={handleLogin} disabled={!isValid}>
                 Login
             </button>
             <p className={loginExtraText}>Auto-login enabled when session data is available</p>

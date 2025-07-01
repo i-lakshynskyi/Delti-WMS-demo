@@ -15,9 +15,6 @@ export const headerStyle = `
 `;
 
 export const mainStyle = `
-  flex
-  items-center
-  justify-center
   overflow-y-auto
   overflow-x-hidden
   px-[26px]
@@ -28,4 +25,5 @@ export const footerStyle = `
   items-center
   justify-around
   bg-[#f5f5f5]
+  border-t border-[#d3d3d37a]
 `;
