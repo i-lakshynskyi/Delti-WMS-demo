@@ -6,4 +6,5 @@ export const footerImgWrap = `
   items-center
   justify-center
   text-[14px]
+  pb-[env(safe-area-inset-bottom)]
 `;

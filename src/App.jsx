@@ -8,17 +8,26 @@ import {
     mainStyle,
     footerStyle
 } from "./styles/components/appStyles.js"
+import useStore from "./store/useStore.js";
 
 function App() {
-    return (
+    const isLoggedIn = useStore((state) => state.isLoggedIn);
+
+    const store = useStore((state) => state);
+    console.log("STORE: ", store);
+
+    return !isLoggedIn ? (
+        <div className={mainStyle}>
+            <Login />
+        </div>
+    ) : (
         <div className={appContainer}>
             <header className={headerStyle}>
                 <Header />
             </header>
 
             <main className={mainStyle}>
-                {/*<Login />*/}
-                <GoodsReceivingJobs/>
+                <GoodsReceivingJobs />
             </main>
 
             <footer className={footerStyle}>
