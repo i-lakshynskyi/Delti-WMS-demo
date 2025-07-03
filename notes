@@ -20,3 +20,7 @@ npm run preview -- --host
 rm -rf node_modules .vite dist
 npm install
 npm run dev - запустити локальний проект
+
+
+main blue color: #1f456e
+main gray color: #f5f5f5

@@ -1,10 +1,11 @@
 import gateBlue from '../../assets/gate-blue.png'
 import {
-    getStatusClass, jabCardButton, jabCardButtonDisabled, jabCardGate,
-    jabCardGateImg,
+    getStatusClass, jobCardGate,
+    jobCardGateImg,
     jobCardContainer,
     jobID, jodCardSquare, jodCardSquareBoldText, jodCardSquareSmallText
-} from "../../styles/pages/goodsReceivingJobsStyles/goodsReceivingJobsStyles.js";
+} from "../../styles/pages/goodsReceivingJobsStyles.js";
+import PrimeButton from "../../components/PrimeButton.jsx";
 
 function JobCard({task, handleTakeJob}) {
     const {id, status, deliveryNote, expectedTyres, gate, skus, supplier} = task;
@@ -30,11 +31,11 @@ function JobCard({task, handleTakeJob}) {
                 <p className={jodCardSquareBoldText}>{skus}</p>
             </div>
 
-            <span className={jabCardGate}>
-                <img className={jabCardGateImg} src={`${gateBlue}`} alt="gate"/>
+            <span className={jobCardGate}>
+                <img className={jobCardGateImg} src={`${gateBlue}`} alt="gate"/>
                 Gate: {gate}
             </span>
-            <button className={isValid ? jabCardButton : jabCardButtonDisabled} disabled={!isValid} onClick={() => handleTakeJob(task)}>Take job</button>
+            <PrimeButton disabled={!isValid} onClick={() => handleTakeJob(task)}>Take job</PrimeButton>
         </div>
     );
 }

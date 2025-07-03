@@ -3,7 +3,6 @@ import useStore from '../../store/useStore.js'
 import trackLogoBlue from "../../assets/track-logo-blue.png";
 import infoBlue from "../../assets/info-blue.png";
 import {
-    loginButton,
     loginInfo,
     loginInfoImg,
     loginInput,
@@ -13,24 +12,28 @@ import {
     loginExtraText,
     loginTitle,
     loginWrapper,
-    loginButtonDisabled,
     loginLabel,
     eyeToggleButton,
     loginInputPasswordContainer,
-    eyesToggleContainer, eyeToggleButtonImg
-} from "../../styles/pages/loginStyles/loginStyle.js";
+    eyesToggleContainer, eyeToggleButtonImg, loginButton
+} from "../../styles/pages/loginStyle.js";
 import eyeOpen from '../../assets/icons/eye-open.svg'
 import eyeClosed from '../../assets/icons/eye-close.svg'
+import PrimeButton from "../../components/PrimeButton.jsx";
 
 
 
 function Login() {
+    //Local state
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
     const passwordInputRef = useRef(null)
+
+    // Store
     const setUser = useStore((state) => state.setUser)
     const setIsLoggedIn = useStore((state) => state.setIsLoggedIn)
+    const setCurrentPage = useStore((state) => state.setCurrentPage)
 
 
     // Автозаповнення, але без автоматичного логіну
@@ -46,6 +49,8 @@ function Login() {
         const user = { username, password }
         setUser(user)
         setIsLoggedIn(true)
+        setCurrentPage('jobs')
+
         localStorage.setItem('user', JSON.stringify(user));
     }
 
@@ -58,7 +63,7 @@ function Login() {
         }, 0)
     }
 
-    const isValid = username.trim() && password.trim()
+    const isValid = !(username.trim() && password.trim())
 
     return (
         <div className={loginWrapper}>
@@ -105,13 +110,9 @@ function Login() {
                 </div>
             </div>
 
-            <button
-                className={isValid ? loginButton : loginButtonDisabled}
-                onClick={handleLogin}
-                disabled={!isValid}
-            >
+            <PrimeButton className={loginButton} onClick={handleLogin} disabled={isValid}>
                 Login
-            </button>
+            </PrimeButton>
 
             <p className={loginExtraText}>
                 Auto-fill enabled if session data is available

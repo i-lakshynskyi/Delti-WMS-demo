@@ -6,35 +6,51 @@ import {
     appContainer,
     headerStyle,
     mainStyle,
-    footerStyle
+    footerStyle, appContainerOneRow
 } from "./styles/components/appStyles.js"
 import useStore from "./store/useStore.js";
+import JobOverview from "./pages/jobOverview/JobOverview.jsx";
 
 function App() {
     const isLoggedIn = useStore((state) => state.isLoggedIn);
-
+    const currentPage = useStore(state => state.currentPage);
     const store = useStore((state) => state);
     console.log("STORE: ", store);
 
-    return !isLoggedIn ? (
-        <div className={mainStyle}>
-            <Login />
-        </div>
-    ) : (
-        <div className={appContainer}>
-            <header className={headerStyle}>
-                <Header />
-            </header>
+    const renderPage = () => {
+        switch (currentPage) {
+            case 'login':
+                return <Login/>
+            case 'jobs':
+                return <GoodsReceivingJobs/>
+            case 'overview':
+                return <JobOverview/>
+            default:
+                return <div className="text-center p-4">Page not found</div>
+        }
+    }
+
+
+// RENDER
+    return (
+        <div className={isLoggedIn ? appContainer : appContainerOneRow}>
+            {isLoggedIn && (
+                <header className={headerStyle}>
+                    <Header />
+                </header>
+            )}
 
             <main className={mainStyle}>
-                <GoodsReceivingJobs />
+                {renderPage()}
             </main>
 
-            <footer className={footerStyle}>
-                <Footer />
-            </footer>
+            {isLoggedIn && (
+                <footer className={footerStyle}>
+                    <Footer />
+                </footer>
+            )}
         </div>
-    )
+    );
 }
 
-export default App
+export default App;
