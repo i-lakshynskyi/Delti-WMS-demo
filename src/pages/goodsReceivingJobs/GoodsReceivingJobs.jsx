@@ -1,7 +1,6 @@
 import {goodsJobContainer, goodsJobListContainer} from "../../styles/pages/goodsReceivingJobsStyles.js";
-import {stickyBlock} from "../../styles/components/reusableСomponentsStyle.js";
 import JobCard from "./JobCard.jsx";
-import {goodsReceivingJobs} from "../../data/mock/mockData.js";
+import {goodsReceivingJobs} from "../../data/mock/mockData_transformed.js";
 import {useState} from "react";
 import ModalConfirmJob from "./ModalConfirmJob.jsx";
 import useStore from "../../store/useStore.js";
@@ -38,7 +37,7 @@ function GoodsReceivingJobs() {
             <StickyTitle title1={'Goods Receiving Jobs'} title2={"Select a job to process"}/>
 
             <div className={goodsJobListContainer}>
-                {goodsReceivingJobs.map(task => (<JobCard key={task.id} task={task} handleTakeJob={handleTakeJob}/>))}
+                {goodsReceivingJobs.map(task => (<JobCard key={task.poId} task={task} handleTakeJob={handleTakeJob}/>))}
             </div>
         </div>
     );

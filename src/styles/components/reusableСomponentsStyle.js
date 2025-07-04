@@ -9,5 +9,5 @@ export const modalContainer = 'bg-white rounded py-[6px] px-[10px] max-w-md w-fu
 export const modalTitle = `text-[24px] font-bold text-[#1f456e]`
 
 // PRIME BUTTON
-export const primeButton = `h-[40px] min-h-[40px] w-full rounded bg-[#1f456e] text-white text-[18px]`
+export const primeButton = `h-[40px] min-h-[40px] w-full rounded bg-[#1f456e] text-white text-[18px] active:bg-[#142c4f]`
 export const primeButtonDisabled = `${primeButton} disabled:opacity-50`

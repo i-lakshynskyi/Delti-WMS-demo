@@ -8,12 +8,12 @@ import {
 import PrimeButton from "../../components/PrimeButton.jsx";
 
 function JobCard({task, handleTakeJob}) {
-    const {id, status, deliveryNote, expectedTyres, gate, skus, supplier} = task;
+    const {poId, status, deliveryNote, expectedTyres, gate, skus, supplier} = task;
     const isValid = status === "Pending";
 
     return (
         <div className={jobCardContainer}>
-            <span className={jobID}>{id}</span>
+            <span className={jobID}>{poId}</span>
             <span className={getStatusClass(status)}>{status}</span>
 
             <span>Supplier:</span>

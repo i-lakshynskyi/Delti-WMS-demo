@@ -1,39 +1,39 @@
 import {
-    jobOverviewContainer, thirdBlock,
+    jobOverviewContainer, jobOverviewConveyor,
     jobOverviewConveyorBeltMode,
     jobOverviewInfoCard, jobOverviewBlocksWrap,
-    jobOverviewSKUs, jobOverviewSKUsCards
-} from "../../styles/pages/jobOverview.js";
+    jobOverviewSKUs, jobOverviewConveyorBeltModeRadio, jobOverviewH1
+} from "../../styles/pages/jobOverviewStyles.js";
 import StickyTitle from "../../components/StickyTitle.jsx";
 import PrimeButton from "../../components/PrimeButton.jsx";
+import JobOverviewTyreCard from "./JobOverviewTyreCard.jsx";
+import useStore from "../../store/useStore.js";
+import JobOverviewInfoCard from "./jobOverviewInfoCard.jsx";
 
 function JobOverview() {
+    const currentJob = useStore(state => state.currentJob);
+    const {skuTires} = currentJob;
     return (
         <div className={jobOverviewContainer}>
             <StickyTitle title1={'Job Overview'} title2={'GR Job: GR-2025-061901'}/>
             <div className={jobOverviewBlocksWrap}>
-                <div className={jobOverviewInfoCard}>Card Block</div>
-
+                <JobOverviewInfoCard currentJob={currentJob}/>
                 <div className={jobOverviewSKUs}>
-                    <StickyTitle title1={"Tyre SKUs 3"}/>
-                    <div className={jobOverviewSKUsCards}>SKUs block</div>
-                    <div className={jobOverviewSKUsCards}>SKUs block</div>
-                    <div className={jobOverviewSKUsCards}>SKUs block</div>
-                    <div className={jobOverviewSKUsCards}>SKUs block</div>
-                    <div className={jobOverviewSKUsCards}>SKUs block</div>
-                    <div className={jobOverviewSKUsCards}>SKUs block</div>
-                    <div className={jobOverviewSKUsCards}>SKUs block</div>
-                    <div className={jobOverviewSKUsCards}>SKUs block</div>
-                    <div className={jobOverviewSKUsCards}>SKUs block</div>
+                    <h1 className={jobOverviewH1}>{"Tyre SKUs 3"}</h1>
+                    {
+                        skuTires.map((sku, i) => {
+                            return (<JobOverviewTyreCard key={`${i}-${sku.ean}`} skuTires={sku}/>)
+                        })
+                    }
                 </div>
 
-                <div className={thirdBlock}>
-                    <StickyTitle title1={"Conveyor Belt Mode"}/>
+                <div className={jobOverviewConveyor}>
+                    <h1 className={jobOverviewH1}>{"Conveyor Belt Mode"}</h1>
                     <div className={jobOverviewConveyorBeltMode}>
-                        <input id={"beltMode"} type="radio"/>
+                        <input className={jobOverviewConveyorBeltModeRadio} id={"beltMode"} type="radio"/>
                         <label htmlFor="beltMode">Conveyor Belt with Auto-Scanning</label>
                     </div>
-                    <PrimeButton>Start Receiving</PrimeButton>
+                    <PrimeButton>Scan Rack</PrimeButton>
                 </div>
             </div>
         </div>
