@@ -21,6 +21,13 @@ rm -rf node_modules .vite dist
 npm install
 npm run dev - запустити локальний проект
 
+ 6. For push:
+git status
+git add .
+git commit -m "Some commit"
+git push
+
+
 
 main blue color: #1f456e active: #142c4f hover: #17355a
 main gray color: #f5f5f5

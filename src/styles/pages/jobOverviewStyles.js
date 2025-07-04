@@ -16,11 +16,11 @@ bg-[#f5f5f5] mb-[5px] rounded-lg p-[10px]
 `
 
 // SKU_CARD
-export const jobOverviewSKUsCardsContainer = 'mb-[5px] bg-[#f5f5f5] border border-gray-300 rounded-xl px-[6px] text-[14px]'
+export const jobOverviewSKUsCardsContainer = 'mb-[5px] bg-[#f5f5f5] border border-gray-300 rounded-xl px-[10px] text-[14px]'
 export const jobOverviewSKUsCardsWrap = 'flex items-center'
 export const jobOverviewSKUsCardInfo = `ml-[10px] w-full flex flex-col`
-export const jobOverviewSKUsCardsIMG = `w-[80px] size-auto mb-[5px]`
-export const jobOverviewSKUsCardsName = `text-[16px] font-[700] text-center`
+export const jobOverviewSKUsCardsIMG = `w-[72px] size-auto mb-[5px]`
+export const jobOverviewSKUsCardsName = `text-[16px] font-[700] my-[5px]`
 export const jobOverviewSKUsCardsRacks = `font-[500] text-[16px] text-[#9f92ef] text-end`
 
 // ConveyorBeltMode
