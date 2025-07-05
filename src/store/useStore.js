@@ -4,7 +4,7 @@ const useStore = create((set) => ({
     user: null,
     setUser: (user) => set({ user }),
 
-    currentPage: 'login', // 'login' 'jobs', 'overview', 'scanning', etc
+    currentPage: 'login', // 'login' 'jobs', 'overview', 'scanRackQR', etc
     setCurrentPage: (page) => set({ currentPage: page }),
 
     isLoggedIn: false,
@@ -12,6 +12,9 @@ const useStore = create((set) => ({
 
     currentJob: null,
     setCurrentJob: (job) => set({ currentJob: job }),
+
+    currentRack: null,
+    setCurrentRack: (rack) => set({ currentRack: rack }),
 }))
 
 export default useStore

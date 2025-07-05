@@ -10,12 +10,13 @@ import {
 } from "./styles/components/appStyles.js"
 import useStore from "./store/useStore.js";
 import JobOverview from "./pages/jobOverview/JobOverview.jsx";
+import Scan_Rack_QR_Code from "./pages/scan_Rack_QR _Code/Scan_Rack_QR _Code.jsx";
 
 function App() {
     const isLoggedIn = useStore((state) => state.isLoggedIn);
     const currentPage = useStore(state => state.currentPage);
-    const store = useStore((state) => state);
-    console.log("STORE: ", store);
+    // const store = useStore((state) => state);
+    // console.log("STORE: ", store);
 
     const renderPage = () => {
         switch (currentPage) {
@@ -25,6 +26,8 @@ function App() {
                 return <GoodsReceivingJobs/>
             case 'overview':
                 return <JobOverview/>
+            case 'scanRackQR':
+                return <Scan_Rack_QR_Code/>
             default:
                 return <div className="text-center p-4">Page not found</div>
         }

@@ -19,7 +19,7 @@ export default function Footer() {
                 Jobs
             </div>
             <div className={footerImgWrap}>
-                <img className={footerImg} src={`${profile}`} alt="trackLogo"/>
+                <img className={footerImg} src={`${profile}`} alt="trackLogo" onClick={() => setCurrentPage("scanRackQR")}/>
                 Profile
             </div>
         </>

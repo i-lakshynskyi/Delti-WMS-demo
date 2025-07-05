@@ -1,5 +1,5 @@
 // STICKY BLOCK
-export const stickyBlock = 'sticky top-0 bg-white py-[5px]';
+export const stickyBlock = 'sticky top-0 bg-white py-[5px] z-[5px]';
 export const stickyBlockTitle1 = `font-bold text-[20px] text-[#1f456e]`
 export const stickyBlockTitle2 = 'text-[#3e3d3d] text-[16px]'
 
