@@ -30,7 +30,8 @@ function QRScanner({ onResult = (decodedText) => {} }) {
 
         try {
             await html5QrCodeRef.current.start(
-                cameraIdRef.current,
+                // cameraIdRef.current,
+                { facingMode: "environment" },
                 { fps: 10, qrbox: { width: 200, height: 200 } },
                 (decodedText) => {
                     onResult(decodedText);
