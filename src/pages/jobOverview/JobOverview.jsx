@@ -39,7 +39,7 @@ function JobOverview() {
                         <input className={jobOverviewConveyorBeltModeRadio} id={"beltMode"} type="radio"/>
                         <label htmlFor="beltMode">Conveyor Belt with Auto-Scanning</label>
                     </div>
-                    <PrimeButton onClick={handleStartScanRackQrCode}>Scan Rack</PrimeButton>
+                    <PrimeButton onClick={handleStartScanRackQrCode}>Add Rack</PrimeButton>
                 </div>
             </div>
         </div>

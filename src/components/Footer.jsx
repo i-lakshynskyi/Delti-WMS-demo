@@ -11,7 +11,7 @@ export default function Footer() {
     return (
         <>
             <div className={footerImgWrap}>
-                <img className={footerImg} src={`${home}`} alt="trackLogo" onClick={() => setCurrentPage("login")}/>
+                <img className={footerImg} src={`${home}`} alt="trackLogo"/>
                 Home
             </div>
             <div className={footerImgWrap}>
