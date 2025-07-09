@@ -1,0 +1,1 @@
+export const rackSummaryContainer = "h-full flex flex-col overflow-hidden overflow-y-auto"

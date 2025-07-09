@@ -1,68 +1,39 @@
-import React, {useEffect, useRef, useState} from "react";
-import {BrowserMultiFormatReader} from "@zxing/browser";
-import {ZxingQrOverlay, ZxingQrOverlayImg, ZxingQRScannerContainer, ZxingQRScannerWrap} from "./ZxingQrEanScannerStyles.js";
+import React, {useEffect, useRef} from "react";
+import {BarcodeFormat, BrowserMultiFormatReader} from "@zxing/browser";
 import * as ZXingBrowser from "@zxing/browser";
-import PrimeButton from "../../components/PrimeButton.jsx";
+import {DecodeHintType} from "@zxing/library";
+import {
+    ZxingContainer,
+    ZxingOverlay,
+    ZxingImg,
+    ZxingVideo
+} from "./ZxingQrEanScannerStyles.js";
 import QRCode from "../../assets/icons/qr-colored.svg";
+import BarCode from "../../assets/icons/barcode.svg";
 
-function ZxingQrEanScanner({isScanning, setIsScanning, onResult = (decodedData) => {}, startScanProcess = (fn) => {}, stopScanProcess = (fn) => {}}) {
-    const [isFirstScanning, setIsFirstScanning] = useState(true);
+function ZxingQrEanScanner({renderProps, setRenderScanProps, onResult = (decodedData) => {}, startScanProcess = (fn) => {}, stopScanProcess = (fn) => {}}) {
     const videoRef = useRef(null);
     const controlsRef = useRef(null);
-    const codeReaderRef = useRef(new BrowserMultiFormatReader());
 
-    {/*For test without parent's control U can Uncomment*/}
-    /*async function getFirstCameraId() {
-        const devices = await ZXingBrowser.BrowserCodeReader.listVideoInputDevices();
-        if (devices.length > 0) {
-            return devices[0].deviceId;
-        } else {
-            alert("No devices found.");
-            return null;
-        }
-    }
+    const {isScanning, pageName, styleClassNameProps} = renderProps;
 
+    const QR_FORMATS = [BarcodeFormat.QR_CODE];
+    const BAR_FORMATS = [
+        BarcodeFormat.EAN_13,
+        BarcodeFormat.EAN_8,
+        BarcodeFormat.CODE_128,
+        BarcodeFormat.CODE_39,
+        BarcodeFormat.UPC_A,
+        BarcodeFormat.UPC_E
+    ];
+    const selectedFormats = pageName === "QR" ? QR_FORMATS : BAR_FORMATS;
+    const hints = new Map();
+    hints.set(DecodeHintType.POSSIBLE_FORMATS, selectedFormats);
 
-    async function startScan() {
-        setIsScanning(true);
-        console.log('startScan started');
-
-        let deviceId = '';
-        if (!deviceId) {
-            deviceId = await getFirstCameraId();
-            if (!deviceId) return;
-        }
-
-
-        try {
-            controlsRef.current = await codeReaderRef.current.decodeFromVideoDevice(
-                deviceId,
-                videoRef.current,
-                (result, error, controls) => {
-                    if (result) {
-                        console.log("✅ QR код:", result.getText());
-                        controls.stop();
-                    }
-                    if (error) {
-                        console.warn("❗", error);
-                    }
-                }
-            );
-        } catch (err) {
-            console.error("🚫 Не вдалося запустити сканер:", err);
-        }
-
-        console.log('startScan finished');
-    }
-
-    function stopScan() {
-        controlsRef.current?.stop();
-        setIsScanning(false);
-        console.log('stopScan');
-    }*/
+    const codeReaderRef = useRef(new BrowserMultiFormatReader(hints));
 
     const startScan = async () => {
-        setIsScanning(true);
+        setRenderScanProps(prev => ({...prev, isScanning: true}) );
         try {
             const devices = await ZXingBrowser.BrowserCodeReader.listVideoInputDevices();
             if (!devices.length) return alert("😞 Camera not found");
@@ -71,14 +42,19 @@ function ZxingQrEanScanner({isScanning, setIsScanning, onResult = (decodedData) 
 
             controlsRef.current = await codeReaderRef.current.decodeFromConstraints(
                 {
-                    video: {facingMode: "environment"}
+                    video: {facingMode: "environment"},
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 },
+                    advanced: [
+                        { focusMode: 'continuous' }
+                    ]
                 },
                 videoRef.current,
                 (result, error, controls) => {
                     if (result) {
                         onResult(result.getText());
                         controls.stop();
-                        setIsScanning(false);
+                        setRenderScanProps(prev => ({...prev, isScanning: false}) );
                     }
                 }
             );
@@ -89,7 +65,7 @@ function ZxingQrEanScanner({isScanning, setIsScanning, onResult = (decodedData) 
 
     function stopScan() {
         controlsRef.current?.stop();
-        setIsScanning(false);
+        setRenderScanProps(prev => ({...prev, isScanning: false}) );
     }
 
 
@@ -104,17 +80,15 @@ function ZxingQrEanScanner({isScanning, setIsScanning, onResult = (decodedData) 
 
     return (
         <>
-            <div className={ZxingQRScannerContainer}>
+            <div className={`${ZxingContainer} ${styleClassNameProps.container}`}>
                 {!isScanning && (
-                    <div className={ZxingQrOverlay}>
-                        <img src={`${QRCode}`} alt="qr-code" className={ZxingQrOverlayImg}/>
+                    <div className={`${ZxingOverlay} ${styleClassNameProps.overlay}`}>
+                        <img src={`${pageName === "QR" ? QRCode : BarCode}`} alt="qr-code"
+                             className={`${ZxingImg} ${styleClassNameProps.img}`}/>
                     </div>
                 )}
-                <video id="qr-preview" ref={videoRef} className={ZxingQRScannerWrap}/>
+                <video id="qr-preview" ref={videoRef} className={ZxingVideo}/>
             </div>
-            {/*For test without parent's control U can Uncomment*/}
-            {/*<PrimeButton onClick={startScan} disabled={isScanning}>Start Scan</PrimeButton>*/}
-            {/*<PrimeButton onClick={stopScan} disabled={!isScanning}>Stop Scan</PrimeButton>*/}
         </>
     );
 }

@@ -15,6 +15,9 @@ const useStore = create((set) => ({
 
     currentRack: null,
     setCurrentRack: (rack) => set({ currentRack: rack }),
+
+    currentArticle: {},
+    setCurrentArticle: (article) => set({ currentArticle: article }),
 }))
 
 export default useStore

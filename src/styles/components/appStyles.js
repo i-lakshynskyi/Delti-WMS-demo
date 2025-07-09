@@ -20,11 +20,3 @@ export const headerStyle = `
 `;
 
 export const mainStyle = `px-[26px] h-full overflow-hidden`;
-
-export const footerStyle = `
-  flex
-  items-center
-  justify-around
-  bg-[#f5f5f5]
-  border-t border-[#d3d3d37a]
-`;

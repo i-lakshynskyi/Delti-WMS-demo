@@ -1,25 +1,27 @@
-import {useEffect, useRef, useState} from 'react'
+import {useEffect, useState} from 'react'
 import useStore from '../../store/useStore.js'
 import trackLogoBlue from "../../assets/track-logo-blue.png";
 import infoBlue from "../../assets/info-blue.png";
+import eyeOpen from '../../assets/icons/eye-open.svg'
+import eyeClosed from '../../assets/icons/eye-close.svg'
+import PrimeButton from "../../components/PrimeButton.jsx";
+import PrimeInput from "../../components/PrimeInput.jsx";
+import {
+    eyesToggleContainer,
+    eyeToggleButton,
+    eyeToggleButtonImg
+} from "../../styles/components/reusableСomponentsStyle.js";
 import {
     loginInfo,
     loginInfoImg,
-    loginInput,
     loginLogo,
     loginLogoImg,
     loginLogoText,
     loginExtraText,
     loginTitle,
     loginWrapper,
-    loginLabel,
-    eyeToggleButton,
-    loginInputPasswordContainer,
-    eyesToggleContainer, eyeToggleButtonImg, loginButton
+    loginButton
 } from "../../styles/pages/loginStyle.js";
-import eyeOpen from '../../assets/icons/eye-open.svg'
-import eyeClosed from '../../assets/icons/eye-close.svg'
-import PrimeButton from "../../components/PrimeButton.jsx";
 
 
 
@@ -28,7 +30,6 @@ function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
-    const passwordInputRef = useRef(null)
 
     // Store
     const setUser = useStore((state) => state.setUser)
@@ -36,7 +37,7 @@ function Login() {
     const setCurrentPage = useStore((state) => state.setCurrentPage)
 
 
-    // Автозаповнення, але без автоматичного логіну
+    // Autocomplete login+password
     useEffect(() => {
         const savedUser = JSON.parse(localStorage.getItem('user'))
         if (savedUser?.username) {
@@ -54,13 +55,8 @@ function Login() {
         localStorage.setItem('user', JSON.stringify(user));
     }
 
-
     const handleTogglePassword = () => {
         setShowPassword(prev => !prev)
-
-        setTimeout(() => {
-            passwordInputRef.current?.focus()
-        }, 0)
     }
 
     const isValid = !(username.trim() && password.trim())
@@ -74,27 +70,22 @@ function Login() {
 
             <h1 className={loginTitle}>Login to DeltiStore</h1>
 
-            <label className={loginLabel} htmlFor="username">Username</label>
-            <input
-                className={loginInput}
-                type="text"
-                id="username"
-                placeholder="Enter your username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+            <PrimeInput value={username}
+                        onChange={e => setUsername(e.target.value)}
+                        placeholderText={"Enter your username"}
+                        labelText={"Username"}
+                        idInput={'username'}
+                        className={'mb-[10px]'}
             />
 
-            <label className={loginLabel} htmlFor="password">Password</label>
-            <div className={loginInputPasswordContainer}>
-                <input
-                    className={loginInput}
-                    ref={passwordInputRef}
-                    type={showPassword ? 'text' : 'password'}
-                    id="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+            <PrimeInput value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        placeholderText={"Enter your password"}
+                        type={showPassword ? 'text' : 'password'}
+                        labelText={"Password"}
+                        idInput={'password'}
+                        className={'pr-[45px] mb-[10px]'}
+            >
                 <div className={eyesToggleContainer}>
                     <button
                         className={eyeToggleButton}
@@ -108,8 +99,7 @@ function Login() {
                         />
                     </button>
                 </div>
-            </div>
-
+            </PrimeInput>
             <PrimeButton className={loginButton} onClick={handleLogin} disabled={isValid}>
                 Login
             </PrimeButton>

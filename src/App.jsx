@@ -3,14 +3,14 @@ import Footer from './components/Footer.jsx'
 import Login from './pages/login/Login.jsx'
 import GoodsReceivingJobs from "./pages/goodsReceivingJobs/GoodsReceivingJobs.jsx";
 import {
-    appContainer,
-    headerStyle,
-    mainStyle,
-    footerStyle, appContainerOneRow
+    appContainer, headerStyle,
+    mainStyle, appContainerOneRow
 } from "./styles/components/appStyles.js"
 import useStore from "./store/useStore.js";
 import JobOverview from "./pages/jobOverview/JobOverview.jsx";
 import Scan_Rack_QR_Code from "./pages/scan_Rack_QR _Code/Scan_Rack_QR _Code.jsx";
+import ScanArticle from "./pages/scan_Article/ScanArticle.jsx";
+import RackSummary from "./pages/rackSummary/RackSummary.jsx";
 
 function App() {
     const isLoggedIn = useStore((state) => state.isLoggedIn);
@@ -28,6 +28,10 @@ function App() {
                 return <JobOverview/>
             case 'scanRackQR':
                 return <Scan_Rack_QR_Code/>
+            case 'rackSummary':
+                return <RackSummary/>
+            case 'scanArticle':
+                return <ScanArticle/>
             default:
                 return <div className="text-center p-4">Page not found</div>
         }
@@ -48,7 +52,7 @@ function App() {
             </main>
 
             {isLoggedIn && (
-                <footer className={footerStyle}>
+                <footer>
                     <Footer />
                 </footer>
             )}
