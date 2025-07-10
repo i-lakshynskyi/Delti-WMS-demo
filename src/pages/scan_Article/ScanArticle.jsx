@@ -105,12 +105,20 @@ function ScanArticle() {
                     <div>
                         <p>Article Details</p>
                         <div className={scanArticleSResultArticleDetails}>
-                            <p>Brand:</p> <p>{currentArticle ? currentArticle.name : ""}</p>
-                            <p>EAN:</p> <p>{currentArticle ? currentArticle.ean : ""}</p>
-                            <p>Quantity:</p> <p>{currentArticle ? currentArticle.quantity : ""}</p>
-                            <p>Quantity:</p> <p>{currentArticle ? currentArticle.quantity : ""}</p>
-                            <p>Size:</p> <p>{currentArticle ? currentArticle.size : ""}</p>
-                            <p>DOT:</p> <p>{currentArticle ? currentArticle.dot : ""}</p>
+                            <p>Brand:</p>
+                            <span>
+                                <p>{currentArticle ? currentArticle.name : ""}</p>
+                                <p>{currentArticle ? currentArticle.size : ""}</p>
+                            </span>
+
+                            <p>EAN:</p>
+                            <p>{currentArticle ? currentArticle.ean : ""}</p>
+
+                            <p>DOT:</p>
+                            <p>{currentArticle ? currentArticle.dot : ""}</p>
+
+                            <p>Quantity:</p>
+                            <p>{currentArticle ? currentArticle.quantity : ""}</p>
                         </div>
                     </div>
                     <div className={scanArticleSResultForm}>
