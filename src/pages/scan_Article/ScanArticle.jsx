@@ -23,7 +23,7 @@ import PrimeInput from "../../components/PrimeInput.jsx";
 function ScanArticle() {
     const [eanInputValue, setEanInputValue] = useState("");
     const [numberInputValue, setNumberInputValue] = useState('60');
-    const [dateInputValue, setDateInputValue] = useState("12/09/2025");
+    const [dateInputValue, setDateInputValue] = useState("");
     const [renderScanProps, setRenderScanProps] = useState({
         isScanning: false,
         pageName: 'BUR',
@@ -55,6 +55,7 @@ function ScanArticle() {
         const currentArticle = currentJob.skuTires.find(tire => tire.ean === data) || {};
         console.log("current article: ", currentArticle);
         setCurrentArticle(currentArticle);
+        setDateInputValue(currentArticle.dot);
     };
 
     const handleScanStart = () => {
@@ -80,6 +81,17 @@ function ScanArticle() {
         return !renderScanProps.isScanning ? "Scan" : "Stop";
     }
 
+    function handleScanButtonClick() {
+        if (eanInputValue) {
+            handleBarResult(eanInputValue);
+        } else if (!renderScanProps.isScanning) {
+            handleScanStart();
+        } else {
+            stopRef.current?.();
+        }
+    }
+
+
 
     return (
         <div className={scanArticleContainer}>
@@ -97,7 +109,7 @@ function ScanArticle() {
                 <div className={scanArticleSInputBlock}>
                     <PrimeInput value={eanInputValue} placeholder={"EAN"} onChange={handleEanInput} idInput={"EAN"}/>
                     <PrimeButton className={scanArticleInputButton}
-                                 onClick={!renderScanProps.isScanning ? handleScanStart : () => stopRef.current?.()}>
+                                 onClick={handleScanButtonClick}>
                         {getScanButtonLabel(renderScanProps, eanInputValue)}
                     </PrimeButton>
                 </div>
@@ -118,14 +130,14 @@ function ScanArticle() {
                             <p>{currentArticle ? currentArticle.dot : ""}</p>
 
                             <p>Quantity:</p>
-                            <p>{currentArticle ? currentArticle.quantity : ""}</p>
+                            <p>{currentArticle ? currentArticle.quantity : ""} (Racks: {currentArticle ? currentArticle.racks : ""})</p>
                         </div>
                     </div>
                     <div className={scanArticleSResultForm}>
-                        <div className={'flex-1 max-w-full'}>
-                            <PrimeInput labelText={"DOT (MMYY)"} idInput={'DOT(MMYY)'} type={"date"} value={dateInputValue} onChange={handleDateInput}/>
+                        <div>
+                            <PrimeInput labelText={"DOT (MMYY)"} idInput={'DOT(MMYY)'} value={dateInputValue} onChange={handleDateInput}/>
                         </div>
-                        <div className={'flex-1 max-w-full'}>
+                        <div>
                             <PrimeInput className={'w-50'} labelText={"Quantity"} idInput={'Quantity'} type={"number"} value={numberInputValue} onChange={handleNumberInput}/>
                         </div>
                     </div>
