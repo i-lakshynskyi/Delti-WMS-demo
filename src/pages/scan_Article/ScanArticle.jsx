@@ -114,10 +114,10 @@ function ScanArticle() {
                         </div>
                     </div>
                     <div className={scanArticleSResultForm}>
-                        <div>
+                        <div className={'min-w-0'}>
                             <PrimeInput className={'w-50'} labelText={"Quantity"} idInput={'Quantity'} type={"number"} value={numberInputValue} onChange={handleNumberInput}/>
                         </div>
-                        <div>
+                        <div className={'min-w-0'}>
                             <PrimeInput labelText={"DOT (MMYY)"} idInput={'DOT(MMYY)'} type={"date"} value={dateInputValue} onChange={handleDateInput}/>
                         </div>
                     </div>

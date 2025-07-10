@@ -7,7 +7,7 @@ export const scanArticleScannerBlock = 'bg-[#ffffff] h-[150px] flex items-center
 export const scanArticleSInputBlock = 'h-[46px] my-[10px] flex justify-between items-center'
 export const scanArticleInputButton = 'h-[46px] px-[10px] ml-[5px] basis-[40%] text-[#ffa500]'
 
-export const scanArticleSResultBlock = 'mt-[auto] grid grid-rows-[auto_auto_max-content] bg-orange-200'
+export const scanArticleSResultBlock = 'mt-[auto] grid grid-rows-[auto_auto_max-content]'
 export const scanArticleSResultArticleDetails = 'bg-[#ffffff] mb-[10px] grid grid-cols-2 gap-y-2 gap-x-4 [&_p]:border-b' +
     '[&_p]:border-b-gray-200 p-[5px] [&_p:nth-child(odd)]:font-bold text-gray-700'
 export const scanArticleSResultForm = 'flex gap-2 [&_label]:font-bold [&_div]:flex-1 mb-[10px]'
