@@ -69,6 +69,7 @@ function ScanArticle() {
             setCurrentArticle(currentArticle);
             setDateInputValue(currentArticle.dot);
             handleDateInput(currentArticle.dot);
+            setEanInputValue('');
         }else {
             setEanInputWarning("EAN is not correct")
         }
@@ -78,6 +79,7 @@ function ScanArticle() {
         setCurrentArticle({});
         setDateInputValue('');
         setEanInputWarning('');
+        setEanInputValue('');
         startRef.current?.();
     };
 
@@ -85,7 +87,7 @@ function ScanArticle() {
         if (eanInputWarning) {
             setEanInputWarning('');
         }
-        setEanInputValue(value)
+        setEanInputValue(value);
     }
     const handleNumberInput = (value) => {
         const val = parseInt(value, 10);
@@ -168,7 +170,7 @@ function ScanArticle() {
         if (week <= weeksInYear) {
             setIsValidQuantityAndDate(true);
         }else {
-            setInputValueWarning(`Year ${fullYear} cannot have ${week} weeks — maximum is ${weeksInYear}`
+            setDateInputWarning(`Year ${fullYear} cannot have ${week} weeks — maximum is ${weeksInYear}`
             )
         }
     }
@@ -176,7 +178,7 @@ function ScanArticle() {
 
     function getScanButtonLabel(renderScanProps, eanInputValue) {
         if (eanInputValue) {
-            return "Add EAN";
+            return "Add Ean";
         }
         return !renderScanProps.isScanning ? "Scan" : "Stop";
     }
@@ -220,7 +222,7 @@ function ScanArticle() {
                             :
                             <>
                                 <PrimeInput value={eanInputValue} placeholder={"EAN"} onChange={handleEanInput}
-                                            idInput={"EAN"} min={0} max={1000} onFocus={() => stopRef.current?.()}/>
+                                            idInput={"EAN"} onFocus={() => stopRef.current?.()} type={'number'}/>
                                 <div className={scanArticleEanInputWarning}>{eanInputWarning}</div>
                             </>
                     }
