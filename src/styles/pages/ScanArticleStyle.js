@@ -4,7 +4,8 @@ export const scanArticleWrap = "bg-[#f5f5f5] grow border border-gray-200 rounded
 
 export const scanArticleScannerBlock = 'bg-[#ffffff] h-[150px] flex items-center justify-center overflow-hidden border-[2px] border-dashed border-[#8fa2b6]'
 
-export const scanArticleSInputBlock = 'h-[46px] my-[10px] flex justify-between items-center'
+export const scanArticleSInputBlock = 'h-[46px] my-[10px] flex justify-between items-center relative'
+export const scanArticleEanInputWarning = 'absolute -bottom-[16px] left-[0px] text-[#ff0000] text-[12px] w-full'
 export const scanArticleInputButton = 'h-[46px] px-[10px] ml-[5px] basis-[40%] text-[#ffa500]'
 
 export const scanArticleSResultBlock = 'mt-[auto] grid grid-rows-[auto_auto_max-content] text-[14px]'

@@ -15,8 +15,8 @@ import RackSummary from "./pages/rackSummary/RackSummary.jsx";
 function App() {
     const isLoggedIn = useStore((state) => state.isLoggedIn);
     const currentPage = useStore(state => state.currentPage);
-    const store = useStore((state) => state);
-    console.log("STORE: ", store);
+    // const store = useStore((state) => state);
+    // console.log("STORE: ", store);
 
     const renderPage = () => {
         switch (currentPage) {

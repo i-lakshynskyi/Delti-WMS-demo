@@ -7,7 +7,7 @@ import {
     barScanImg,
     barScanOverlay,
     barScanVideo,
-    scanArticleContainer,
+    scanArticleContainer, scanArticleEanInputWarning,
     scanArticleInputButton,
     scanArticleScannerBlock,
     scanArticleSInputBlock,
@@ -26,9 +26,10 @@ import PrimeInput from "../../components/PrimeInput.jsx";
 
 function ScanArticle() {
     const [eanInputValue, setEanInputValue] = useState("");
+    const [eanInputWarning, setEanInputWarning] = useState("");
     const [quantityInputValue, setQuantityInputValue] = useState('60');
     const [dateInputValue, setDateInputValue] = useState("");
-    const [inputValueWarning, setInputValueWarning] = useState("");
+    const [dateInputWarning, setDateInputWarning] = useState("");
     const [isValidQuantityAndDate, setIsValidQuantityAndDate] = useState(false);
 
 
@@ -64,9 +65,13 @@ function ScanArticle() {
             return null;
         }
         const currentArticle = currentJob.skuTires.find(tire => tire.ean === data) || {};
-        setCurrentArticle(currentArticle);
-        setDateInputValue(currentArticle.dot);
-        handleDateInput(currentArticle.dot);
+        if (Object.keys(currentArticle).length > 0) {
+            setCurrentArticle(currentArticle);
+            setDateInputValue(currentArticle.dot);
+            handleDateInput(currentArticle.dot);
+        }else {
+            setEanInputWarning("EAN is not correct")
+        }
     };
 
     const handleScanStart = () => {
@@ -76,6 +81,9 @@ function ScanArticle() {
     };
 
     const handleEanInput = (value) => {
+        if (eanInputWarning) {
+            setEanInputWarning('');
+        }
         setEanInputValue(value)
     }
     const handleNumberInput = (value) => {
@@ -89,7 +97,7 @@ function ScanArticle() {
     ///////////////////////////// handleDateInput //////////////////////////////////////
     const handleDateInput = (value) => {
         if (!/^\d{0,4}$/.test(value)) {
-            setInputValueWarning("Only digits are allowed");
+            setDateInputWarning("Only digits are allowed");
             return;
         }
 
@@ -100,18 +108,18 @@ function ScanArticle() {
         // Check WW
         const week1 = parseInt(value[0], 10);
         if (week1 < 0 || week1 > 5) {
-            setInputValueWarning("The first digit of the week must be between 0 and 5");
+            setDateInputWarning("The first digit of the week must be between 0 and 5");
             return;
         } else {
-            setInputValueWarning('');
+            setDateInputWarning('');
         }
 
         const fullWeek = parseInt(value.slice(0, 2), 10);
         if (fullWeek < 0 || fullWeek > 53) {
-            setInputValueWarning("Week must be between 01 and 53");
+            setDateInputWarning("Week must be between 01 and 53");
             return;
         } else {
-            setInputValueWarning('');
+            setDateInputWarning('');
         }
 
         // Check YY
@@ -120,20 +128,20 @@ function ScanArticle() {
             const thirdDigit = parseInt(value[2], 10);
             const currentThird = parseInt(currentShortYear.toString()[0]);
             if (thirdDigit > currentThird) {
-                setInputValueWarning(`The year cannot start with a number greater than ${currentThird}`);
+                setDateInputWarning(`The year cannot start with a number greater than ${currentThird}`);
                 return;
             } else {
-                setInputValueWarning('');
+                setDateInputWarning('');
             }
         }
 
         if (value.length === 4) {
             const shortYear = parseInt(value.slice(2), 10);
             if (shortYear > currentShortYear) {
-                setInputValueWarning(`The year cannot be greater than ${currentShortYear}`);
+                setDateInputWarning(`The year cannot be greater than ${currentShortYear}`);
                 return;
             } else {
-                setInputValueWarning('');
+                setDateInputWarning('');
                 isValidDot(value);
             }
         }
@@ -209,8 +217,11 @@ function ScanArticle() {
                     {
                         currentArticle.ean ? <span className={"font-bold"}>EAN: {currentArticle.ean}</span>
                             :
-                            <PrimeInput value={currentArticle.ean ? currentArticle.ean : ''} placeholder={"EAN"} onChange={handleEanInput}
-                                        idInput={"EAN"} min={0} max={1000} onFocus={() => stopRef.current?.()}/>
+                            <>
+                                <PrimeInput value={eanInputValue} placeholder={"EAN"} onChange={handleEanInput}
+                                            idInput={"EAN"} min={0} max={1000} onFocus={() => stopRef.current?.()}/>
+                                <div className={scanArticleEanInputWarning}>{eanInputWarning}</div>
+                            </>
                     }
                     <PrimeButton className={scanArticleInputButton}
                                  onClick={handleScanButtonClick}>
@@ -240,19 +251,19 @@ function ScanArticle() {
                                         value={quantityInputValue} onChange={handleNumberInput} placeholderText={"60"}/>
                         </div>
                         <div>
-                            <PrimeInput labelText={"DOT (WWYY)"} idInput={'DOT(WWYY)'} value={dateInputValue}
+                            <PrimeInput labelText={"DOT (WWYY)"} idInput={'DOT(WWYY)'} value={dateInputValue ? dateInputValue : currentArticle.dot}
                                         onChange={handleDateInput}
                                         inputMode="numeric" maxLength={4} placeholderText={"WWYY"}/>
                         </div>
                     </div>
-                    <div className={scanArticleSResultFormWarning}>{inputValueWarning}</div>
+                    <div className={scanArticleSResultFormWarning}>{dateInputWarning}</div>
                     <div className={scanArticleSResultScannedRacks}>{`Scanned Racks (1/${currentArticle.racks ? currentArticle.racks : ".."})`}</div>
                 </div>
             </div>
 
             <div className={scanArticleSRButtons}>
                 <PrimeButton onClick={handleGetNewRack}
-                             disabled={!(quantityInputValue && isValidQuantityAndDate)}>New Rack</PrimeButton>
+                             disabled={!(quantityInputValue && isValidQuantityAndDate && currentArticle.ean)}>New Rack</PrimeButton>
                 <PrimeButton disabled={true}>Complete Job</PrimeButton>
                 <PrimeButton className={orangeButton} onClick={() => handleGoTo("rackSummary")}>Rack
                     Summary</PrimeButton>
