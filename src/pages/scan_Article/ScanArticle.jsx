@@ -114,11 +114,11 @@ function ScanArticle() {
                         </div>
                     </div>
                     <div className={scanArticleSResultForm}>
-                        <div className={'min-w-0'}>
-                            <PrimeInput className={'w-50'} labelText={"Quantity"} idInput={'Quantity'} type={"number"} value={numberInputValue} onChange={handleNumberInput}/>
-                        </div>
-                        <div className={'min-w-0'}>
+                        <div className={'flex-1 max-w-full'}>
                             <PrimeInput labelText={"DOT (MMYY)"} idInput={'DOT(MMYY)'} type={"date"} value={dateInputValue} onChange={handleDateInput}/>
+                        </div>
+                        <div className={'flex-1 max-w-full'}>
+                            <PrimeInput className={'w-50'} labelText={"Quantity"} idInput={'Quantity'} type={"number"} value={numberInputValue} onChange={handleNumberInput}/>
                         </div>
                     </div>
                     <div className={scanArticleSResultScannedRacks}>Scanned Racks (1/5)</div>
