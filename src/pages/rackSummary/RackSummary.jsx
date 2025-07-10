@@ -5,7 +5,7 @@ import useStore from "../../store/useStore.js";
 import {rackSummaryContainer} from "../../styles/pages/rackSummaryStyles.js";
 
 function RackSummary() {
-    const currentRack = useStore(state => state.currentRack);
+    const currentRackSummary = useStore((state) => state.rackSummary)
     const setCurrentPage = useStore((state) => state.setCurrentPage)
 
     function handleGoTo() {
@@ -14,7 +14,7 @@ function RackSummary() {
 
     return (
         <div className={rackSummaryContainer}>
-            <StickyTitle title1={'Rack Summary'} title2={`Rack ID: ${currentRack}`}/>
+            <StickyTitle title1={'Rack Summary'} title2={`Rack ID: ${currentRackSummary.id}`}/>
             <PrimeButton onClick={handleGoTo}>go to article page</PrimeButton>
         </div>
 

@@ -13,11 +13,24 @@ const useStore = create((set) => ({
     currentJob: null,
     setCurrentJob: (job) => set({ currentJob: job }),
 
-    currentRack: null,
-    setCurrentRack: (rack) => set({ currentRack: rack }),
-
     currentArticle: {},
     setCurrentArticle: (article) => set({ currentArticle: article }),
+
+    rackSummary: {
+        id: null,
+        SKUs: [],
+        totalItems: 0,
+        totalSKUs: 0,
+        earliestDOT: '',
+    },
+    setRackSummary: (rack) =>
+        set((state) => ({
+            rackSummary: {
+                ...state.rackSummary,
+                ...rack,
+                totalSKUs: (rack.SKUs ?? state.rackSummary.SKUs).length,
+            },
+        })),
 }))
 
 export default useStore

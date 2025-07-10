@@ -10,7 +10,8 @@ export const scanArticleInputButton = 'h-[46px] px-[10px] ml-[5px] basis-[40%] t
 export const scanArticleSResultBlock = 'mt-[auto] grid grid-rows-[auto_auto_max-content] text-[14px]'
 export const scanArticleSResultArticleDetails = 'bg-[#ffffff] mb-[10px] grid grid-cols-2 gap-x-4 [&_p]:border-b' +
     '[&_p]:border-b-gray-200 p-[5px] [&_p:nth-child(odd)]:font-bold text-gray-700'
-export const scanArticleSResultForm = 'flex gap-2 [&_label]:font-bold [&_div]:flex-1 mb-[10px]'
+export const scanArticleSResultForm = 'flex gap-2 [&_label]:font-bold [&_div]:flex-1 mb-[5px]'
+export const scanArticleSResultFormWarning = 'text-[#ff0000] text-[12px] h-[14px]'
 export const scanArticleSResultScannedRacks = 'font-bold h-max'
 
 export const scanArticleSRButtons = 'mt-auto'

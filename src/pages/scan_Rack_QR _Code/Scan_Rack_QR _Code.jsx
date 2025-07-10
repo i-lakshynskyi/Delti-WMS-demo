@@ -1,3 +1,4 @@
+import React, {useRef, useState} from "react";
 import {
     ScanRackQrCodeButton,
     ScanRackQrCodeButtonsBlock,
@@ -7,12 +8,10 @@ import {
 import StickyTitle from "../../components/StickyTitle.jsx";
 import PrimeButton from "../../components/PrimeButton.jsx";
 import useStore from "../../store/useStore.js";
-import React, {useRef, useState} from "react";
 import ZxingQrEanScanner from "../../utils/zxingQrEanScanner/ZxingQrEanScanner.jsx";
 import {orangeButton} from "../../styles/components/reusableСomponentsStyle.js";
 
 function ScanRackQrCode() {
-    const [qrCodeScanRes, setQrCodeScanRes] = useState(null);
     const [renderScanProps, setRenderScanProps] = useState({
         isScanning: false,
         pageName: 'QR',
@@ -23,7 +22,8 @@ function ScanRackQrCode() {
             video: qrScanVideo
         }
     });
-    const setCurrentRack = useStore((state) => state.setCurrentRack);
+    const currentRackSummary = useStore((state) => state.rackSummary)
+    const setRackSummary = useStore((state) => state.setRackSummary)
 
     const startRef = useRef(null);
     const stopRef = useRef(null);
@@ -35,12 +35,11 @@ function ScanRackQrCode() {
     }
 
     const handleQRResult = (data) => {
-        setCurrentRack(data);
-        setQrCodeScanRes(data);
+        setRackSummary({id: data});
     };
 
     const handleScanStart = () => {
-        setQrCodeScanRes(null);
+        setRackSummary({id: null});
         startRef.current?.();
     };
 
@@ -57,13 +56,13 @@ function ScanRackQrCode() {
                 />
                 <div className={ScanRackQrCodeResultOfScan}>
                     <h3>RACK ID:</h3>
-                    <span>{qrCodeScanRes ? qrCodeScanRes : "..."}</span>
+                    <span>{currentRackSummary.id ? currentRackSummary.id : "..."}</span>
                 </div>
             </div>
             <div className={ScanRackQrCodeButtonsBlock}>
                 <PrimeButton className={ScanRackQrCodeButton}
                              onClick={!renderScanProps.isScanning ? handleScanStart : () => stopRef.current?.()}>{!renderScanProps.isScanning ? "Scan Rack" : "Stop Scan"}</PrimeButton>
-                <PrimeButton className={ScanRackQrCodeButton} disabled={!qrCodeScanRes} onClick={() => handleGoTo('scanArticle')}>Add Article</PrimeButton>
+                <PrimeButton className={ScanRackQrCodeButton} disabled={!currentRackSummary.id} onClick={() => handleGoTo('scanArticle')}>Add Article</PrimeButton>
                 <PrimeButton className={orangeButton} onClick={() => handleGoTo('rackSummary')}>Rack Summary</PrimeButton>
             </div>
         </div>

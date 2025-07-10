@@ -2,8 +2,8 @@ import React from 'react';
 import {primeInput, primeInputLabel} from "../styles/components/reusableСomponentsStyle.js";
 
 function PrimeInput({
-                        labelText = '', placeholderText = '', idInput, children,
-                        type = 'text', value = '', onChange, className = ''
+                        labelText = '', placeholderText = '', idInput, children, onFocus,
+                        type = 'text', value = '', onChange, className = '', ...rest
                     }) {
     return (
         <>
@@ -15,7 +15,9 @@ function PrimeInput({
                     placeholder={placeholderText}
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
+                    onFocus={onFocus}
                     id={idInput}
+                    {...rest}
                 />
                 {children}
             </div>
