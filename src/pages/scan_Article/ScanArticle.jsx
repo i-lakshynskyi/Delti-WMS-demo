@@ -26,7 +26,6 @@ import PrimeInput from "../../components/PrimeInput.jsx";
 
 function ScanArticle() {
     const [eanInputValue, setEanInputValue] = useState("");
-    const [currentEAN, setCurrentEAN] = useState("");
     const [quantityInputValue, setQuantityInputValue] = useState('60');
     const [dateInputValue, setDateInputValue] = useState("");
     const [inputValueWarning, setInputValueWarning] = useState("");
@@ -67,12 +66,12 @@ function ScanArticle() {
         const currentArticle = currentJob.skuTires.find(tire => tire.ean === data) || {};
         setCurrentArticle(currentArticle);
         setDateInputValue(currentArticle.dot);
-        setCurrentEAN(data);
         handleDateInput(currentArticle.dot);
     };
 
     const handleScanStart = () => {
         setCurrentArticle({});
+        setDateInputValue('');
         startRef.current?.();
     };
 
@@ -208,9 +207,9 @@ function ScanArticle() {
                 </div>
                 <div className={scanArticleSInputBlock}>
                     {
-                        currentEAN ? <span className={"font-bold"}>EAN: {currentEAN}</span>
+                        currentArticle.ean ? <span className={"font-bold"}>EAN: {currentArticle.ean}</span>
                             :
-                            <PrimeInput value={eanInputValue} placeholder={"EAN"} onChange={handleEanInput}
+                            <PrimeInput value={currentArticle.ean ? currentArticle.ean : ''} placeholder={"EAN"} onChange={handleEanInput}
                                         idInput={"EAN"} min={0} max={1000} onFocus={() => stopRef.current?.()}/>
                     }
                     <PrimeButton className={scanArticleInputButton}
@@ -232,7 +231,7 @@ function ScanArticle() {
                             <p>{currentArticle ? currentArticle.dot : ""}</p>
 
                             <p>Quantity:</p>
-                            <p>{currentArticle ? currentArticle.quantity : ""} (Racks: {currentArticle ? currentArticle.racks : ""})</p>
+                            <p>{currentArticle.quantity ? currentArticle.quantity : ""} (Racks: {currentArticle.racks ? currentArticle.racks : ".."})</p>
                         </div>
                     </div>
                     <div className={scanArticleSResultForm}>
@@ -247,7 +246,7 @@ function ScanArticle() {
                         </div>
                     </div>
                     <div className={scanArticleSResultFormWarning}>{inputValueWarning}</div>
-                    <div className={scanArticleSResultScannedRacks}>{`Scanned Racks (1/${currentArticle.racks ? currentArticle.racks : ""})`}</div>
+                    <div className={scanArticleSResultScannedRacks}>{`Scanned Racks (1/${currentArticle.racks ? currentArticle.racks : ".."})`}</div>
                 </div>
             </div>
 
