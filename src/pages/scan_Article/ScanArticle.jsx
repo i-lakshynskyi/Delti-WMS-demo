@@ -77,6 +77,7 @@ function ScanArticle() {
     const handleScanStart = () => {
         setCurrentArticle({});
         setDateInputValue('');
+        setEanInputWarning('');
         startRef.current?.();
     };
 
