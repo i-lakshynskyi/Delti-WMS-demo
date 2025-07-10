@@ -247,7 +247,7 @@ function ScanArticle() {
                         </div>
                     </div>
                     <div className={scanArticleSResultFormWarning}>{inputValueWarning}</div>
-                    <div className={scanArticleSResultScannedRacks}>{`Scanned Racks (1/${currentArticle.racks})`}</div>
+                    <div className={scanArticleSResultScannedRacks}>{`Scanned Racks (1/${currentArticle.racks ? currentArticle.racks : ""})`}</div>
                 </div>
             </div>
 
