@@ -17,7 +17,7 @@ export const jobOverviewSKUsCardsContainer = 'mb-[5px] bg-[#f5f5f5] border borde
 export const jobOverviewSKUsCardsWrap = 'flex items-center'
 export const jobOverviewSKUsCardInfo = `ml-[10px] w-full flex flex-col`
 export const jobOverviewSKUsCardsIMG = `w-[72px] size-auto mb-[5px]`
-export const jobOverviewSKUsCardsName = `text-[16px] font-[700] my-[5px]`
+export const jobOverviewSKUsCardsName = `text-[16px] font-[700] mt-[5px]`
 export const jobOverviewSKUsCardsRacks = `font-[500] text-[16px] text-[#9f92ef] text-end`
 
 // ConveyorBeltMode

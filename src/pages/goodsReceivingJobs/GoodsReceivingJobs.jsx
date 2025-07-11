@@ -1,6 +1,6 @@
 import {goodsJobContainer, goodsJobListContainer} from "../../styles/pages/goodsReceivingJobsStyles.js";
 import JobCard from "./JobCard.jsx";
-import {goodsReceivingJobs} from "../../data/mock/mockData_transformed.js";
+import {goodsReceivingJobs} from "../../data/mock/mockData_goodsReceivingJobs.js";
 import {useState} from "react";
 import ModalConfirmJob from "./ModalConfirmJob.jsx";
 import useStore from "../../store/useStore.js";
@@ -9,8 +9,8 @@ import StickyTitle from "../../components/StickyTitle.jsx";
 
 function GoodsReceivingJobs() {
     const [selectedJob, setSelectedJob] = useState(null);
-    const setCurrentJob = useStore((state) => state.setCurrentJob)
     const setCurrentPage = useStore((state) => state.setCurrentPage)
+    const setJobSummary = useStore((state) => state.setJobSummary)
 
 
     const handleTakeJob = (job) => {
@@ -18,7 +18,7 @@ function GoodsReceivingJobs() {
     }
 
     const handleConfirmJob = () => {
-        setCurrentJob(selectedJob)
+        setJobSummary({currentJob: selectedJob});
         setCurrentPage("overview");
         setSelectedJob(null)
     }

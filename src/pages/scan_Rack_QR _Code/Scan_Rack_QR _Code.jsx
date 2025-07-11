@@ -2,17 +2,25 @@ import React, {useRef, useState} from "react";
 import {
     ScanRackQrCodeButton,
     ScanRackQrCodeButtonsBlock,
-    ScanRackQrCodeContainer, ScanRackQrCodeResultOfScan,
-    ScanRackQrCodeScanBlock, qrScanContainer, qrScanOverlay, qrScanImg, qrScanVideo
+    ScanRackQrCodeContainer,
+    ScanRackQrCodeResultOfScan,
+    ScanRackQrCodeScanBlock,
+    qrScanContainer,
+    qrScanOverlay,
+    qrScanImg,
+    qrScanVideo,
+    ScanRackQrCodeResultOfScanInfo,
+    ScanRackStatusRack, getStatusRack, ScanRackQrWarning
 } from "../../styles/pages/ScanRackQrCodeStyles.js";
 import StickyTitle from "../../components/StickyTitle.jsx";
 import PrimeButton from "../../components/PrimeButton.jsx";
 import useStore from "../../store/useStore.js";
 import ZxingQrEanScanner from "../../utils/zxingQrEanScanner/ZxingQrEanScanner.jsx";
 import {orangeButton} from "../../styles/components/reusableСomponentsStyle.js";
+import {racksData} from "../../data/mock/mockData_Racks.js";
 
 function ScanRackQrCode() {
-    const [renderScanProps, setRenderScanProps] = useState({
+   const [renderScanProps, setRenderScanProps] = useState({
         isScanning: false,
         pageName: 'QR',
         styleClassNameProps: {
@@ -22,24 +30,44 @@ function ScanRackQrCode() {
             video: qrScanVideo
         }
     });
-    const currentRackSummary = useStore((state) => state.rackSummary)
+    const [qrScanWarning, setQrScanWarning] = useState("");
+
+    const rackSummary = useStore((state) => state.rackSummary)
     const setRackSummary = useStore((state) => state.setRackSummary)
 
     const startRef = useRef(null);
     const stopRef = useRef(null);
 
     const setCurrentPage = useStore((state) => state.setCurrentPage)
+    const jobSummary = useStore((state) => state.jobSummary)
+    const setJobSummary = useStore((state) => state.setJobSummary)
 
     function handleGoTo(page) {
         setCurrentPage(page);
     }
 
     const handleQRResult = (data) => {
-        setRackSummary({id: data});
+        const currentRack = racksData.find(rack => rack.rackID === data);
+        if (currentRack) {
+            setRackSummary(currentRack);
+            setJobSummary({scannedRacks: [...jobSummary.scannedRacks, currentRack]});
+        }else {
+            setQrScanWarning("Rack not Found!!!!");
+        }
     };
 
     const handleScanStart = () => {
-        setRackSummary({id: null});
+        setRackSummary({
+            rackID: null,
+            location: null,
+            maxCapacity: null,
+            statusOfFilling: null,
+            typeRack: null,
+            totalSKUs: 0,
+            earliestDOT: '',
+            SKUs: [],
+        });
+        setQrScanWarning('');
         startRef.current?.();
     };
 
@@ -54,16 +82,38 @@ function ScanRackQrCode() {
                     startScanProcess={(fn) => (startRef.current = fn)}
                     stopScanProcess={(fn) => (stopRef.current = fn)}
                 />
+                <div className={ScanRackQrWarning}>{qrScanWarning}</div>
                 <div className={ScanRackQrCodeResultOfScan}>
-                    <h3>RACK ID:</h3>
-                    <span>{currentRackSummary.id ? currentRackSummary.id : "..."}</span>
+                    <div className={ScanRackStatusRack}>
+                        <p>Rack Information</p>
+                        <p className={getStatusRack(rackSummary.statusOfFilling)}>{rackSummary.statusOfFilling}</p>
+                    </div>
+                    <div className={ScanRackQrCodeResultOfScanInfo}>
+                        <p>Rack ID:</p>
+                        <p>{rackSummary.rackID ? rackSummary.rackID : "..."}</p>
+
+                        <p>Location:</p>
+                        <p>{rackSummary.location ? rackSummary.location : "..."}</p>
+
+                        <p>Type:</p>
+                        <p>{rackSummary.typeRack ? rackSummary.typeRack : "..."}</p>
+
+                        <p>SKUs:</p>
+                        <p>{(rackSummary.SKUs && rackSummary.SKUs.length > 0)? rackSummary.SKUs.length : "..."}</p>
+
+                        <p>Available Capacity:</p>
+                        <p>{(rackSummary.maxCapacity && rackSummary.totalItems >= 0) ? `${rackSummary.maxCapacity - rackSummary.totalItems}` : "..."}</p>
+
+                    </div>
                 </div>
             </div>
             <div className={ScanRackQrCodeButtonsBlock}>
                 <PrimeButton className={ScanRackQrCodeButton}
                              onClick={!renderScanProps.isScanning ? handleScanStart : () => stopRef.current?.()}>{!renderScanProps.isScanning ? "Scan Rack" : "Stop Scan"}</PrimeButton>
-                <PrimeButton className={ScanRackQrCodeButton} disabled={!currentRackSummary.id} onClick={() => handleGoTo('scanArticle')}>Add Article</PrimeButton>
-                <PrimeButton className={orangeButton} onClick={() => handleGoTo('rackSummary')}>Rack Summary</PrimeButton>
+                <PrimeButton className={ScanRackQrCodeButton} disabled={!rackSummary.rackID}
+                             onClick={() => handleGoTo('scanArticle')}>Add Article</PrimeButton>
+                <PrimeButton className={orangeButton} onClick={() => handleGoTo('rackSummary')}>Rack
+                    Summary</PrimeButton>
             </div>
         </div>
     );

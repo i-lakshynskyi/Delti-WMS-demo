@@ -7,7 +7,7 @@ import Summary from "../assets/icons/statistics.svg";
 import barCodeSvg from "../assets/icons/barcode.svg";
 
 export default function Footer() {
-    const currentJob = useStore((state) => state.currentJob);
+    const currentJob = useStore((state) => state.jobSummary.currentJob);
     const setCurrentPage = useStore((state) => state.setCurrentPage)
 
     return (

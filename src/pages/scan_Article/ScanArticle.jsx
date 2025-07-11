@@ -27,7 +27,7 @@ import PrimeInput from "../../components/PrimeInput.jsx";
 function ScanArticle() {
     const [eanInputValue, setEanInputValue] = useState("");
     const [eanInputWarning, setEanInputWarning] = useState("");
-    const [quantityInputValue, setQuantityInputValue] = useState('60');
+    const [quantityInputValue, setQuantityInputValue] = useState('');
     const [dateInputValue, setDateInputValue] = useState("");
     const [dateInputWarning, setDateInputWarning] = useState("");
     const [isValidQuantityAndDate, setIsValidQuantityAndDate] = useState(false);
@@ -48,7 +48,7 @@ function ScanArticle() {
     const stopRef = useRef(null);
 
     const setCurrentPage = useStore((state) => state.setCurrentPage)
-    const currentJob = useStore((state) => state.currentJob);
+    const currentJob = useStore((state) => state.jobSummary.currentJob);
 
     const currentArticle = useStore((state) => state.currentArticle);
     const setCurrentArticle = useStore((state) => state.setCurrentArticle)
@@ -195,7 +195,6 @@ function ScanArticle() {
 
     function handleGetNewRack() {
         handleGoTo("scanRackQR");
-        setCurrentArticle({});
         setRackSummary({
             totalItems: currentRackSummary.totalItems + parseInt(quantityInputValue, 10),
             SKUs: [...currentRackSummary.SKUs, currentArticle]
@@ -251,16 +250,16 @@ function ScanArticle() {
                     <div className={scanArticleSResultForm}>
                         <div>
                             <PrimeInput className={'w-50'} labelText={"Quantity"} idInput={'Quantity'} type={"number"}
-                                        value={quantityInputValue} onChange={handleNumberInput} placeholderText={"60"}/>
+                                        value={quantityInputValue} onChange={handleNumberInput} required={true}/>
                         </div>
                         <div>
                             <PrimeInput labelText={"DOT (WWYY)"} idInput={'DOT(WWYY)'} value={dateInputValue ? dateInputValue : currentArticle.dot}
                                         onChange={handleDateInput}
-                                        inputMode="numeric" maxLength={4} placeholderText={"WWYY"}/>
+                                        inputMode="numeric" maxLength={4} placeholderText={"WWYY"} required={true}/>
                         </div>
                     </div>
                     <div className={scanArticleSResultFormWarning}>{dateInputWarning}</div>
-                    <div className={scanArticleSResultScannedRacks}>{`Scanned Racks (1/${currentArticle.racks ? currentArticle.racks : ".."})`}</div>
+                    <div className={scanArticleSResultScannedRacks}>{`Scanned Racks (0/${currentArticle.racks ? currentArticle.racks : ".."})`}</div>
                 </div>
             </div>
 
@@ -268,8 +267,7 @@ function ScanArticle() {
                 <PrimeButton onClick={handleGetNewRack}
                              disabled={!(quantityInputValue && isValidQuantityAndDate && currentArticle.ean)}>New Rack</PrimeButton>
                 <PrimeButton disabled={true}>Complete Job</PrimeButton>
-                <PrimeButton className={orangeButton} onClick={() => handleGoTo("rackSummary")}>Rack
-                    Summary</PrimeButton>
+                <PrimeButton className={orangeButton} onClick={() => handleGoTo("articleSummary")}>Article Summary</PrimeButton>
             </div>
         </div>
     );

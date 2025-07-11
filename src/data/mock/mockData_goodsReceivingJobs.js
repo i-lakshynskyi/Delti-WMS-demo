@@ -7,7 +7,7 @@ export const goodsReceivingJobs = [
     "supplier": "Pirelli",
     "deliveryNote": "DN-11111",
     "expectedTyres": 1440,
-    "skus": 12,
+    "skus": 3,
     "gate": "A-01",
     "skuTires": [
       {
@@ -37,87 +37,6 @@ export const goodsReceivingJobs = [
         "racks": 9,
         "dot": "1025"
       },
-      {
-        "name": "Pirelli Cinturato P7",
-        "size": "206/55 R18 86V",
-        "ean": "4485206939189",
-        "quantity": 300,
-        "img": "/assets/continental-winter-contact-ts860.png",
-        "racks": 5,
-        "dot": "1625"
-      },
-      {
-        "name": "Pirelli P Zero",
-        "size": "229/55 R18 90V",
-        "ean": "4608583186093",
-        "quantity": 500,
-        "img": "/assets/continental-premium-contact6.png",
-        "racks": 9,
-        "dot": "2125"
-      },
-      {
-        "name": "Pirelli Scorpion Verde",
-        "size": "202/55 R16 97V",
-        "ean": "4834008809575",
-        "quantity": 500,
-        "img": "/assets/continental-winter-contact-ts860.png",
-        "racks": 9,
-        "dot": "2625"
-      },
-      {
-        "name": "Pirelli P Zero",
-        "size": "189/55 R15 95V",
-        "ean": "4932958136668",
-        "quantity": 240,
-        "img": "/assets/continental-premium-contact6.png",
-        "racks": 4,
-        "dot": "0225"
-      },
-      {
-        "name": "Pirelli Scorpion Verde",
-        "size": "238/55 R17 85V",
-        "ean": "4131863826512",
-        "quantity": 120,
-        "img": "/assets/continental-eco-contact6.png",
-        "racks": 2,
-        "dot": "1225"
-      },
-      {
-        "name": "Pirelli Scorpion Verde",
-        "size": "204/55 R18 99V",
-        "ean": "4494504074121",
-        "quantity": 300,
-        "img": "/assets/continental-premium-contact6.png",
-        "racks": 5,
-        "dot": "0925"
-      },
-      {
-        "name": "Pirelli P Zero",
-        "size": "274/55 R15 93V",
-        "ean": "4714889093516",
-        "quantity": 240,
-        "img": "/assets/continental-premium-contact6.png",
-        "racks": 4,
-        "dot": "1925"
-      },
-      {
-        "name": "Pirelli Cinturato P7",
-        "size": "220/55 R15 91V",
-        "ean": "4146024272739",
-        "quantity": 120,
-        "img": "/assets/continental-eco-contact6.png",
-        "racks": 2,
-        "dot": "1425"
-      },
-      {
-        "name": "Pirelli Scorpion Verde",
-        "size": "273/55 R16 89V",
-        "ean": "4505091738959",
-        "quantity": 300,
-        "img": "/assets/continental-premium-contact6.png",
-        "racks": 5,
-        "dot": "1125"
-      }
     ]
   },
   {

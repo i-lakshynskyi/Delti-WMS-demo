@@ -10,7 +10,7 @@ import useStore from "../../store/useStore.js";
 import JobOverviewInfoCard from "./jobOverviewInfoCard.jsx";
 
 function JobOverview() {
-    const currentJob = useStore(state => state.currentJob);
+    const currentJob = useStore(state => state.jobSummary.currentJob);
     const {skuTires} = currentJob;
 
     const setCurrentPage = useStore((state) => state.setCurrentPage)
@@ -25,7 +25,7 @@ function JobOverview() {
             <div className={jobOverviewBlocksWrap}>
                 <JobOverviewInfoCard currentJob={currentJob}/>
                 <div className={jobOverviewSKUs}>
-                    <h1 className={jobOverviewH1}>{"Tyre SKUs 3"}</h1>
+                    <h1 className={jobOverviewH1}>{`Tyre SKUs : ${currentJob?.skuTires.length || 0}`}</h1>
                     {
                         skuTires.map((sku, i) => {
                             return (<JobOverviewTyreCard key={`${i}-${sku.ean}`} skuTires={sku}/>)
