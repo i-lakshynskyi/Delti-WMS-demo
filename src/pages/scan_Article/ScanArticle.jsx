@@ -303,7 +303,7 @@ function ScanArticle() {
                                         value={quantityInputValue} onChange={handleNumberInput}/>
                         </div>
                         <div>
-                            <PrimeInput labelText={"DOT (WWYY)"} idInput={'DOT(WWYY)'} value={dateInputValue ? dateInputValue : currentArticle.dot}
+                            <PrimeInput labelText={"DOT (WWYY)"} idInput={'DOT(WWYY)'} value={dateInputValue}
                                         onChange={handleDateInput}
                                         inputMode="numeric" maxLength={4} placeholderText={"WWYY"}/>
                         </div>
