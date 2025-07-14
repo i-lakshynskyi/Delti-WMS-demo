@@ -57,16 +57,7 @@ function ScanRackQrCode() {
     };
 
     const handleScanStart = () => {
-        setRackSummary({
-            rackID: null,
-            location: null,
-            maxCapacity: null,
-            statusOfFilling: null,
-            typeRack: null,
-            totalSKUs: 0,
-            earliestDOT: '',
-            SKUs: [],
-        });
+        setRackSummary('reset');
         setQrScanWarning('');
         startRef.current?.();
     };

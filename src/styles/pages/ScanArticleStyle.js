@@ -13,7 +13,6 @@ export const scanArticleSResultArticleDetails = 'bg-[#ffffff] mb-[10px] grid gri
     '[&_p]:border-b-gray-200 p-[5px] [&_p:nth-child(odd)]:font-bold text-gray-700'
 export const scanArticleSResultForm = 'flex gap-2 [&_label]:font-bold [&_div]:flex-1 mb-[5px]'
 export const scanArticleSResultFormWarning = 'text-[#ff0000] text-[12px] h-[14px]'
-export const scanArticleSResultScannedRacks = 'font-bold h-max'
 
 export const scanArticleSRButtons = 'mt-auto'
 

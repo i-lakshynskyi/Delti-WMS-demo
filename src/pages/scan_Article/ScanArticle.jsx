@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import StickyTitle from "../../components/StickyTitle.jsx";
 import ZxingQrEanScanner from "../../utils/zxingQrEanScanner/ZxingQrEanScanner.jsx";
 import PrimeButton from "../../components/PrimeButton.jsx";
@@ -16,7 +16,6 @@ import {
     scanArticleSResultBlock,
     scanArticleSResultForm,
     scanArticleSResultFormWarning,
-    scanArticleSResultScannedRacks,
     scanArticleWrap
 } from "../../styles/pages/ScanArticleStyle.js";
 import useStore from "../../store/useStore.js";
@@ -60,6 +59,7 @@ function ScanArticle() {
         setCurrentPage(page);
     }
 
+    // On RESULT
     const handleBarResult = (data) => {
         if (!currentJob || !Array.isArray(currentJob.skuTires)) {
             return null;
@@ -91,12 +91,17 @@ function ScanArticle() {
     }
     const handleNumberInput = (value) => {
         const val = parseInt(value, 10);
+        const maxQty = currentArticle?.quantity || 0;
+
         if (isNaN(val)) {
             setQuantityInputValue('');
-        } else if (val >= 0 && val <= 1000) {
+        } else if (val >= 0 && val <= 1000 && val <= maxQty) {
             setQuantityInputValue(String(val));
+        } else if (val > maxQty) {
+            setQuantityInputValue(String(maxQty));
         }
-    }
+    };
+
     ///////////////////////////// handleDateInput //////////////////////////////////////
     const handleDateInput = (value) => {
         if (!/^\d{0,4}$/.test(value)) {
@@ -193,13 +198,58 @@ function ScanArticle() {
         }
     }
 
-    function handleGetNewRack() {
-        handleGoTo("scanRackQR");
+    function setRackSummaryWithMerge(article, qtyToAdd) {
+        const existingIndex = currentRackSummary.SKUs.findIndex(
+            sku => sku.ean === article.ean && sku.dot === article.dot
+        );
+
+        let updatedSKUs;
+        if (existingIndex !== -1) {
+            updatedSKUs = [...currentRackSummary.SKUs];
+            updatedSKUs[existingIndex] = {
+                ...updatedSKUs[existingIndex],
+                quantity: updatedSKUs[existingIndex].quantity + qtyToAdd
+            };
+        } else {
+            updatedSKUs = [
+                ...currentRackSummary.SKUs,
+                { ...article, quantity: qtyToAdd }
+            ];
+        }
+
         setRackSummary({
-            totalItems: currentRackSummary.totalItems + parseInt(quantityInputValue, 10),
-            SKUs: [...currentRackSummary.SKUs, currentArticle]
+            totalItems: currentRackSummary.totalItems + qtyToAdd,
+            SKUs: updatedSKUs
         });
     }
+
+
+    function handleGetNewRack() {
+        const inputQty = parseInt(quantityInputValue, 10);
+        if (!inputQty || inputQty <= 0) return;
+
+        const articleForRack = {
+            ...currentArticle,
+            quantity: inputQty
+        };
+
+        const remainingQty = currentArticle.quantity - inputQty;
+        setCurrentArticle({
+            ...currentArticle,
+            quantity: remainingQty
+        });
+
+        setRackSummaryWithMerge(currentArticle, inputQty);
+
+        handleGoTo("scanRackQR");
+    }
+
+    useEffect(() => {
+        if(currentArticle.dot){
+            setDateInputValue(currentArticle.dot);
+            handleDateInput(currentArticle.dot);
+        }
+    }, []);
 
 
     return (
@@ -244,30 +294,29 @@ function ScanArticle() {
                             <p>{currentArticle ? currentArticle.dot : ""}</p>
 
                             <p>Quantity:</p>
-                            <p>{currentArticle.quantity ? currentArticle.quantity : ""} (Racks: {currentArticle.racks ? currentArticle.racks : ".."})</p>
+                            <p>{currentArticle.quantity ? currentArticle.quantity : "0"}</p>
                         </div>
                     </div>
                     <div className={scanArticleSResultForm}>
                         <div>
-                            <PrimeInput className={'w-50'} labelText={"Quantity"} idInput={'Quantity'} type={"number"}
-                                        value={quantityInputValue} onChange={handleNumberInput} required={true}/>
+                            <PrimeInput labelText={"Quantity"} idInput={'Quantity'} type={"number"}
+                                        value={quantityInputValue} onChange={handleNumberInput}/>
                         </div>
                         <div>
                             <PrimeInput labelText={"DOT (WWYY)"} idInput={'DOT(WWYY)'} value={dateInputValue ? dateInputValue : currentArticle.dot}
                                         onChange={handleDateInput}
-                                        inputMode="numeric" maxLength={4} placeholderText={"WWYY"} required={true}/>
+                                        inputMode="numeric" maxLength={4} placeholderText={"WWYY"}/>
                         </div>
                     </div>
                     <div className={scanArticleSResultFormWarning}>{dateInputWarning}</div>
-                    <div className={scanArticleSResultScannedRacks}>{`Scanned Racks (0/${currentArticle.racks ? currentArticle.racks : ".."})`}</div>
                 </div>
             </div>
 
             <div className={scanArticleSRButtons}>
                 <PrimeButton onClick={handleGetNewRack}
-                             disabled={!(quantityInputValue && isValidQuantityAndDate && currentArticle.ean)}>New Rack</PrimeButton>
+                             disabled={!(Number(quantityInputValue) > 0 && isValidQuantityAndDate && currentArticle.ean)}>New Rack</PrimeButton>
                 <PrimeButton disabled={true}>Complete Job</PrimeButton>
-                <PrimeButton className={orangeButton} onClick={() => handleGoTo("articleSummary")}>Article Summary</PrimeButton>
+                <PrimeButton className={orangeButton} onClick={() => handleGoTo("articleSummary")} disabled={!(Object.keys(currentArticle).length)}>Article Summary</PrimeButton>
             </div>
         </div>
     );
