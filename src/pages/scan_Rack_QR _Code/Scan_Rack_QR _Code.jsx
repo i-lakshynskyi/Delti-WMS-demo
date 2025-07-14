@@ -47,7 +47,7 @@ function ScanRackQrCode() {
     }
 
     const handleQRResult = (data) => {
-        const currentRack = racksData.find(rack => rack.rackID === data);
+        const currentRack = racksData.find(rack => String(rack.rackID).toUpperCase() === data.trim().toUpperCase());
         if (currentRack) {
             setRackSummary(currentRack);
             setJobSummary({scannedRacks: [...jobSummary.scannedRacks, currentRack]});
@@ -85,24 +85,18 @@ function ScanRackQrCode() {
                 <div className={ScanRackQrWarning}>{qrScanWarning}</div>
                 <div className={ScanRackQrCodeResultOfScan}>
                     <div className={ScanRackStatusRack}>
-                        <p>Rack Information</p>
+                        <p>Rack Information:</p>
                         <p className={getStatusRack(rackSummary.statusOfFilling)}>{rackSummary.statusOfFilling}</p>
                     </div>
                     <div className={ScanRackQrCodeResultOfScanInfo}>
-                        <p>Rack ID:</p>
-                        <p>{rackSummary.rackID ? rackSummary.rackID : "..."}</p>
+                        <p className='font-bold text-[16px]'>Rack ID:</p>
+                        <p className='font-bold text-[16px]'>{rackSummary.rackID ? rackSummary.rackID : "..."}</p>
 
                         <p>Location:</p>
                         <p>{rackSummary.location ? rackSummary.location : "..."}</p>
 
                         <p>Type:</p>
                         <p>{rackSummary.typeRack ? rackSummary.typeRack : "..."}</p>
-
-                        <p>SKUs:</p>
-                        <p>{(rackSummary.SKUs && rackSummary.SKUs.length > 0)? rackSummary.SKUs.length : "..."}</p>
-
-                        <p>Available Capacity:</p>
-                        <p>{(rackSummary.maxCapacity && rackSummary.totalItems >= 0) ? `${rackSummary.maxCapacity - rackSummary.totalItems}` : "..."}</p>
 
                     </div>
                 </div>
@@ -112,7 +106,7 @@ function ScanRackQrCode() {
                              onClick={!renderScanProps.isScanning ? handleScanStart : () => stopRef.current?.()}>{!renderScanProps.isScanning ? "Scan Rack" : "Stop Scan"}</PrimeButton>
                 <PrimeButton className={ScanRackQrCodeButton} disabled={!rackSummary.rackID}
                              onClick={() => handleGoTo('scanArticle')}>Add Article</PrimeButton>
-                <PrimeButton className={orangeButton} onClick={() => handleGoTo('rackSummary')}>Rack
+                <PrimeButton className={orangeButton} onClick={() => handleGoTo('rackSummary')} disabled={!rackSummary.rackID}>Rack
                     Summary</PrimeButton>
             </div>
         </div>
