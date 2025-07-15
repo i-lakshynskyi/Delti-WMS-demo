@@ -12,6 +12,8 @@ import Scan_Rack_QR_Code from "./pages/scan_Rack_QR _Code/Scan_Rack_QR _Code.jsx
 import ScanArticle from "./pages/scan_Article/ScanArticle.jsx";
 import RackSummary from "./pages/rackSummary/RackSummary.jsx";
 import ArticleSummary from "./pages/articleSummary/ArticleSummary.jsx";
+import JobSummary from "./pages/jobSummary/Job Summary.jsx";
+import CompletedJob from "./pages/completedJob/CompletedJob.jsx";
 
 function App() {
     const isLoggedIn = useStore((state) => state.isLoggedIn);
@@ -31,10 +33,14 @@ function App() {
                 return <Scan_Rack_QR_Code/>
             case 'rackSummary':
                 return <RackSummary/>
-            case 'articleSummary':
-                return <ArticleSummary/>
             case 'scanArticle':
                 return <ScanArticle/>
+            case 'articleSummary':
+                return <ArticleSummary/>
+            case 'jobSummary':
+                return <JobSummary/>
+            case 'completedJob':
+                return <CompletedJob/>
             default:
                 return <div className="text-center p-4">Page not found</div>
         }

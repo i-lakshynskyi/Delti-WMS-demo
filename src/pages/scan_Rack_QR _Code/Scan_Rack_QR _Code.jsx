@@ -39,8 +39,9 @@ function ScanRackQrCode() {
     const stopRef = useRef(null);
 
     const setCurrentPage = useStore((state) => state.setCurrentPage)
-    const jobSummary = useStore((state) => state.jobSummary)
-    const setJobSummary = useStore((state) => state.setJobSummary)
+
+    const isAddArticleDisableBtn = !rackSummary.rackID || rackSummary.statusOfFilling === "Full";
+
 
     function handleGoTo(page) {
         setCurrentPage(page);
@@ -50,7 +51,6 @@ function ScanRackQrCode() {
         const currentRack = racksData.find(rack => String(rack.rackID).toUpperCase() === data.trim().toUpperCase());
         if (currentRack) {
             setRackSummary(currentRack);
-            setJobSummary({scannedRacks: [...jobSummary.scannedRacks, currentRack]});
         }else {
             setQrScanWarning("Rack not Found!!!!");
         }
@@ -95,7 +95,7 @@ function ScanRackQrCode() {
             <div className={ScanRackQrCodeButtonsBlock}>
                 <PrimeButton className={ScanRackQrCodeButton}
                              onClick={!renderScanProps.isScanning ? handleScanStart : () => stopRef.current?.()}>{!renderScanProps.isScanning ? "Scan Rack" : "Stop Scan"}</PrimeButton>
-                <PrimeButton className={ScanRackQrCodeButton} disabled={!rackSummary.rackID}
+                <PrimeButton className={ScanRackQrCodeButton} disabled={isAddArticleDisableBtn}
                              onClick={() => handleGoTo('scanArticle')}>Add Article</PrimeButton>
                 <PrimeButton className={orangeButton} onClick={() => handleGoTo('rackSummary')} disabled={!rackSummary.rackID}>Rack
                     Summary</PrimeButton>

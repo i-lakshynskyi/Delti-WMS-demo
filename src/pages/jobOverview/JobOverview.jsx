@@ -1,7 +1,7 @@
 import {
     jobOverviewContainer, jobOverviewConveyor,
     jobOverviewConveyorBeltMode, jobOverviewBlocksWrap,
-    jobOverviewSKUs, jobOverviewConveyorBeltModeRadio, jobOverviewH1
+    jobOverviewSKUs, jobOverviewConveyorBeltModeRadio, jobOverviewH1, jobOverviewSKUsTitle, jobOverviewH2
 } from "../../styles/pages/jobOverviewStyles.js";
 import StickyTitle from "../../components/StickyTitle.jsx";
 import PrimeButton from "../../components/PrimeButton.jsx";
@@ -12,6 +12,9 @@ import JobOverviewInfoCard from "./jobOverviewInfoCard.jsx";
 function JobOverview() {
     const currentJob = useStore(state => state.jobSummary.currentJob);
     const {skuTires} = currentJob;
+
+    const totalRacks = skuTires.reduce((sum, item) => sum + (item.racks || 0), 0);
+
 
     const setCurrentPage = useStore((state) => state.setCurrentPage)
 
@@ -25,7 +28,10 @@ function JobOverview() {
             <div className={jobOverviewBlocksWrap}>
                 <JobOverviewInfoCard currentJob={currentJob}/>
                 <div className={jobOverviewSKUs}>
-                    <h1 className={jobOverviewH1}>{`Tyre SKUs : ${currentJob?.skuTires.length || 0}`}</h1>
+                    <div className={jobOverviewSKUsTitle}>
+                        <h1 className={jobOverviewH1}>{`Tyre SKUs : ${currentJob?.skuTires.length || 0}`}</h1>
+                        <h1 className={jobOverviewH2}>{`Total Racks : ${totalRacks || 0}`}</h1>
+                    </div>
                     {
                         skuTires.map((sku, i) => {
                             return (<JobOverviewTyreCard key={`${i}-${sku.ean}`} skuTires={sku}/>)

@@ -3,6 +3,7 @@ export const jobOverviewContainer = `h-full flex flex-col`;
 
 export const jobOverviewBlocksWrap = 'flex flex-col h-full overflow-hidden overflow-y-auto';
 export const jobOverviewSKUs = `my-[10px] min-h-[200px] grow-[3] overflow-x-hidden overflow-y-auto rounded-lg`
+export const jobOverviewSKUsTitle = `flex items-center justify-between`
 export const jobOverviewConveyor = 'mt-[5px] h-max flex flex-col items-start justify-between mb-[15px]'
 
 // Info Card
@@ -25,3 +26,4 @@ export const jobOverviewConveyorBeltMode = `w-full h-max flex items-center borde
 export const jobOverviewConveyorBeltModeRadio = `mx-[10px]`
 
 export const jobOverviewH1 = 'sticky top-0 text-[#1f456e] bg-[#ffffff] font-bold text-[16px]'
+export const jobOverviewH2 = `${jobOverviewH1} text-[#9f92ef]`

@@ -33,7 +33,7 @@ function JobCard({task, handleTakeJob}) {
 
             <span className={jobCardGate}>
                 <img className={jobCardGateImg} src={`${gateBlue}`} alt="gate"/>
-                Gate: {gate}
+                Gate: {gate ? gate : '..'}
             </span>
             <PrimeButton disabled={!isValid} onClick={() => handleTakeJob(task)}>Take job</PrimeButton>
         </div>

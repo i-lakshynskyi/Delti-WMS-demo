@@ -6,9 +6,9 @@ export const goodsReceivingJobs = [
     "dateArrival": "27 Jun 2025",
     "supplier": "Pirelli",
     "deliveryNote": "DN-11111",
-    "expectedTyres": 1440,
+    "expectedTyres": 740,
     "skus": 3,
-    "gate": "A-01",
+    "gate": "",
     "skuTires": [
       {
         "name": "Pirelli P Zero",
@@ -48,7 +48,7 @@ export const goodsReceivingJobs = [
     "deliveryNote": "DN-1111",
     "expectedTyres": 3620,
     "skus": 10,
-    "gate": "A-01",
+    "gate": "",
     "skuTires": [
       {
         "name": "Continental PremiumContact 6",
@@ -151,7 +151,7 @@ export const goodsReceivingJobs = [
     "deliveryNote": "DN-1112",
     "expectedTyres": 3400,
     "skus": 9,
-    "gate": "A-03",
+    "gate": "",
     "skuTires": [
       {
         "name": "Michelin Pilot Sport 4",
@@ -245,7 +245,7 @@ export const goodsReceivingJobs = [
     "deliveryNote": "DN-1113",
     "expectedTyres": 3140,
     "skus": 8,
-    "gate": "A-05",
+    "gate": "",
     "skuTires": [
       {
         "name": "Nokian Wetproof",
@@ -330,7 +330,7 @@ export const goodsReceivingJobs = [
     "deliveryNote": "DN-1114",
     "expectedTyres": 3700,
     "skus": 9,
-    "gate": "A-04",
+    "gate": "",
     "skuTires": [
       {
         "name": "Nokian Wetproof",
@@ -424,7 +424,7 @@ export const goodsReceivingJobs = [
     "deliveryNote": "DN-1115",
     "expectedTyres": 3800,
     "skus": 12,
-    "gate": "A-03",
+    "gate": "",
     "skuTires": [
       {
         "name": "Michelin Pilot Sport 4",
@@ -545,7 +545,7 @@ export const goodsReceivingJobs = [
     "deliveryNote": "DN-1116",
     "expectedTyres": 1640,
     "skus": 6,
-    "gate": "A-05",
+    "gate": "",
     "skuTires": [
       {
         "name": "Nokian Wetproof",
@@ -612,7 +612,7 @@ export const goodsReceivingJobs = [
     "deliveryNote": "DN-1117",
     "expectedTyres": 2600,
     "skus": 7,
-    "gate": "A-01",
+    "gate": "",
     "skuTires": [
       {
         "name": "Dunlop Sport Maxx RT2",
@@ -688,7 +688,7 @@ export const goodsReceivingJobs = [
     "deliveryNote": "DN-1118",
     "expectedTyres": 2000,
     "skus": 8,
-    "gate": "A-01",
+    "gate": "",
     "skuTires": [
       {
         "name": "Bridgestone Turanza T005",
@@ -773,7 +773,7 @@ export const goodsReceivingJobs = [
     "deliveryNote": "DN-1119",
     "expectedTyres": 1940,
     "skus": 8,
-    "gate": "A-03",
+    "gate": "",
     "skuTires": [
       {
         "name": "Hankook Ventus Prime3",

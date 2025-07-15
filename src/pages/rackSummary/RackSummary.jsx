@@ -13,6 +13,7 @@ import {
     rackSummarySKUsTableWrap
 } from "../../styles/pages/rackSummaryStyles.js";
 import CapacityInPercent from "../../components/CapacityInPercent.jsx";
+import {getEarliestDot} from "../../utils/functions.js";
 
 function RackSummary() {
     const rackSummary = useStore((state) => state.rackSummary)
@@ -22,31 +23,23 @@ function RackSummary() {
         setCurrentPage(page);
     }
 
-    function getEarliestDot(SKUs) {
-        if (!Array.isArray(SKUs) || SKUs.length === 0) return "..";
+    function availableCapacity(maxCapacity, totalItems) {
+        const max = Number(maxCapacity);
+        const total = Number(totalItems);
 
-        const dotsWithDates = SKUs.map(item => {
-            const dot = item.dot;
-            const week = parseInt(dot.slice(0, 2), 10);
-            const year = 2000 + parseInt(dot.slice(2), 10);
+        if (isNaN(max) || isNaN(total)) {
+            return "0";
+        }
 
-            const jan4 = new Date(year, 0, 4);
-            const dayOfWeek = jan4.getDay() || 7;
-            const firstWeekStart = new Date(jan4);
-            firstWeekStart.setDate(jan4.getDate() - dayOfWeek + 1);
-            const dotDate = new Date(firstWeekStart);
-            dotDate.setDate(firstWeekStart.getDate() + (week - 1) * 7);
+        const result = max - total;
 
-            return { dot, date: dotDate };
-        });
-
-        const earliest = dotsWithDates.reduce((prev, curr) =>
-            curr.date < prev.date ? curr : prev
-        );
-
-        return earliest.dot;
+        if (isNaN(result) || result < 0) {
+            return "0";
+        }
+        return result;
     }
 
+    const availableCapacityRes = availableCapacity(rackSummary.maxCapacity, rackSummary.totalItems);
 
     return (
         <div className={rackSummaryContainer}>
@@ -76,13 +69,14 @@ function RackSummary() {
                     </table>
                 </div>
                 <div className={rackSummaryConclusionBlock}>
-                    <p>Total Items:</p>  <p>{rackSummary.totalItems ? rackSummary.totalItems : ".."}</p>
-                    <p>Total SKUs:</p>   <p>{rackSummary.SKUs.length > 0 ? rackSummary.SKUs.length : ".."}</p>
+                    <p>Total Items:</p>  <p>{rackSummary.totalItems ? rackSummary.totalItems : "0"}</p>
+                    <p>Available Capacity:</p>  <p>{availableCapacityRes}</p>
+                    <p>Total SKUs:</p>   <p>{rackSummary?.SKUs?.length}</p>
                     <p>Earliest DOT:</p> <p>{getEarliestDot(rackSummary.SKUs)}</p>
                 </div>
                 <div className={rackSummaryButtonsBlock}>
-                    <PrimeButton onClick={() => handleGoTo("scanArticle")}>Add Article</PrimeButton>
-                    <PrimeButton onClick={() => handleGoTo("scanRackQR")}>New Rack</PrimeButton>
+                    <PrimeButton onClick={() => handleGoTo("scanRackQR")}>Go Back</PrimeButton>
+                    <PrimeButton onClick={() => handleGoTo("scanArticle")} disabled={!availableCapacityRes}>Add Article</PrimeButton>
                 </div>
             </div>
         </div>

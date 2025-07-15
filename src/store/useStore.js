@@ -26,14 +26,14 @@ const useStore = create((set) => ({
     user: null,
     setUser: (user) => set({user}),
 
-    currentPage: 'login', // 'login' 'jobs', 'overview', 'scanRackQR', etc
+    currentPage: 'login', // 'login' 'jobs', 'overview', 'scanRackQR', 'rackSummary', 'articleSummary', 'scanArticle', 'jobSummary', 'completedJob'
     setCurrentPage: (page) => set({currentPage: page}),
 
     isLoggedIn: false,
     setIsLoggedIn: (status) => set({isLoggedIn: status}),
 
-    currentArticle: {},
-    setCurrentArticle: (article) => set({currentArticle: article}),
+    articleSummary: {},
+    setArticleSummary: (summary) => set({articleSummary: summary}),
 
     rackSummary: getInitialRackSummary(),
     setRackSummary: (update) =>
@@ -44,7 +44,7 @@ const useStore = create((set) => ({
             const totalItems = partial.totalItems ?? state.rackSummary.totalItems;
             const maxCapacity = partial.maxCapacity ?? state.rackSummary.maxCapacity;
 
-            const statusOfFilling = getFillingStatus(totalItems, maxCapacity);
+            const statusOfFilling = update === 'reset' ? "" : getFillingStatus(totalItems, maxCapacity);
 
             return {
                 rackSummary: {
@@ -59,7 +59,10 @@ const useStore = create((set) => ({
 
     jobSummary: {
         currentJob: null,
-        scannedRacks: [],
+        completeArticles: {
+            totalIQuantity: 0,
+            scannedArticles: [],
+        },
         skusList: [],
     },
     setJobSummary: (job) =>

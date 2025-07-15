@@ -7,7 +7,7 @@ import {
     barScanImg,
     barScanOverlay,
     barScanVideo,
-    scanArticleContainer, scanArticleEanInputWarning,
+    scanArticleContainer, scanArticleEAN, scanArticleEanInputWarning,
     scanArticleInputButton,
     scanArticleScannerBlock,
     scanArticleSInputBlock,
@@ -49,11 +49,16 @@ function ScanArticle() {
     const setCurrentPage = useStore((state) => state.setCurrentPage)
     const currentJob = useStore((state) => state.jobSummary.currentJob);
 
-    const currentArticle = useStore((state) => state.currentArticle);
-    const setCurrentArticle = useStore((state) => state.setCurrentArticle)
+    const articleSummary = useStore((state) => state.articleSummary);
+    const setArticleSummary = useStore((state) => state.setArticleSummary);
 
     const currentRackSummary = useStore((state) => state.rackSummary)
     const setRackSummary = useStore((state) => state.setRackSummary)
+
+    const jobSummary = useStore((state) => state.jobSummary)
+    const setJobSummary = useStore((state) => state.setJobSummary)
+
+    const isCompleteJobDisableBtn = currentJob.expectedTyres !== jobSummary.completeArticles.totalIQuantity;
 
     function handleGoTo(page) {
         setCurrentPage(page);
@@ -66,7 +71,7 @@ function ScanArticle() {
         }
         const currentArticle = currentJob.skuTires.find(tire => tire.ean === data) || {};
         if (Object.keys(currentArticle).length > 0) {
-            setCurrentArticle(currentArticle);
+            setArticleSummary(currentArticle);
             setDateInputValue(currentArticle.dot);
             handleDateInput(currentArticle.dot);
             setEanInputValue('');
@@ -76,7 +81,7 @@ function ScanArticle() {
     };
 
     const handleScanStart = () => {
-        setCurrentArticle({});
+        setArticleSummary({});
         setDateInputValue('');
         setEanInputWarning('');
         setEanInputValue('');
@@ -91,7 +96,7 @@ function ScanArticle() {
     }
     const handleNumberInput = (value) => {
         const val = parseInt(value, 10);
-        const maxQty = currentArticle?.quantity || 0;
+        const maxQty = articleSummary?.quantity || 0;
 
         if (isNaN(val)) {
             setQuantityInputValue('');
@@ -223,31 +228,110 @@ function ScanArticle() {
         });
     }
 
+    function updateScannedArticles(existingArticles, newArticle, qtyToAdd, currentRackID) {
+        const index = existingArticles.findIndex(
+            art => art.ean === newArticle.ean && art.dot === newArticle.dot
+        );
 
-    function handleGetNewRack() {
+        if (index !== -1) {
+            const updated = [...existingArticles];
+            const existing = updated[index];
+
+            // check rack - if is used
+            const rackIndex = existing.racksUsed?.findIndex(r => r.rackID === currentRackID);
+            let updatedRacksUsed = existing.racksUsed ? [...existing.racksUsed] : [];
+
+            if (rackIndex !== -1) {
+                updatedRacksUsed[rackIndex] = {
+                    ...updatedRacksUsed[rackIndex],
+                    quantity: updatedRacksUsed[rackIndex].quantity + qtyToAdd
+                };
+            } else {
+                updatedRacksUsed.push({ rackID: currentRackID, quantity: qtyToAdd });
+            }
+
+            updated[index] = {
+                ...existing,
+                quantity: existing.quantity + qtyToAdd,
+                racksUsed: updatedRacksUsed
+            };
+
+            return updated;
+        }
+
+        // if new article
+        return [
+            ...existingArticles,
+            {
+                ...newArticle,
+                quantity: qtyToAdd,
+                racksUsed: [{ rackID: currentRackID, quantity: qtyToAdd }]
+            }
+        ];
+    }
+
+    function updateUsedRacksForArticle(article, rackID, quantityToAdd) {
+        const existingUsedRacks = article.usedRacks ?? [];
+
+        const rackIndex = existingUsedRacks.findIndex(r => r.rackID === rackID);
+
+        let updatedUsedRacks;
+        if (rackIndex !== -1) {
+            updatedUsedRacks = [...existingUsedRacks];
+            updatedUsedRacks[rackIndex] = {
+                ...updatedUsedRacks[rackIndex],
+                quantity: updatedUsedRacks[rackIndex].quantity + quantityToAdd
+            };
+        } else {
+            updatedUsedRacks = [
+                ...existingUsedRacks,
+                {
+                    rackID,
+                    quantity: quantityToAdd
+                }
+            ];
+        }
+
+        return {
+            ...article,
+            quantity: article.quantity - quantityToAdd,
+            usedRacks: updatedUsedRacks
+        };
+    }
+
+
+
+    function handleConfirmQuantity() {
         const inputQty = parseInt(quantityInputValue, 10);
         if (!inputQty || inputQty <= 0) return;
 
-        const articleForRack = {
-            ...currentArticle,
-            quantity: inputQty
-        };
 
-        const remainingQty = currentArticle.quantity - inputQty;
-        setCurrentArticle({
-            ...currentArticle,
-            quantity: remainingQty
+        const updatedArticle = updateUsedRacksForArticle(articleSummary, currentRackSummary.rackID, inputQty);
+        setArticleSummary(updatedArticle);
+
+        setRackSummaryWithMerge(articleSummary, inputQty);
+
+        const updatedArticles = updateScannedArticles(
+            jobSummary.completeArticles.scannedArticles,
+            articleSummary,
+            inputQty,
+            currentRackSummary.rackID
+        );
+        setJobSummary({
+            completeArticles: {
+                ...jobSummary.completeArticles,
+                totalIQuantity: jobSummary.completeArticles.totalIQuantity + inputQty,
+                scannedArticles: updatedArticles
+            }
         });
-
-        setRackSummaryWithMerge(currentArticle, inputQty);
 
         handleGoTo("scanRackQR");
     }
 
     useEffect(() => {
-        if(currentArticle.dot){
-            setDateInputValue(currentArticle.dot);
-            handleDateInput(currentArticle.dot);
+        if(articleSummary.dot){
+            setDateInputValue(articleSummary.dot);
+            handleDateInput(articleSummary.dot);
         }
     }, []);
 
@@ -266,35 +350,30 @@ function ScanArticle() {
                     />
                 </div>
                 <div className={scanArticleSInputBlock}>
-                    {
-                        currentArticle.ean ? <span className={"font-bold"}>EAN: {currentArticle.ean}</span>
-                            :
-                            <>
-                                <PrimeInput value={eanInputValue} placeholder={"EAN"} onChange={handleEanInput}
-                                            idInput={"EAN"} onFocus={() => stopRef.current?.()} type={'number'}/>
-                                <div className={scanArticleEanInputWarning}>{eanInputWarning}</div>
-                            </>
-                    }
+                    <PrimeInput value={eanInputValue} placeholder={"EAN"} onChange={handleEanInput}
+                                idInput={"EAN"} onFocus={() => stopRef.current?.()} type={'number'}/>
+                    <div className={scanArticleEanInputWarning}>{eanInputWarning}</div>
                     <PrimeButton className={scanArticleInputButton}
                                  onClick={handleScanButtonClick}>
                         {getScanButtonLabel(renderScanProps, eanInputValue)}
                     </PrimeButton>
                 </div>
+                <span className={scanArticleEAN}>EAN: {articleSummary.ean ? articleSummary.ean : ".."}</span>
                 <div className={scanArticleSResultBlock}>
                     <div>
                         <p>Article Details</p>
                         <div className={scanArticleSResultArticleDetails}>
                             <p>Brand:</p>
                             <span>
-                                <p>{currentArticle ? currentArticle.name : ""}</p>
-                                <p>{currentArticle ? currentArticle.size : ""}</p>
+                                <p>{articleSummary.name ? articleSummary.name : ""}</p>
+                                <p>{articleSummary.size ? articleSummary.size : ""}</p>
                             </span>
 
                             <p>DOT:</p>
-                            <p>{currentArticle ? currentArticle.dot : ""}</p>
+                            <p>{articleSummary.dot ? articleSummary.dot : ""}</p>
 
                             <p>Quantity:</p>
-                            <p>{currentArticle.quantity ? currentArticle.quantity : "0"}</p>
+                            <p>{articleSummary.quantity ? articleSummary.quantity : "0"}</p>
                         </div>
                     </div>
                     <div className={scanArticleSResultForm}>
@@ -313,10 +392,10 @@ function ScanArticle() {
             </div>
 
             <div className={scanArticleSRButtons}>
-                <PrimeButton onClick={handleGetNewRack}
-                             disabled={!(Number(quantityInputValue) > 0 && isValidQuantityAndDate && currentArticle.ean)}>New Rack</PrimeButton>
-                <PrimeButton disabled={true}>Complete Job</PrimeButton>
-                <PrimeButton className={orangeButton} onClick={() => handleGoTo("articleSummary")} disabled={!(Object.keys(currentArticle).length)}>Article Summary</PrimeButton>
+                <PrimeButton onClick={handleConfirmQuantity}
+                             disabled={!(Number(quantityInputValue) > 0 && isValidQuantityAndDate && articleSummary.ean)}>Confirm Quantity</PrimeButton>
+                <PrimeButton disabled={isCompleteJobDisableBtn} onClick={() => handleGoTo("jobSummary")}>Complete Job</PrimeButton>
+                <PrimeButton className={orangeButton} onClick={() => handleGoTo("articleSummary")} disabled={!(Object.keys(articleSummary).length)}>Article Summary</PrimeButton>
             </div>
         </div>
     );
