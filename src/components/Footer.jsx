@@ -13,7 +13,7 @@ export default function Footer() {
     return (
         <div className={footerContainer}>
             <div className={footerImgWrap}>
-                <img className={footerImg} src={`${home}`} alt="trackLogo"/>
+                <img className={footerImg} src={`${home}`} alt="trackLogo" onClick={() => setCurrentPage("testFetchComponent")}/>
             </div>
             <div className={footerImgWrap}>
                 <img className={footerImg} src={`${jobs}`} alt="trackLogo" onClick={() => setCurrentPage("jobs")}/>

@@ -14,6 +14,7 @@ import RackSummary from "./pages/rackSummary/RackSummary.jsx";
 import ArticleSummary from "./pages/articleSummary/ArticleSummary.jsx";
 import JobSummary from "./pages/jobSummary/Job Summary.jsx";
 import CompletedJob from "./pages/completedJob/CompletedJob.jsx";
+import TestFetchComponent from "./components/TestFetchComponent.jsx";
 
 function App() {
     const isLoggedIn = useStore((state) => state.isLoggedIn);
@@ -41,6 +42,8 @@ function App() {
                 return <JobSummary/>
             case 'completedJob':
                 return <CompletedJob/>
+            case 'testFetchComponent':
+                return <TestFetchComponent/>
             default:
                 return <div className="text-center p-4">Page not found</div>
         }
