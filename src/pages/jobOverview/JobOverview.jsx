@@ -27,11 +27,11 @@ function JobOverview() {
             <StickyTitle title1={'Job Overview'} title2={'GR Job: GR-2025-061901'}/>
             <div className={jobOverviewBlocksWrap}>
                 <JobOverviewInfoCard currentJob={currentJob}/>
+                <div className={jobOverviewSKUsTitle}>
+                    <h1 className={jobOverviewH1}>{`Tyre SKUs : ${currentJob?.skuTires.length || 0}`}</h1>
+                    <h1 className={jobOverviewH2}>{`Total Racks : ${totalRacks || 0}`}</h1>
+                </div>
                 <div className={jobOverviewSKUs}>
-                    <div className={jobOverviewSKUsTitle}>
-                        <h1 className={jobOverviewH1}>{`Tyre SKUs : ${currentJob?.skuTires.length || 0}`}</h1>
-                        <h1 className={jobOverviewH2}>{`Total Racks : ${totalRacks || 0}`}</h1>
-                    </div>
                     {
                         skuTires.map((sku, i) => {
                             return (<JobOverviewTyreCard key={`${i}-${sku.ean}`} skuTires={sku}/>)

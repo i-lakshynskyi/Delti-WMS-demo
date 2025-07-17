@@ -22,3 +22,17 @@ export function getEarliestDot(arr) {
 
     return earliest.dot;
 }
+
+
+export function getTotalUniqueUsedRacks(jobSummary) {
+    const scannedArticles = jobSummary?.completeArticles?.scannedArticles || [];
+
+    const allRackIDs = scannedArticles.flatMap(article =>
+        Array.isArray(article.racksUsed)
+            ? article.racksUsed.map(rack => rack.rackID)
+            : []
+    );
+
+    const uniqueRackIDs = new Set(allRackIDs);
+    return uniqueRackIDs.size;
+}

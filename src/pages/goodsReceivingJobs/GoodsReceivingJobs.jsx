@@ -9,6 +9,7 @@ import StickyTitle from "../../components/StickyTitle.jsx";
 
 function GoodsReceivingJobs() {
     const [selectedJob, setSelectedJob] = useState(null);
+    const jobSummary = useStore(state => state.jobSummary);
     const setCurrentPage = useStore((state) => state.setCurrentPage)
     const setJobSummary = useStore((state) => state.setJobSummary)
 
@@ -18,9 +19,14 @@ function GoodsReceivingJobs() {
     }
 
     const handleConfirmJob = () => {
-        setJobSummary({currentJob: selectedJob});
+        const now = new Date().toISOString();
+        setJobSummary({
+            ...jobSummary,
+            currentJob: selectedJob,
+            startTimeJob: now,
+        });
         setCurrentPage("overview");
-        setSelectedJob(null)
+        setSelectedJob(null);
     }
 
     const handleCloseModal = () => {

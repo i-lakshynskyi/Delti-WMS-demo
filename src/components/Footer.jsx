@@ -25,7 +25,7 @@ export default function Footer() {
                 <img className={footerImg} src={`${barCodeSvg}`} alt="trackLogo" onClick={() => currentJob && setCurrentPage("scanArticle")}/>
             </div>
             <div className={`${footerImg} ${!currentJob ? "opacity-40" : ""}`}>
-                <img className={footerImg} src={`${Summary}`} alt="trackLogo" onClick={() => currentJob && setCurrentPage("rackSummary")}/>
+                <img className={footerImg} src={`${Summary}`} alt="trackLogo" onClick={() => currentJob && setCurrentPage("jobSummary")}/>
             </div>
         </div>
     )

@@ -63,7 +63,9 @@ const useStore = create((set) => ({
             totalIQuantity: 0,
             scannedArticles: [],
         },
-        skusList: [],
+        completeTimeJob: '',
+        timeTaken: '',
+        startTimeJob: '',
     },
     setJobSummary: (job) =>
         set(state => ({

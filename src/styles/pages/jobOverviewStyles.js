@@ -2,8 +2,8 @@
 export const jobOverviewContainer = `h-full flex flex-col`;
 
 export const jobOverviewBlocksWrap = 'flex flex-col h-full overflow-hidden overflow-y-auto';
-export const jobOverviewSKUs = `my-[10px] min-h-[200px] grow-[3] overflow-x-hidden overflow-y-auto rounded-lg`
-export const jobOverviewSKUsTitle = `flex items-center justify-between`
+export const jobOverviewSKUs = `min-h-[200px] grow-[3] mb-[10px] overflow-x-hidden overflow-y-auto rounded-lg`
+export const jobOverviewSKUsTitle = `flex items-center justify-between mt-[10px]`
 export const jobOverviewConveyor = 'mt-[5px] h-max flex flex-col items-start justify-between mb-[15px]'
 
 // Info Card
@@ -16,7 +16,8 @@ bg-[#f5f5f5] mb-[5px] rounded-lg p-[10px]
 // SKU_CARD
 export const jobOverviewSKUsCardsContainer = 'mb-[5px] bg-[#f5f5f5] border border-gray-300 rounded-xl px-[10px] text-[14px]'
 export const jobOverviewSKUsCardsWrap = 'flex items-center'
-export const jobOverviewSKUsCardInfo = `ml-[10px] w-full flex flex-col`
+export const jobOverviewSKUsCardInfo = `ml-[10px] w-full flex flex-col grid grid-cols-2 px-[10px]
+                                               [&>*:nth-child(odd)]:font-bold [&>*:nth-child(even)]:text-end`
 export const jobOverviewSKUsCardsIMG = `w-[72px] size-auto mb-[5px]`
 export const jobOverviewSKUsCardsName = `text-[16px] font-[700] mt-[5px]`
 export const jobOverviewSKUsCardsRacks = `font-[500] text-[16px] text-[#9f92ef] text-end`

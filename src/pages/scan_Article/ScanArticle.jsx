@@ -328,6 +328,36 @@ function ScanArticle() {
         handleGoTo("scanRackQR");
     }
 
+    const handleCompleteJob = () => {
+        const now = new Date();
+        const formattedCompleteTime = `Today, ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+
+        const start = jobSummary.startTimeJob ? new Date(jobSummary.startTimeJob) : null;
+
+        let timeTaken = '';
+
+        if (start) {
+            const diffMs = now - start;
+            const diffMinutes = Math.floor(diffMs / 1000 / 60);
+            const hours = Math.floor(diffMinutes / 60);
+            const minutes = diffMinutes % 60;
+
+            timeTaken = `${hours} h ${minutes} mm`;
+        } else {
+            timeTaken = 'unknown';
+        }
+
+        setJobSummary({
+            ...jobSummary,
+            completeTimeJob: formattedCompleteTime,
+            timeTaken: timeTaken,
+        });
+
+        handleGoTo("jobSummary");
+    };
+
+
+
     useEffect(() => {
         if(articleSummary.dot){
             setDateInputValue(articleSummary.dot);
@@ -394,7 +424,7 @@ function ScanArticle() {
             <div className={scanArticleSRButtons}>
                 <PrimeButton onClick={handleConfirmQuantity}
                              disabled={!(Number(quantityInputValue) > 0 && isValidQuantityAndDate && articleSummary.ean)}>Confirm Quantity</PrimeButton>
-                <PrimeButton disabled={isCompleteJobDisableBtn} onClick={() => handleGoTo("jobSummary")}>Complete Job</PrimeButton>
+                <PrimeButton disabled={isCompleteJobDisableBtn} onClick={handleCompleteJob}>Complete Job</PrimeButton>
                 <PrimeButton className={orangeButton} onClick={() => handleGoTo("articleSummary")} disabled={!(Object.keys(articleSummary).length)}>Article Summary</PrimeButton>
             </div>
         </div>

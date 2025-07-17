@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import useStore from '../../store/useStore.js'
 import trackLogoBlue from "../../assets/track-logo-blue.png";
-import infoBlue from "../../assets/info-blue.png";
+import info from "../../assets/icons/information.svg";
 import eyeOpen from '../../assets/icons/eye-open.svg'
 import eyeClosed from '../../assets/icons/eye-close.svg'
 import PrimeButton from "../../components/PrimeButton.jsx";
@@ -109,7 +109,7 @@ function Login() {
             </p>
 
             <div className={loginInfo}>
-                <img className={loginInfoImg} src={`${infoBlue}`} alt="info" />
+                <img className={loginInfoImg} src={`${info}`} alt="info" />
                 <span>For MVP, login fields auto-fill if session data is found.</span>
             </div>
         </div>
