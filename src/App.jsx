@@ -15,6 +15,7 @@ import ArticleSummary from "./pages/articleSummary/ArticleSummary.jsx";
 import JobSummary from "./pages/jobSummary/Job Summary.jsx";
 import CompletedJob from "./pages/completedJob/CompletedJob.jsx";
 import TestFetchComponent from "./components/TestFetchComponent.jsx";
+import CombinedRackArticleSummary from "./components/CombinedRackArticleSummary.jsx";
 
 function App() {
     const isLoggedIn = useStore((state) => state.isLoggedIn);
@@ -33,11 +34,11 @@ function App() {
             case 'scanRackQR':
                 return <Scan_Rack_QR_Code/>
             case 'rackSummary':
-                return <RackSummary/>
+                return <CombinedRackArticleSummary/>
             case 'scanArticle':
                 return <ScanArticle/>
             case 'articleSummary':
-                return <ArticleSummary/>
+                return <CombinedRackArticleSummary/>
             case 'jobSummary':
                 return <JobSummary/>
             case 'completedJob':

@@ -35,10 +35,17 @@ function ScanRackQrCode() {
     const rackSummary = useStore((state) => state.rackSummary)
     const setRackSummary = useStore((state) => state.setRackSummary)
 
+    const articleSummary = useStore((state) => state.articleSummary);
+
     const startRef = useRef(null);
     const stopRef = useRef(null);
 
     const setCurrentPage = useStore((state) => state.setCurrentPage)
+
+    const jobSummary = useStore((state) => state.jobSummary)
+    const setJobSummary = useStore((state) => state.setJobSummary)
+    const {currentJob} = jobSummary;
+    const isCompleteJobDisableBtn = currentJob.expectedTyres === jobSummary.completeArticles.totalIQuantity;
 
     const isAddArticleDisableBtn = !rackSummary.rackID || rackSummary.statusOfFilling === "Full";
 
@@ -60,6 +67,34 @@ function ScanRackQrCode() {
         setRackSummary('reset');
         setQrScanWarning('');
         startRef.current?.();
+    };
+
+    const handleCompleteJob = () => {
+        const now = new Date();
+        const formattedCompleteTime = `Today, ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+
+        const start = jobSummary.startTimeJob ? new Date(jobSummary.startTimeJob) : null;
+
+        let timeTaken = '';
+
+        if (start) {
+            const diffMs = now - start;
+            const diffMinutes = Math.floor(diffMs / 1000 / 60);
+            const hours = Math.floor(diffMinutes / 60);
+            const minutes = diffMinutes % 60;
+
+            timeTaken = `${hours} h ${minutes} mm`;
+        } else {
+            timeTaken = 'unknown';
+        }
+
+        setJobSummary({
+            ...jobSummary,
+            completeTimeJob: formattedCompleteTime,
+            timeTaken: timeTaken,
+        });
+
+        handleGoTo("jobSummary");
     };
 
     return (
@@ -93,10 +128,15 @@ function ScanRackQrCode() {
                 </div>
             </div>
             <div className={ScanRackQrCodeButtonsBlock}>
-                <PrimeButton className={ScanRackQrCodeButton}
+                <PrimeButton className={ScanRackQrCodeButton} disabled={isCompleteJobDisableBtn}
                              onClick={!renderScanProps.isScanning ? handleScanStart : () => stopRef.current?.()}>{!renderScanProps.isScanning ? "Scan Rack" : "Stop Scan"}</PrimeButton>
-                <PrimeButton className={ScanRackQrCodeButton} disabled={isAddArticleDisableBtn}
-                             onClick={() => handleGoTo('scanArticle')}>Add Article</PrimeButton>
+                {
+                    isCompleteJobDisableBtn ?
+                        <PrimeButton onClick={handleCompleteJob}>Complete Job</PrimeButton>
+                        :
+                        <PrimeButton className={ScanRackQrCodeButton} disabled={isAddArticleDisableBtn}
+                                     onClick={() => handleGoTo('scanArticle')}>{articleSummary?.quantity > 0 ? "Continue Add Article" : "Add New Article"}</PrimeButton>
+                }
                 <PrimeButton className={orangeButton} onClick={() => handleGoTo('rackSummary')} disabled={!rackSummary.rackID}>Rack
                     Summary</PrimeButton>
             </div>

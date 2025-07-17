@@ -58,7 +58,16 @@ function ScanArticle() {
     const jobSummary = useStore((state) => state.jobSummary)
     const setJobSummary = useStore((state) => state.setJobSummary)
 
-    const isCompleteJobDisableBtn = currentJob.expectedTyres !== jobSummary.completeArticles.totalIQuantity;
+    function resetArticle() {
+        setEanInputValue('');
+        setEanInputWarning('');
+        setQuantityInputValue('');
+        setDateInputValue('');
+        setDateInputWarning('');
+        setIsValidQuantityAndDate(false);
+        setArticleSummary({});
+    }
+
 
     function handleGoTo(page) {
         setCurrentPage(page);
@@ -81,10 +90,7 @@ function ScanArticle() {
     };
 
     const handleScanStart = () => {
-        setArticleSummary({});
-        setDateInputValue('');
-        setEanInputWarning('');
-        setEanInputValue('');
+        resetArticle();
         startRef.current?.();
     };
 
@@ -271,23 +277,26 @@ function ScanArticle() {
     }
 
     function updateUsedRacksForArticle(article, rackID, quantityToAdd) {
-        const existingUsedRacks = article.usedRacks ?? [];
+        const dot = article.dot;
+        const existingUsedRacks = article.racksUsed ?? [];
 
-        const rackIndex = existingUsedRacks.findIndex(r => r.rackID === rackID);
+        const rackIndex = existingUsedRacks.findIndex(r => r.rackID === rackID && r.dot === dot);
 
-        let updatedUsedRacks;
+        let updatedRacksUsed;
         if (rackIndex !== -1) {
-            updatedUsedRacks = [...existingUsedRacks];
-            updatedUsedRacks[rackIndex] = {
-                ...updatedUsedRacks[rackIndex],
-                quantity: updatedUsedRacks[rackIndex].quantity + quantityToAdd
+            updatedRacksUsed = [...existingUsedRacks];
+            updatedRacksUsed[rackIndex] = {
+                ...updatedRacksUsed[rackIndex],
+                quantity: updatedRacksUsed[rackIndex].quantity + quantityToAdd,
+                dot
             };
         } else {
-            updatedUsedRacks = [
+            updatedRacksUsed = [
                 ...existingUsedRacks,
                 {
                     rackID,
-                    quantity: quantityToAdd
+                    quantity: quantityToAdd,
+                    dot
                 }
             ];
         }
@@ -295,7 +304,7 @@ function ScanArticle() {
         return {
             ...article,
             quantity: article.quantity - quantityToAdd,
-            usedRacks: updatedUsedRacks
+            racksUsed: updatedRacksUsed
         };
     }
 
@@ -305,15 +314,19 @@ function ScanArticle() {
         const inputQty = parseInt(quantityInputValue, 10);
         if (!inputQty || inputQty <= 0) return;
 
+        const updatedSummary = {
+            ...articleSummary,
+            dot: dateInputValue
+        };
 
-        const updatedArticle = updateUsedRacksForArticle(articleSummary, currentRackSummary.rackID, inputQty);
+        const updatedArticle = updateUsedRacksForArticle(updatedSummary, currentRackSummary.rackID, inputQty);
         setArticleSummary(updatedArticle);
 
-        setRackSummaryWithMerge(articleSummary, inputQty);
+        setRackSummaryWithMerge(updatedSummary, inputQty);
 
         const updatedArticles = updateScannedArticles(
             jobSummary.completeArticles.scannedArticles,
-            articleSummary,
+            updatedSummary,
             inputQty,
             currentRackSummary.rackID
         );
@@ -328,38 +341,12 @@ function ScanArticle() {
         handleGoTo("scanRackQR");
     }
 
-    const handleCompleteJob = () => {
-        const now = new Date();
-        const formattedCompleteTime = `Today, ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-
-        const start = jobSummary.startTimeJob ? new Date(jobSummary.startTimeJob) : null;
-
-        let timeTaken = '';
-
-        if (start) {
-            const diffMs = now - start;
-            const diffMinutes = Math.floor(diffMs / 1000 / 60);
-            const hours = Math.floor(diffMinutes / 60);
-            const minutes = diffMinutes % 60;
-
-            timeTaken = `${hours} h ${minutes} mm`;
-        } else {
-            timeTaken = 'unknown';
-        }
-
-        setJobSummary({
-            ...jobSummary,
-            completeTimeJob: formattedCompleteTime,
-            timeTaken: timeTaken,
-        });
-
-        handleGoTo("jobSummary");
-    };
-
-
 
     useEffect(() => {
-        if(articleSummary.dot){
+         if (articleSummary.quantity === 0) {
+            resetArticle();
+        }
+        if(articleSummary.dot && articleSummary.quantity > 0){
             setDateInputValue(articleSummary.dot);
             handleDateInput(articleSummary.dot);
         }
@@ -424,7 +411,6 @@ function ScanArticle() {
             <div className={scanArticleSRButtons}>
                 <PrimeButton onClick={handleConfirmQuantity}
                              disabled={!(Number(quantityInputValue) > 0 && isValidQuantityAndDate && articleSummary.ean)}>Confirm Quantity</PrimeButton>
-                <PrimeButton disabled={isCompleteJobDisableBtn} onClick={handleCompleteJob}>Complete Job</PrimeButton>
                 <PrimeButton className={orangeButton} onClick={() => handleGoTo("articleSummary")} disabled={!(Object.keys(articleSummary).length)}>Article Summary</PrimeButton>
             </div>
         </div>

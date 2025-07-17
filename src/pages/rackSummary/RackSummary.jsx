@@ -19,6 +19,8 @@ function RackSummary() {
     const rackSummary = useStore((state) => state.rackSummary)
     const setCurrentPage = useStore((state) => state.setCurrentPage)
 
+    const articleSummary = useStore((state) => state.articleSummary);
+
     function handleGoTo(page) {
         setCurrentPage(page);
     }
@@ -75,8 +77,8 @@ function RackSummary() {
                     <p>Earliest DOT:</p> <p>{getEarliestDot(rackSummary.SKUs)}</p>
                 </div>
                 <div className={rackSummaryButtonsBlock}>
-                    <PrimeButton onClick={() => handleGoTo("scanRackQR")}>Go Back</PrimeButton>
-                    <PrimeButton onClick={() => handleGoTo("scanArticle")} disabled={!availableCapacityRes}>Add Article</PrimeButton>
+                    <PrimeButton onClick={() => handleGoTo("scanRackQR")}>to Scan Rack Page</PrimeButton>
+                    <PrimeButton onClick={() => handleGoTo("scanArticle")} disabled={!availableCapacityRes || articleSummary?.quantity === 0}>Add Article</PrimeButton>
                 </div>
             </div>
         </div>

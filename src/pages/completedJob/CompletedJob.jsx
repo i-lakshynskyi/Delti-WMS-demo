@@ -21,7 +21,6 @@ import {getTotalUniqueUsedRacks} from "../../utils/functions.js";
 function CompletedJob() {
     const setCurrentPage = useStore((state) => state.setCurrentPage)
     const jobSummary = useStore(state => state.jobSummary);
-    console.log("jobSummary: ", jobSummary);
     const {currentJob, timeTaken, completeArticles} = jobSummary;
     const totalUsedRacks = getTotalUniqueUsedRacks(jobSummary);
 

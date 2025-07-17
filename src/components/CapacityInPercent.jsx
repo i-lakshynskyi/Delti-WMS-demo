@@ -13,9 +13,9 @@ function CapacityInPercent({maxCapacity, totalItems, title, type}) {
         percent = Math.min(100, Math.round((totalItems / maxCapacity) * 100));
         label = `${percent || 0}%`;
     } else if (type === "Article") {
-        const totalRequiredRacks = Math.ceil(maxCapacity / totalItems); // maxCapacity = expectedTyres
-        percent = Math.min(100, Math.round((totalItems / totalRequiredRacks) * 100)); // totalItems = usedRacks
-        label = (totalItems && maxCapacity) ? `${totalItems} / ${totalRequiredRacks}` : "0/0";
+        const totalRequiredRacks = maxCapacity; // ← просто беремо як є
+        percent = Math.min(100, Math.round((totalItems / totalRequiredRacks) * 100));
+        label = (totalItems && totalRequiredRacks) ? `${totalItems} / ${totalRequiredRacks}` : "0/0";
     }
 
     let barColor = 'bg-green-500';
