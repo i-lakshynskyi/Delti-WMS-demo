@@ -36,3 +36,50 @@ export function getTotalUniqueUsedRacks(jobSummary) {
     const uniqueRackIDs = new Set(allRackIDs);
     return uniqueRackIDs.size;
 }
+
+// Preload Image
+const imageCache = new Map();
+
+// Removed function delay after get real IMG-url from server
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * Preloads an image by its URL.
+ * Caches the Promise to avoid redundant network requests.
+ * @param {string} url - The image URL
+ * @returns {Promise<string>} - A Promise that resolves when the image is loaded
+ */
+export function preloadImage(url) {
+    if (!url) {
+        return Promise.reject(new Error('Image URL is required'));
+    }
+
+    // Return cached Promise if available
+    if (imageCache.has(url)) {
+        return imageCache.get(url);
+    }
+
+    // Create a new Promise to load image
+    const promise = new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = url;
+
+        // Simulate loading delay for local paths !!!Removed img.onload after get real IMG-url from server
+        img.onload = async () => {
+            if (url.startsWith('/assets/')) {
+                await delay(1000);
+            }
+            resolve(url);
+        };
+
+        /*img.onload = () => resolve(url);*/
+        img.onerror = () => reject(new Error(`Failed to load image: ${url}`));
+    });
+
+    // Cache the Promise
+    imageCache.set(url, promise);
+
+    return promise;
+}

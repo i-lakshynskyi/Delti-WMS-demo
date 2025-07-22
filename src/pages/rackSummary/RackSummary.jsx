@@ -77,7 +77,7 @@ function RackSummary() {
                     <p>Earliest DOT:</p> <p>{getEarliestDot(rackSummary.SKUs)}</p>
                 </div>
                 <div className={rackSummaryButtonsBlock}>
-                    <PrimeButton onClick={() => handleGoTo("scanRackQR")}>to Scan Rack Page</PrimeButton>
+                    <PrimeButton onClick={() => handleGoTo("scanRackQR")}>Scan Rack</PrimeButton>
                     <PrimeButton onClick={() => handleGoTo("scanArticle")} disabled={!availableCapacityRes || articleSummary?.quantity === 0}>Add Article</PrimeButton>
                 </div>
             </div>

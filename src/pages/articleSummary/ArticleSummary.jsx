@@ -85,7 +85,7 @@ function ArticleSummary() {
                     <p>Earliest DOT:</p> <p>{getEarliestDot(articleSummary.racksUsed)}</p>
                 </div>
                 <div className={articleSummaryButtonsBlock}>
-                    <PrimeButton onClick={() => handleGoTo("scanArticle")} disabled={isToScanArticlePageDisableBtn}>to Scan Article Page</PrimeButton>
+                    <PrimeButton onClick={() => handleGoTo("scanArticle")} disabled={isToScanArticlePageDisableBtn}>Scan Article</PrimeButton>
                     <PrimeButton onClick={() => handleGoTo("scanRackQR")}>Add Rack</PrimeButton>
                 </div>
             </div>

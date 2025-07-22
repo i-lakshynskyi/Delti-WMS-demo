@@ -10,8 +10,6 @@ import useStore from "./store/useStore.js";
 import JobOverview from "./pages/jobOverview/JobOverview.jsx";
 import Scan_Rack_QR_Code from "./pages/scan_Rack_QR _Code/Scan_Rack_QR _Code.jsx";
 import ScanArticle from "./pages/scan_Article/ScanArticle.jsx";
-import RackSummary from "./pages/rackSummary/RackSummary.jsx";
-import ArticleSummary from "./pages/articleSummary/ArticleSummary.jsx";
 import JobSummary from "./pages/jobSummary/Job Summary.jsx";
 import CompletedJob from "./pages/completedJob/CompletedJob.jsx";
 import TestFetchComponent from "./components/TestFetchComponent.jsx";

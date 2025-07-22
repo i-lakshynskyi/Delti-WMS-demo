@@ -33,7 +33,7 @@ export const goodsReceivingJobs = [
         "size": "227/55 R17 91V",
         "ean": "4552517184010",
         "quantity": 500,
-        "img": "/assets/continental-winter-contact-ts860.png",
+        "img": "/assets/continental-winter-contact-ts860-@.png",
         "racks": 9,
         "dot": "1025"
       },
@@ -55,7 +55,7 @@ export const goodsReceivingJobs = [
         "size": "225/50 R17 98W",
         "ean": "4610951418636",
         "quantity": 300,
-        "img": "/assets/continental-eco-contact6.png",
+        "img": "/assets/continental-eco-contact6-@.png",
         "racks": 5,
         "dot": "3024"
       },
@@ -185,7 +185,7 @@ export const goodsReceivingJobs = [
         "size": "205/55 R16 91V",
         "ean": "4373990708409",
         "quantity": 500,
-        "img": "/assets/continental-eco-contact6.png",
+        "img": "/assets/continental-eco-contact6-@.png",
         "racks": 8,
         "dot": "3624"
       },
@@ -230,7 +230,7 @@ export const goodsReceivingJobs = [
         "size": "245/45 R18 100W",
         "ean": "4260485989492",
         "quantity": 300,
-        "img": "/assets/continental-eco-contact6.png",
+        "img": "/assets/continental-eco-contact6-@.png",
         "racks": 5,
         "dot": "1425"
       }
@@ -306,7 +306,7 @@ export const goodsReceivingJobs = [
         "size": "225/45 R17 94W",
         "ean": "4453045866357",
         "quantity": 240,
-        "img": "/assets/continental-eco-contact6.png",
+        "img": "/assets/continental-eco-contact6-@.png",
         "racks": 4,
         "dot": "4424"
       },
@@ -355,7 +355,7 @@ export const goodsReceivingJobs = [
         "size": "275/40 R19 105Y",
         "ean": "4997427306108",
         "quantity": 300,
-        "img": "/assets/continental-premium-contact6.png",
+        "img": "/assets/continental-premium-contact6-@.png",
         "racks": 5,
         "dot": "4124"
       },
@@ -400,7 +400,7 @@ export const goodsReceivingJobs = [
         "size": "235/40 R18 95Y",
         "ean": "4195210300756",
         "quantity": 300,
-        "img": "/assets/continental-premium-contact6.png",
+        "img": "/assets/continental-premium-contact6-@.png",
         "racks": 5,
         "dot": "2725"
       },
@@ -458,7 +458,7 @@ export const goodsReceivingJobs = [
         "size": "225/50 R17 98W",
         "ean": "4767200367180",
         "quantity": 300,
-        "img": "/assets/continental-winter-contact-ts860.png",
+        "img": "/assets/continental-winter-contact-ts860-@.png",
         "racks": 5,
         "dot": "0525"
       },
@@ -521,7 +521,7 @@ export const goodsReceivingJobs = [
         "size": "255/35 R19 96Y",
         "ean": "4570696864166",
         "quantity": 300,
-        "img": "/assets/continental-winter-contact-ts860.png",
+        "img": "/assets/continental-winter-contact-ts860-@.png",
         "racks": 5,
         "dot": "3824"
       },
@@ -619,7 +619,7 @@ export const goodsReceivingJobs = [
         "size": "245/45 R18 100W",
         "ean": "4930967595902",
         "quantity": 500,
-        "img": "/assets/continental-premium-contact6.png",
+        "img": "/assets/continental-premium-contact6-@.png",
         "racks": 8,
         "dot": "3424"
       },
@@ -673,7 +673,7 @@ export const goodsReceivingJobs = [
         "size": "225/50 R17 98W",
         "ean": "4581947556462",
         "quantity": 500,
-        "img": "/assets/continental-premium-contact6.png",
+        "img": "/assets/continental-premium-contact6-@.png",
         "racks": 8,
         "dot": "0325"
       }
@@ -722,7 +722,7 @@ export const goodsReceivingJobs = [
         "size": "245/45 R18 100W",
         "ean": "4943456997276",
         "quantity": 120,
-        "img": "/assets/continental-winter-contact-ts860.png",
+        "img": "/assets/continental-winter-contact-ts860-@.png",
         "racks": 2,
         "dot": "3324"
       },
@@ -789,7 +789,7 @@ export const goodsReceivingJobs = [
         "size": "205/55 R16 91V",
         "ean": "4017392032794",
         "quantity": 300,
-        "img": "/assets/continental-eco-contact6.png",
+        "img": "/assets/continental-eco-contact6-@.png",
         "racks": 5,
         "dot": "0925"
       },
@@ -816,7 +816,7 @@ export const goodsReceivingJobs = [
         "size": "235/40 R18 95Y",
         "ean": "4126788916165",
         "quantity": 120,
-        "img": "/assets/continental-premium-contact6.png",
+        "img": "/assets/continental-premium-contact6-@.png",
         "racks": 2,
         "dot": "5124"
       },

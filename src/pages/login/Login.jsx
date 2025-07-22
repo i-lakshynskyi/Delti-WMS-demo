@@ -71,7 +71,7 @@ function Login() {
             <h1 className={loginTitle}>Login to DeltiStore</h1>
 
             <PrimeInput value={username}
-                        onChange={e => setUsername(e.target.value)}
+                        onChange={e => setUsername(e)}
                         placeholderText={"Enter your username"}
                         labelText={"Username"}
                         idInput={'username'}
@@ -79,7 +79,7 @@ function Login() {
             />
 
             <PrimeInput value={password}
-                        onChange={e => setPassword(e.target.value)}
+                        onChange={e => setPassword(e)}
                         placeholderText={"Enter your password"}
                         type={showPassword ? 'text' : 'password'}
                         labelText={"Password"}

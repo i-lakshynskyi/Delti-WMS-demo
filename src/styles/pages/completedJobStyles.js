@@ -1,6 +1,6 @@
 
 export const completedJobContainer = `h-full flex flex-col rounded-md overflow-hidden overflow-y-auto`;
-export const completedJobImgPrizeWrap = `flex-1 mb-[10px] flex items-end justify-center min-h-[13%] max-h-[20%] w-full`;
+export const completedJobImgPrizeWrap = `flex-1 mb-[10px] flex items-end justify-center min-h-[10%] max-h-[20%] w-full`;
 export const completedJobImgPrize = `h-[70px]`;
 export const completedJobTitleBlock = `text-center my-[10px]`;
 export const completedJobTitleMain = `text-[#1f456e] text-[24px] font-bold`;
