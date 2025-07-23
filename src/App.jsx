@@ -14,10 +14,12 @@ import JobSummary from "./pages/jobSummary/Job Summary.jsx";
 import CompletedJob from "./pages/completedJob/CompletedJob.jsx";
 import TestFetchComponent from "./components/TestFetchComponent.jsx";
 import CombinedRackArticleSummary from "./components/CombinedRackArticleSummary.jsx";
+import Spinner from "./components/Spinner.jsx";
 
 function App() {
     const isLoggedIn = useStore((state) => state.isLoggedIn);
     const currentPage = useStore(state => state.currentPage);
+    const isShowSpinner = useStore(state => state.isShowSpinner);
     // const store = useStore((state) => state);
     // console.log("STORE: ", store);
 
@@ -51,23 +53,26 @@ function App() {
 
 // RENDER
     return (
-        <div className={isLoggedIn ? appContainer : appContainerOneRow}>
-            {isLoggedIn && (
-                <header className={headerStyle}>
-                    <Header />
-                </header>
-            )}
+        <>
+            {isShowSpinner && <Spinner/>}
+            <div className={isLoggedIn ? appContainer : appContainerOneRow}>
+                {isLoggedIn && (
+                    <header className={headerStyle}>
+                        <Header />
+                    </header>
+                )}
 
-            <main className={mainStyle}>
-                {renderPage()}
-            </main>
+                <main className={mainStyle}>
+                    {renderPage()}
+                </main>
 
-            {isLoggedIn && (
-                <footer>
-                    <Footer />
-                </footer>
-            )}
-        </div>
+                {isLoggedIn && (
+                    <footer>
+                        <Footer />
+                    </footer>
+                )}
+            </div>
+        </>
     );
 }
 

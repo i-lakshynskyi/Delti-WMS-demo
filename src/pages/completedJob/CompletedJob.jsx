@@ -4,12 +4,10 @@ import {
     completedJobContainer,
     completedJobImgPrize,
     completedJobImgPrizeWrap,
-    completedJobInfo,
     completedJobSummaryTable, completedJobSummaryTableRow,
     completedJobSummaryWrap, completedJobSummaryWrapTitle,
     completedJobTitleBlock,
     completedJobTitleMain,
-    completedJobTitleSub
 } from "../../styles/pages/completedJobStyles.js";
 import prize from "../../assets/icons/prize.svg"
 import {loginInfo, loginInfoImg} from "../../styles/pages/loginStyle.js";
@@ -39,7 +37,6 @@ function CompletedJob() {
                     <h1>Congratulations!</h1>
                     <h1>Job Completed Successfully</h1>
                 </div>
-                <p className={completedJobTitleSub}>Your goods receiving job has been processed</p>
             </div>
             <div className={completedJobSummaryWrap}>
                 <h1 className={completedJobSummaryWrapTitle}>Job Summary</h1>
@@ -48,12 +45,12 @@ function CompletedJob() {
                     <div className={completedJobSummaryTableRow}><p>Total Tyres:</p> <p>{completeArticles?.totalIQuantity ? completeArticles.totalIQuantity : ".."}</p></div>
                     <div className={completedJobSummaryTableRow}><p>Racks Used:</p> <p>{totalUsedRacks ? totalUsedRacks : ".."}</p></div>
                     <div className={completedJobSummaryTableRow}><p>Time Taken:</p> <p>{timeTaken ? timeTaken : timeTaken}</p></div>
-                    <div className={completedJobSummaryTableRow}><p>Assigned Gate:</p> <p>{currentJob.gate ? currentJob.gate : ".."}</p></div>
+                    <div className={completedJobSummaryTableRow}><p>Stock Location:</p> <p>{currentJob.gate ? currentJob.gate : ".."}</p></div>
                 </div>
             </div>
-            <div className={`${loginInfo} ${completedJobInfo}`}>
+            <div className={loginInfo}>
                 <img className={loginInfoImg} src={`${info}`} alt="info" />
-                <span>All items have been successfully recorded in the inventory system.</span>
+                <span>Stock Recorded in System</span>
             </div>
             <div className={completedJobButtonBlock}>
                 <PrimeButton onClick={() => handleGoTo("jobs")}>Back to Job List</PrimeButton>

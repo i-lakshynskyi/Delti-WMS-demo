@@ -23,6 +23,9 @@ const getFillingStatus = (totalItems, maxCapacity) => {
 
 // STORE
 const useStore = create((set) => ({
+    isShowSpinner: false,
+    setIsShowSpinner: (status) => set({isShowSpinner: status}),
+
     user: null,
     setUser: (user) => set({user}),
 

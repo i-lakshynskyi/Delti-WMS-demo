@@ -35,6 +35,7 @@ function Login() {
     const setUser = useStore((state) => state.setUser)
     const setIsLoggedIn = useStore((state) => state.setIsLoggedIn)
     const setCurrentPage = useStore((state) => state.setCurrentPage)
+    const setIsShowSpinner = useStore((state) => state.setIsShowSpinner)
 
 
     // Autocomplete login+password
@@ -47,13 +48,19 @@ function Login() {
     }, [])
 
     const handleLogin = () => {
-        const user = { username, password }
-        setUser(user)
-        setIsLoggedIn(true)
-        setCurrentPage('jobs')
+        setIsShowSpinner(true);
 
-        localStorage.setItem('user', JSON.stringify(user));
-    }
+        setTimeout(() => {
+            const user = { username, password };
+            setUser(user);
+            setIsLoggedIn(true);
+            setCurrentPage('jobs');
+            localStorage.setItem('user', JSON.stringify(user));
+
+            setIsShowSpinner(false);
+        }, 1000);
+    };
+
 
     const handleTogglePassword = () => {
         setShowPassword(prev => !prev)
