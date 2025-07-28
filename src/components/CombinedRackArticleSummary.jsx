@@ -19,8 +19,8 @@ function CombinedRackArticleSummary() {
     }
 
     useEffect(() => {
-        if (currentPage === "articleSummary") setIsRackSummaryOpen(false);
-        if (currentPage === "rackSummary") setIsRackSummaryOpen(true);
+        if (currentPage.page === "articleSummary") setIsRackSummaryOpen(false);
+        if (currentPage.page === "rackSummary") setIsRackSummaryOpen(true);
     }, []);
 
     return (

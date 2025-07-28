@@ -1,41 +1,77 @@
 export const goodsReceivingJobs = [
   {
     "status": "Pending",
-    "poId": "PO-99887761-5",
-    "grID": "GR-2025-062904",
-    "dateArrival": "27 Jun 2025",
-    "supplier": "Pirelli",
-    "deliveryNote": "DN-11111",
-    "expectedTyres": 740,
-    "skus": 3,
+    "poId": "1020924",
+    "grID": "GR-2025-0728001",
+    "dateArrival": "28 Jul 2025",
+    "supplier": "Yokahoma",
+    "deliveryNote": "DN-28159",
+    "expectedTyres": 921,
+    "skus": 7,
     "gate": "",
     "skuTires": [
       {
-        "name": "Pirelli P Zero",
-        "size": "234/55 R17 96V",
-        "ean": "3800712440111",
-        "quantity": 120,
-        "img": "/assets/continental-premium-contact6.png",
-        "racks": 2,
-        "dot": "0325"
+        "name": "Yokahoma BluEarth, M+S marking, RPB, PH",
+        "size": "225/40 R18 92W XL",
+        "ean": "4968814937522",
+        "quantity": 46,
+        "img": "https://ssl.delti.com/tyre-pictures/Yokohama/bluearth-winter_v906_suv.jpg",
+        "racks": 1,
+        "dot": ""
       },
       {
-        "name": "Pirelli Scorpion Verde",
-        "size": "246/55 R17 97V",
+        "name": "Yokohama M+S marking, JP",
+        "size": "195/75 R16C 107/105R",
         "ean": "4937469291293",
-        "quantity": 120,
-        "img": "/assets/continental-premium-contact6.png",
-        "racks": 2,
-        "dot": "0825"
+        "quantity": 37,
+        "img": "https://ssl.delti.com/tyre-pictures/Yokohama/bluearth-winter_v906_suv.jpg",
+        "racks": 1,
+        "dot": ""
       },
       {
-        "name": "Pirelli Cinturato P7",
-        "size": "227/55 R17 91V",
-        "ean": "4552517184010",
-        "quantity": 500,
-        "img": "/assets/continental-winter-contact-ts860-@.png",
-        "racks": 9,
-        "dot": "1025"
+        "name": "Yokohama BluEarth, M+S marking, JP",
+        "size": "195/65 R15 91T",
+        "ean": "4968814998929",
+        "quantity": 600,
+        "img": "https://ssl.delti.com/tyre-pictures/Yokohama/bluearth-winter_v906_suv.jpg",
+        "racks": 10,
+        "dot": ""
+      },
+      {
+        "name": "Yokohama BluEarth, M+S marking, JP",
+        "size": "215/65 R17 99V",
+        "ean": "4968814999032",
+        "quantity": 50,
+        "img": "https://ssl.delti.com/tyre-pictures/Yokohama/bluearth-winter_v906_suv.jpg",
+        "racks": 1,
+        "dot": ""
+      },
+      {
+        "name": "Yokohama BluEarth, M+S marking, JP",
+        "size": "225/55 R17 101V XL",
+        "ean": "4968814999070",
+        "quantity": 140,
+        "img": "https://ssl.delti.com/tyre-pictures/Yokohama/bluearth-winter_v906_suv.jpg",
+        "racks": 3,
+        "dot": ""
+      },
+      {
+        "name": "Yokohama BluEarth, M+S marking, RPB, JP",
+        "size": "195/50 R16 88H XL",
+        "ean": "4548515015776",
+        "quantity": 26,
+        "img": "https://ssl.delti.com/tyre-pictures/Yokohama/bluearth-winter_v906_suv.jpg",
+        "racks": 1,
+        "dot": ""
+      },
+      {
+        "name": "Yokohama BluEarth v906-suv, M+S marking, RPB, JP",
+        "size": "325/35 R22 114W XL",
+        "ean": "4548515046923",
+        "quantity": 22,
+        "img": "https://ssl.delti.com/tyre-pictures/Yokohama/bluearth-winter_v906_suv.jpg",
+        "racks": 1,
+        "dot": ""
       },
     ]
   },

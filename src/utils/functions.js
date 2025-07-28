@@ -23,10 +23,12 @@ export function getEarliestDot(arr) {
     return earliest.dot;
 }
 
+export function sumTotalQuantities(arr) {
+    return arr.reduce((sum, item) => sum + (item.totalQuantity || 0), 0);
+}
 
-export function getTotalUniqueUsedRacks(jobSummary) {
-    const scannedArticles = jobSummary?.completeArticles?.scannedArticles || [];
 
+export function getTotalUniqueUsedRacks(scannedArticles) {
     const allRackIDs = scannedArticles.flatMap(article =>
         Array.isArray(article.racksUsed)
             ? article.racksUsed.map(rack => rack.rackID)
@@ -83,3 +85,58 @@ export function preloadImage(url) {
 
     return promise;
 }
+
+// STATUSES of articles
+export function isOldDot(dot) {
+    if (!dot || dot.length !== 4) return false;
+
+    const week = parseInt(dot.slice(0, 2), 10);
+    const year = 2000 + parseInt(dot.slice(2), 10);
+
+    const jan4 = new Date(year, 0, 4);
+    const dayOfWeek = jan4.getDay() || 7;
+    const firstWeekStart = new Date(jan4);
+    firstWeekStart.setDate(jan4.getDate() - dayOfWeek + 1);
+    const dotDate = new Date(firstWeekStart);
+    dotDate.setDate(firstWeekStart.getDate() + (week - 1) * 7);
+
+    const threshold = new Date();
+    threshold.setMonth(threshold.getMonth() - 24);
+
+    return dotDate < threshold;
+}
+
+export function generateInitialStatuses(dotsArray) {
+    const dots = Array.isArray(dotsArray) ? dotsArray : [dotsArray];
+    const statuses = ['Quantity_Mismatch'];
+
+    if (dots.some(isOldDot)) {
+        statuses.push('Old_DOT');
+    }
+
+    return statuses;
+}
+
+
+
+export function recalculateStatuses(article) {
+    const { expectedQuantity, placedQuantity, dotsUsed = [] } = article;
+    const statuses = [];
+
+    if (placedQuantity < expectedQuantity) {
+        statuses.push('Quantity_Mismatch');
+    }
+
+    const hasOldDot = dotsUsed.some(dot => isOldDot(dot));
+    if (hasOldDot) {
+        statuses.push('Old_DOT');
+    }
+
+    if (statuses.length === 0) {
+        statuses.push('OK');
+    }
+
+    return statuses;
+}
+
+

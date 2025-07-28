@@ -1,12 +1,21 @@
 import '../styles/global.css';
-import trackLogo from '../assets/track-logo.png';
-import {headerImg} from "../styles/components/headerStyle.js";
+import Logo from '../assets/icons/Logo.svg';
+import {
+    headerLeftRightBlock, headerLeftRounded,
+    headerLogoContainer,
+    headerLogoImg,
+    headerLogoText, headerRightRounded, headerWrap
+} from "../styles/components/headerStyle.js";
 
 export default function Header() {
     return (
-        <>
-            <img className={headerImg} src={`${trackLogo}`} alt="trackLogo"/>
-            <span>DeltiStore</span>
-        </>
+        <div className={headerWrap}>
+            <div className={`${headerLeftRightBlock} ${headerRightRounded}`}></div>
+            <div className={headerLogoContainer}>
+                <img className={headerLogoImg} src={`${Logo}`} alt="trackLogo"/>
+                <span className={headerLogoText}>DeltiStore</span>
+            </div>
+            <div className={`${headerLeftRightBlock} ${headerLeftRounded}`}></div>
+        </div>
     )
 }

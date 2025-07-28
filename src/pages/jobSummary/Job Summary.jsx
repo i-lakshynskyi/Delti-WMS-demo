@@ -7,16 +7,15 @@ import {
     jobSummaryButtons,
     jobSummaryContainer, jobSummaryH1, jobSummarySKUsTitle
 } from "../../styles/pages/jobSummaryStyles.js";
-import JobOverviewTyreCard from "../jobOverview/JobOverviewTyreCard.jsx";
 import PrimeButton from "../../components/PrimeButton.jsx";
-import {getTotalUniqueUsedRacks} from "../../utils/functions.js";
+import JobSummaryArticleCard from "./JobSummaryArticleCard.jsx";
 
 function JobSummary() {
     const jobSummary = useStore(state => state.jobSummary);
-    const { currentJob, completeArticles, completeTimeJob} = jobSummary;
-    const {scannedArticles, totalIQuantity} = completeArticles;
+    const { currentJob, completeTimeJob} = jobSummary;
     const setCurrentPage = useStore((state) => state.setCurrentPage)
-    const totalUsedRacks = getTotalUniqueUsedRacks(jobSummary);
+    const scannedArticlesHistory = useStore((state) => state.scannedArticlesHistory);
+    const scannedRacksHistory = useStore((state) => state.scannedRacksHistory);
 
     function handleGoTo(page) {
         setCurrentPage(page);
@@ -30,24 +29,22 @@ function JobSummary() {
             <div className={jobSummaryBlocksWrap}>
                 <div className={jobOSummaryInfoCard}>
                     <p>Summary Details</p> <p>Completed</p>
-                    <p>Total Articles:</p> <p>{scannedArticles.length > 0 ? scannedArticles.length : ".."}</p>
-                    <p>Total Quantity:</p> <p>{totalIQuantity ? totalIQuantity : ".."}</p>
-                    <p>Assigned Racks:</p> <p>{totalUsedRacks}</p>
+                    <p>Total Articles:</p> <p>{scannedArticlesHistory.length > 0 ? scannedArticlesHistory.length : ".."}</p>
+                    <p>Assigned Racks:</p> <p>{scannedRacksHistory.length > 0 ? scannedRacksHistory.length : "0"}</p>
                     <p>Completion Time:</p> <p>{completeTimeJob ? completeTimeJob : ".."}</p>
                 </div>
                 <div className={jobSummarySKUsTitle}>
-                    <h1 className={jobSummaryH1}>Received Articles</h1>
+                    <p className={jobSummaryH1}>Received Articles</p>
                 </div>
                 <div className={jobOSummarySKUs}>
                     {
-                        scannedArticles.map((sku, i) => {
-                            return (<JobOverviewTyreCard key={`${i}-${sku.ean}`} skuTires={sku}/>)
+                        scannedArticlesHistory.map((article, i) => {
+                            return (<JobSummaryArticleCard key={`${i}-${article.ean}`} article={article}/>)
                         })
                     }
                 </div>
             </div>
             <div className={jobSummaryButtons}>
-                <PrimeButton disabled={true}>Recount Items</PrimeButton>
                 <PrimeButton onClick={() => handleGoTo("completedJob")}>Confirm & Finish GR Job</PrimeButton>
             </div>
         </div>

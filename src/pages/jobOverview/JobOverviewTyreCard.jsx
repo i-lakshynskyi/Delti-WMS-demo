@@ -47,7 +47,7 @@ function JobOverviewTyreCard({skuTires}) {
                     <p>Size:</p> <p>{size}</p>
                     <p>EAN:</p> <p>{ean}</p>
                     <p>Quantity:</p> <p>{quantity}</p>
-                    <p></p> <p className={jobOverviewSKUsCardsRacks}>Racks: {racks}</p>
+                    <p className={jobOverviewSKUsCardsRacks}>Racks:</p> <p className={jobOverviewSKUsCardsRacks}>{racks}</p>
                 </div>
             </div>
         </div>

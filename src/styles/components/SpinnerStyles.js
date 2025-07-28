@@ -1,3 +1,4 @@
-export const spinnerBackground = 'bg-[#ffffffc9] h-full w-full absolute top-[0px] left-[0px] z-[999] flex justify-center items-center'
-export const spinnerContainer = 'h-[160px] w-[160px] flex justify-center items-center animate-spin'
-export const spinnerContainerIMG = 'h-full w-full animate-pulse duration-1000'
+export const spinnerContainer = 'absolute top-[0px] left-[0px] z-[999] h-full w-full flex justify-center items-center'
+export const spinnerBackground = 'bg-[#21466d40] h-full w-full flex justify-center items-center rounded-[0%]'
+export const spinnerWrap = 'h-[110px] w-[110px] flex justify-center items-center animate-spin'
+export const spinnerContainerIMG = 'h-full w-full'

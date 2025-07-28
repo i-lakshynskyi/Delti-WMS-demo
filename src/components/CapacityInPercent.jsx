@@ -18,9 +18,9 @@ function CapacityInPercent({maxCapacity, totalItems, title, type}) {
         label = (totalItems && totalRequiredRacks) ? `${totalItems} / ${totalRequiredRacks}` : "0/0";
     }
 
-    let barColor = 'bg-green-500';
+    let barColor = 'bg-[#1bc51b]';
     if (percent >= 80) barColor = 'bg-[#ff4500]';
-    else if (percent >= 50) barColor = 'bg-yellow-400';
+    else if (percent >= 50) barColor = 'bg-[#ff6c00]';
 
     return (
         <div className={capacityInPercentContainer}>

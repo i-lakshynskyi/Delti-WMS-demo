@@ -14,17 +14,18 @@ import {loginInfo, loginInfoImg} from "../../styles/pages/loginStyle.js";
 import info from "../../assets/icons/information.svg";
 import PrimeButton from "../../components/PrimeButton.jsx";
 import useStore from "../../store/useStore.js";
-import {getTotalUniqueUsedRacks} from "../../utils/functions.js";
+import {getTotalUniqueUsedRacks, sumTotalQuantities} from "../../utils/functions.js";
 
 function CompletedJob() {
-    const setCurrentPage = useStore((state) => state.setCurrentPage)
     const jobSummary = useStore(state => state.jobSummary);
-    const {currentJob, timeTaken, completeArticles} = jobSummary;
-    const totalUsedRacks = getTotalUniqueUsedRacks(jobSummary);
+    const {currentJob, timeTaken} = jobSummary;
+    const scannedArticlesHistory = useStore((state) => state.scannedArticlesHistory);
+    const totalUsedRacks = getTotalUniqueUsedRacks(scannedArticlesHistory);
+    const resetAppState = useStore((state) => state.resetAppState);
 
 
-    function handleGoTo(page) {
-        setCurrentPage(page);
+    function handleGoTo() {
+        resetAppState();
     }
 
     return (
@@ -42,7 +43,7 @@ function CompletedJob() {
                 <h1 className={completedJobSummaryWrapTitle}>Job Summary</h1>
                 <div className={completedJobSummaryTable}>
                     <div className={completedJobSummaryTableRow}><p>GR Job ID:</p> <p>{currentJob?.grID ? currentJob.grID : ".."}</p></div>
-                    <div className={completedJobSummaryTableRow}><p>Total Tyres:</p> <p>{completeArticles?.totalIQuantity ? completeArticles.totalIQuantity : ".."}</p></div>
+                    <div className={completedJobSummaryTableRow}><p>Total Tyres:</p> <p>{sumTotalQuantities(scannedArticlesHistory) ? sumTotalQuantities(scannedArticlesHistory) : ".."}</p></div>
                     <div className={completedJobSummaryTableRow}><p>Racks Used:</p> <p>{totalUsedRacks ? totalUsedRacks : ".."}</p></div>
                     <div className={completedJobSummaryTableRow}><p>Time Taken:</p> <p>{timeTaken ? timeTaken : timeTaken}</p></div>
                     <div className={completedJobSummaryTableRow}><p>Stock Location:</p> <p>{currentJob.gate ? currentJob.gate : ".."}</p></div>
@@ -53,7 +54,7 @@ function CompletedJob() {
                 <span>Stock Recorded in System</span>
             </div>
             <div className={completedJobButtonBlock}>
-                <PrimeButton onClick={() => handleGoTo("jobs")}>Back to Job List</PrimeButton>
+                <PrimeButton onClick={handleGoTo}>Back to Job List</PrimeButton>
             </div>
         </div>
     );

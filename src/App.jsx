@@ -15,16 +15,18 @@ import CompletedJob from "./pages/completedJob/CompletedJob.jsx";
 import TestFetchComponent from "./components/TestFetchComponent.jsx";
 import CombinedRackArticleSummary from "./components/CombinedRackArticleSummary.jsx";
 import Spinner from "./components/Spinner.jsx";
+import RecountItems from "./pages/recountItems/RecountItems.jsx";
 
 function App() {
     const isLoggedIn = useStore((state) => state.isLoggedIn);
     const currentPage = useStore(state => state.currentPage);
     const isShowSpinner = useStore(state => state.isShowSpinner);
     // const store = useStore((state) => state);
-    // console.log("STORE: ", store);
+    // console.log("store : ", store);
+    //@TODO 1) баг - коли додаєш 120 в партСтелаж - є помилка"кількість" хоча все ок, 2)інпут кількості - можно використовувати "--12123" , 3) змінити спінер та лого в проекті 4) додати редизайну
 
     const renderPage = () => {
-        switch (currentPage) {
+        switch (currentPage.page) {
             case 'login':
                 return <Login/>
             case 'jobs':
@@ -41,6 +43,8 @@ function App() {
                 return <CombinedRackArticleSummary/>
             case 'jobSummary':
                 return <JobSummary/>
+            case 'recountItems':
+                return <RecountItems/>
             case 'completedJob':
                 return <CompletedJob/>
             case 'testFetchComponent':

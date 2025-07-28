@@ -7,5 +7,5 @@ export const combinedRASummaryWrap = 'flex-1 overflow-hidden overflow-y-auto'
 
 main blue color: #1f456e active: #142c4f hover: #17355a disabled: #8ea1b5
 main gray color: #f5f5f5
-orange: #ffa500
+orange: #ff6c00
 */

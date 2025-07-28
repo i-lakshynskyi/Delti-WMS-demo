@@ -2,11 +2,11 @@
 export const goodsJobContainer = 'h-full flex flex-col'
 export const goodsJobListContainer = 'text-base overflow-y-auto overflow-x-hidden'
 
-export const jobCardContainer = `text-[16px] rounded-[10px] bg-[#f5f5f5] p-[10px] border border-gray-300 shadow-sm my-[10px] grid grid-cols-2 gap-y-[6px] gap-x-[10px]`
+export const jobCardContainer = `text-[16px] rounded-[10px] bg-[#f5f5f5] p-[10px] border border-gray-300 my-[10px] grid grid-cols-2 gap-y-[6px] gap-x-[10px]`
 export const jobID = `text-[18px] text-[#1f456e] font-semibold`
-export const statusBase = 'text-lg font-semibold text-right';
-export const statusPending = `${statusBase} text-[#ffa500]`;
-export const statusScheduled = `${statusBase} text-[#9f92ef]`;
+export const statusBase = 'text-lg font-semibold';
+export const statusPending = `${statusBase} text-[#ff6c00]`;
+export const statusScheduled = `${statusBase} text-[#8b9db1]`;
 export const getStatusClass = (status) => {
     switch (status) {
         case 'Pending':

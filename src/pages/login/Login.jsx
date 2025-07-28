@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import useStore from '../../store/useStore.js'
-import trackLogoBlue from "../../assets/track-logo-blue.png";
+import Logo from "../../assets/icons/Logo.svg";
 import info from "../../assets/icons/information.svg";
 import eyeOpen from '../../assets/icons/eye-open.svg'
 import eyeClosed from '../../assets/icons/eye-close.svg'
@@ -18,7 +18,6 @@ import {
     loginLogoImg,
     loginLogoText,
     loginExtraText,
-    loginTitle,
     loginWrapper,
     loginButton
 } from "../../styles/pages/loginStyle.js";
@@ -71,11 +70,9 @@ function Login() {
     return (
         <div className={loginWrapper}>
             <div className={loginLogo}>
-                <img className={loginLogoImg} src={`${trackLogoBlue}`} alt="trackLogo" />
+                <img className={loginLogoImg} src={`${Logo}`} alt="trackLogo" />
                 <span className={loginLogoText}>DeltiStore</span>
             </div>
-
-            <h1 className={loginTitle}>Login to DeltiStore</h1>
 
             <PrimeInput value={username}
                         onChange={e => setUsername(e)}

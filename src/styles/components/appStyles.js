@@ -1,8 +1,9 @@
 export const appContainer = `
   grid
-  grid-rows-[50px_1fr_60px]
+  grid-rows-[46px_1fr_60px]
   h-screen
   font-["PT_Sans",sans-serif]
+  text-gray-700
 `;
 
 export const appContainerOneRow = `
@@ -11,12 +12,6 @@ export const appContainerOneRow = `
   font-["PT_Sans",sans-serif]
 `;
 
-export const headerStyle = `
-  flex
-  items-center
-  justify-center
-  bg-[#1f456e]
-  text-[#f9f9f9]
-`;
+export const headerStyle = ``;
 
 export const mainStyle = `px-[26px] h-full overflow-hidden`;

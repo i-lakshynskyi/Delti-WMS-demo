@@ -47,7 +47,9 @@ function ArticleSummary() {
             uniqueRackCount: uniqueIDs.size
         };
     }
+
     const summary = getSummaryFromRacksUsed(articleSummary.racksUsed);
+    console.log(summary)
 
 
 
