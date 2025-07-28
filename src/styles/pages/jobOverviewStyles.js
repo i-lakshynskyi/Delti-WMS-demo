@@ -18,7 +18,7 @@ export const jobOverviewSKUsCardsContainer = 'mb-[5px] bg-[#f5f5f5] border borde
 export const jobOverviewSKUsCardsWrap = 'flex items-center'
 export const jobOverviewSKUsCardInfo = `flex-1 flex flex-col grid grid-cols-2 px-[10px]
                                                [&>*:nth-child(odd)]:font-bold`
-export const jobOverviewSKUsCardsIMGWrap = `w-[72px] h-[72px] mb-[5px]`
+export const jobOverviewSKUsCardsIMGWrap = `w-[72px] h-[72px] mb-[5px] bg-[#ffffff] rounded-lg`
 export const jobOverviewSKUsCardsIMG = `w-full h-full object-contain`
 export const jobOverviewSKUsCardsName = `text-[16px] font-[700] mt-[5px]`
 export const jobOverviewSKUsCardsRacks = `text-[16px] text-[#ff6c00] font-[700]`
