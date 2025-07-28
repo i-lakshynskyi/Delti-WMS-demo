@@ -2,7 +2,7 @@ export const goodsReceivingJobs = [
   {
     "status": "Pending",
     "poId": "1020924",
-    "grID": "GR-2025-0728001",
+    "grID": "GR-2025-0728-001",
     "dateArrival": "28 Jul 2025",
     "supplier": "Yokahoma",
     "deliveryNote": "DN-28159",
@@ -75,9 +75,31 @@ export const goodsReceivingJobs = [
       },
     ]
   },
+    {
+        "status": "Pending",
+        "poId": "05766.24",
+        "grID": "GR-2025-0729-001",
+        "dateArrival": "28 Jul 2025",
+        "supplier": "Hankook",
+        "deliveryNote": "DN-28159",
+        "expectedTyres": 1100,
+        "skus": 1,
+        "gate": "",
+        "skuTires": [
+            {
+                "name": "Hankook M+S marking, HU",
+                "size": "225/45 R17 94V XL 4PR SBL",
+                "ean": "8808563535708",
+                "quantity": 1100,
+                "img": "https://ssl.delti.com/tyre-pictures/Yokohama/bluearth-winter_v906_suv.jpg",
+                "racks": 19,
+                "dot": ""
+            },
+        ]
+    },
   {
     "status": "Pending",
-    "poId": "PO-99887761-5",
+    "poId": "99887761-5",
     "grID": "GR-2025-062904",
     "dateArrival": "27 Jun 2025",
     "supplier": "Pirelli",
@@ -117,7 +139,7 @@ export const goodsReceivingJobs = [
   },
   {
     "status": "Scheduled",
-    "poId": "PO-99887766-2",
+    "poId": "99887766-2",
     "grID": "GR-2025-070702",
     "dateArrival": "07 Jul 2025",
     "supplier": "Pirelli",
@@ -211,7 +233,7 @@ export const goodsReceivingJobs = [
   },
   {
     "status": "Pending",
-    "poId": "PO-99887766-3",
+    "poId": "99887766-3",
     "grID": "GR-2025-070703",
     "dateArrival": "07 Jul 2025",
     "supplier": "Pirelli",
@@ -296,7 +318,7 @@ export const goodsReceivingJobs = [
   },
   {
     "status": "Scheduled",
-    "poId": "PO-99887766-4",
+    "poId": "99887766-4",
     "grID": "GR-2025-070704",
     "dateArrival": "07 Jul 2025",
     "supplier": "Bridgestone",
@@ -390,7 +412,7 @@ export const goodsReceivingJobs = [
   },
   {
     "status": "Pending",
-    "poId": "PO-99887766-5",
+    "poId": "99887766-5",
     "grID": "GR-2025-070705",
     "dateArrival": "07 Jul 2025",
     "supplier": "Bridgestone",
@@ -511,7 +533,7 @@ export const goodsReceivingJobs = [
   },
   {
     "status": "Scheduled",
-    "poId": "PO-99887766-6",
+    "poId": "99887766-6",
     "grID": "GR-2025-070706",
     "dateArrival": "07 Jul 2025",
     "supplier": "Goodyear",
@@ -578,7 +600,7 @@ export const goodsReceivingJobs = [
   },
   {
     "status": "Scheduled",
-    "poId": "PO-99887766-7",
+    "poId": "99887766-7",
     "grID": "GR-2025-070707",
     "dateArrival": "07 Jul 2025",
     "supplier": "Pirelli",
@@ -654,7 +676,7 @@ export const goodsReceivingJobs = [
   },
   {
     "status": "Pending",
-    "poId": "PO-99887766-8",
+    "poId": "99887766-8",
     "grID": "GR-2025-070708",
     "dateArrival": "07 Jul 2025",
     "supplier": "Pirelli",
@@ -739,7 +761,7 @@ export const goodsReceivingJobs = [
   },
   {
     "status": "Pending",
-    "poId": "PO-99887766-9",
+    "poId": "99887766-9",
     "grID": "GR-2025-070709",
     "dateArrival": "07 Jul 2025",
     "supplier": "Goodyear",

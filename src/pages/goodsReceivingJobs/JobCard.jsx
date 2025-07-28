@@ -13,7 +13,7 @@ function JobCard({task, handleTakeJob}) {
 
     return (
         <div className={jobCardContainer}>
-            <span className={jobID}>{poId}</span>
+            <span className={jobID}>PO: {poId}</span>
             <span className={getStatusClass(status)}>{status}</span>
 
             <span>Supplier:</span>
