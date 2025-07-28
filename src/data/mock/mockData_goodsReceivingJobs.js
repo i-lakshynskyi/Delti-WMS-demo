@@ -22,7 +22,7 @@ export const goodsReceivingJobs = [
       {
         "name": "Yokohama M+S marking, JP",
         "size": "195/75 R16C 107/105R",
-        "ean": "4937469291293",
+        "ean": "4968814937607",
         "quantity": 37,
         "img": "https://ssl.delti.com/tyre-pictures/Yokohama/bluearth-winter_v906_suv.jpg",
         "racks": 1,
