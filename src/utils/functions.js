@@ -24,7 +24,7 @@ export function getEarliestDot(arr) {
 }
 
 export function sumTotalQuantities(arr) {
-    return arr.reduce((sum, item) => sum + (item.totalQuantity || 0), 0);
+    return arr.reduce((sum, item) => sum + (item.placedQuantity || 0), 0);
 }
 
 
@@ -105,19 +105,6 @@ export function isOldDot(dot) {
 
     return dotDate < threshold;
 }
-
-export function generateInitialStatuses(dotsArray) {
-    const dots = Array.isArray(dotsArray) ? dotsArray : [dotsArray];
-    const statuses = ['Quantity_Mismatch'];
-
-    if (dots.some(isOldDot)) {
-        statuses.push('Old_DOT');
-    }
-
-    return statuses;
-}
-
-
 
 export function recalculateStatuses(article) {
     const { expectedQuantity, placedQuantity, dotsUsed = [] } = article;

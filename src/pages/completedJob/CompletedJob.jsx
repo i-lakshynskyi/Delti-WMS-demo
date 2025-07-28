@@ -23,7 +23,6 @@ function CompletedJob() {
     const totalUsedRacks = getTotalUniqueUsedRacks(scannedArticlesHistory);
     const resetAppState = useStore((state) => state.resetAppState);
 
-
     function handleGoTo() {
         resetAppState();
     }

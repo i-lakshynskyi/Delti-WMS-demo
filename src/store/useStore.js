@@ -1,5 +1,5 @@
 import {create} from 'zustand'
-import {generateInitialStatuses, isOldDot, recalculateStatuses} from "../utils/functions.js";
+import {isOldDot, recalculateStatuses} from "../utils/functions.js";
 
 
 
@@ -120,10 +120,7 @@ const useStore = create((set, get) => ({
 
                 const placedQuantity = updatedRacks.reduce((sum, r) => sum + r.quantity, 0);
 
-                const dotsUsed = Array.from(new Set([
-                    ...(existing.dotsUsed ?? []),
-                    article.dot
-                ]));
+                const dotsUsed = Array.from(new Set(updatedRacks.map(r => r.dot)));
 
                 updatedHistory[index] = {
                     ...existing,
@@ -131,9 +128,8 @@ const useStore = create((set, get) => ({
                     racksUsed: updatedRacks,
                     dotsUsed,
                     statuses: recalculateStatuses({
-                        ...existing,
-                        placedQuantity,
                         expectedQuantity: existing.expectedQuantity,
+                        placedQuantity,
                         dotsUsed
                     })
                 };
@@ -143,7 +139,7 @@ const useStore = create((set, get) => ({
                 const originalArticle = state.jobSummary.currentJob?.skuTires?.find(sku => sku.ean === article.ean);
                 const expectedQuantity = originalArticle?.quantity ?? article.quantity;
 
-                updatedHistory.push({
+                const newArticle = {
                     ean: article.ean,
                     name: article.name,
                     size: article.size,
@@ -151,7 +147,15 @@ const useStore = create((set, get) => ({
                     placedQuantity,
                     racksUsed: [rackUsed],
                     dotsUsed: [article.dot],
-                    statuses: generateInitialStatuses(article.dot)
+                };
+
+                updatedHistory.push({
+                    ...newArticle,
+                    statuses: recalculateStatuses({
+                        expectedQuantity,
+                        placedQuantity,
+                        dotsUsed: [article.dot]
+                    })
                 });
             }
 

@@ -7,7 +7,7 @@ export const goodsReceivingJobs = [
     "supplier": "Yokahoma",
     "deliveryNote": "DN-28159",
     "expectedTyres": 921,
-    "skus": 7,
+    "skus": 18,
     "gate": "",
     "skuTires": [
       {
@@ -77,105 +77,42 @@ export const goodsReceivingJobs = [
   },
   {
     "status": "Pending",
-    "poId": "PO-99887766-1",
-    "grID": "GR-2025-070701",
-    "dateArrival": "07 Jul 2025",
-    "supplier": "Continental",
-    "deliveryNote": "DN-1111",
-    "expectedTyres": 3620,
-    "skus": 10,
+    "poId": "PO-99887761-5",
+    "grID": "GR-2025-062904",
+    "dateArrival": "27 Jun 2025",
+    "supplier": "Pirelli",
+    "deliveryNote": "DN-11111",
+    "expectedTyres": 740,
+    "skus": 3,
     "gate": "",
     "skuTires": [
       {
-        "name": "Continental PremiumContact 6",
-        "size": "225/50 R17 98W",
-        "ean": "4610951418636",
-        "quantity": 300,
-        "img": "/assets/continental-eco-contact6-@.png",
-        "racks": 5,
-        "dot": "3024"
+        "name": "Pirelli P Zero",
+        "size": "234/55 R17 96V",
+        "ean": "3800712440111",
+        "quantity": 120,
+        "img": "/assets/continental-premium-contact6.png",
+        "racks": 2,
+        "dot": "0325"
       },
       {
-        "name": "Michelin Pilot Sport 4",
-        "size": "215/60 R16 95H",
-        "ean": "4280105413371",
-        "quantity": 240,
-        "img": "/assets/continental-eco-contact6.png",
-        "racks": 4,
-        "dot": "1225"
-      },
-      {
-        "name": "Goodyear Eagle F1 Asymmetric 5",
-        "size": "235/40 R18 95Y",
-        "ean": "4474323464597",
-        "quantity": 500,
-        "img": "/assets/continental-eco-contact6.png",
-        "racks": 8,
-        "dot": "2025"
+        "name": "Pirelli Scorpion Verde",
+        "size": "246/55 R17 97V",
+        "ean": "4937469291293",
+        "quantity": 120,
+        "img": "/assets/continental-premium-contact6.png",
+        "racks": 2,
+        "dot": "0825"
       },
       {
         "name": "Pirelli Cinturato P7",
-        "size": "235/40 R18 95Y",
-        "ean": "4350379234878",
-        "quantity": 240,
-        "img": "/assets/continental-premium-contact6.png",
-        "racks": 4,
-        "dot": "3224"
-      },
-      {
-        "name": "Hankook Ventus Prime3",
-        "size": "245/45 R18 100W",
-        "ean": "4001592147920",
+        "size": "227/55 R17 91V",
+        "ean": "4552517184010",
         "quantity": 500,
-        "img": "/assets/continental-eco-contact6.png",
-        "racks": 8,
-        "dot": "3624"
+        "img": "/assets/continental-winter-contact-ts860-@.png",
+        "racks": 9,
+        "dot": "1025"
       },
-      {
-        "name": "Falken Ziex ZE310",
-        "size": "235/40 R18 95Y",
-        "ean": "4124815679957",
-        "quantity": 500,
-        "img": "/assets/continental-premium-contact6.png",
-        "racks": 8,
-        "dot": "3124"
-      },
-      {
-        "name": "Nokian Wetproof",
-        "size": "205/55 R16 91V",
-        "ean": "4374476934984",
-        "quantity": 300,
-        "img": "/assets/continental-eco-contact6.png",
-        "racks": 5,
-        "dot": "3624"
-      },
-      {
-        "name": "Bridgestone Turanza T005",
-        "size": "195/65 R15 91T",
-        "ean": "4433707770168",
-        "quantity": 240,
-        "img": "/assets/continental-winter-contact-ts860.png",
-        "racks": 4,
-        "dot": "0225"
-      },
-      {
-        "name": "Bridgestone Turanza T005",
-        "size": "215/60 R16 95H",
-        "ean": "4910580119817",
-        "quantity": 500,
-        "img": "/assets/continental-winter-contact-ts860.png",
-        "racks": 8,
-        "dot": "3024"
-      },
-      {
-        "name": "Toyo Proxes CF2",
-        "size": "225/45 R17 94W",
-        "ean": "4857019682454",
-        "quantity": 300,
-        "img": "/assets/continental-eco-contact6.png",
-        "racks": 5,
-        "dot": "3724"
-      }
     ]
   },
   {

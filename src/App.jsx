@@ -23,7 +23,6 @@ function App() {
     const isShowSpinner = useStore(state => state.isShowSpinner);
     // const store = useStore((state) => state);
     // console.log("store : ", store);
-    //@TODO 1) баг - коли додаєш 120 в партСтелаж - є помилка"кількість" хоча все ок, 2)інпут кількості - можно використовувати "--12123" , 3) змінити спінер та лого в проекті 4) додати редизайну
 
     const renderPage = () => {
         switch (currentPage.page) {

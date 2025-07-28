@@ -49,8 +49,6 @@ function ArticleSummary() {
     }
 
     const summary = getSummaryFromRacksUsed(articleSummary.racksUsed);
-    console.log(summary)
-
 
 
     return (
