@@ -14,7 +14,7 @@ export const gridItem = (i) => {
     return classes.join(" ");
 };
 
-export const darkenOverlay = 'fixed inset-0 bg-[#0d1e31] opacity-0 pointer-events-none z-50 transition-opacity duration-300'
+export const darkenOverlay = 'fixed inset-0 bg-[#0d1e31] opacity-0 pointer-events-none z-50 transition-opacity duration-300 z-[22]'
 
 export const buttonsBlock = 'absolute bottom-0 left-0 flex items-center justify-around min-h-[60px] pb-8 pt-4 w-full bg-[#20456e70] z-[21]'
 export const btnBase = 'h-[50px] w-[50px] m-3 flex items-center justify-center active:bg-[#f16600] active:rounded-[50%]'
