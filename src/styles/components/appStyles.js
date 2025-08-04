@@ -1,6 +1,6 @@
 export const appContainer = `
   grid
-  grid-rows-[46px_1fr_60px]
+  grid-rows-[auto_1fr_auto]
   h-screen
   font-["PT_Sans",sans-serif]
   text-gray-700
