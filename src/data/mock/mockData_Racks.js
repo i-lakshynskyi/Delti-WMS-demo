@@ -551,5 +551,3 @@ export const racksData = [
         ],
     }
 ]
-
-

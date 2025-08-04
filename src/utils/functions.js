@@ -126,4 +126,18 @@ export function recalculateStatuses(article) {
     return statuses;
 }
 
+// Sorting
+export function sortJobsByStatus(arr) {
+    const pending = arr.filter(item => item.status === "Pending");
+    const scheduled = arr.filter(item => item.status === "Scheduled");
+    return [...pending, ...scheduled];
+}
+
+export function sortArticlesByStatus(arr) {
+    const notOk = arr.filter(item => item.statuses[0] !== "OK");
+    const ok = arr.filter(item => item.statuses[0] === "OK");
+    return [...notOk, ...ok];
+}
+
+
 

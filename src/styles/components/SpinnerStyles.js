@@ -1,4 +1,6 @@
 export const spinnerContainer = 'absolute top-[0px] left-[0px] z-[999] h-full w-full flex justify-center items-center'
 export const spinnerBackground = 'bg-[#21466d40] h-full w-full flex justify-center items-center rounded-[0%]'
-export const spinnerWrap = 'h-[110px] w-[110px] flex justify-center items-center animate-spin'
-export const spinnerContainerIMG = 'h-full w-full'
+export const spinnerWrap = 'relative h-[110px] w-[110px] flex justify-center items-center'
+export const spinnerOpacityLayer = 'absolute top-[0px] left-[0p] bg-[#c8d1da85] rounded-full w-full h-full z-10'
+export const spinnerImgGear = 'h-full w-full  animate-spin'
+export const spinnerImgCart = 'h-full w-full absolute right-[4px] bottom-[2px]'

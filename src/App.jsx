@@ -16,6 +16,7 @@ import TestFetchComponent from "./components/TestFetchComponent.jsx";
 import CombinedRackArticleSummary from "./components/CombinedRackArticleSummary.jsx";
 import Spinner from "./components/Spinner.jsx";
 import RecountItems from "./pages/recountItems/RecountItems.jsx";
+import DamageReport from "./pages/damageReport/DamageReport.jsx";
 
 function App() {
     const isLoggedIn = useStore((state) => state.isLoggedIn);
@@ -46,6 +47,8 @@ function App() {
                 return <RecountItems/>
             case 'completedJob':
                 return <CompletedJob/>
+            case 'damageReport':
+                return <DamageReport/>
             case 'testFetchComponent':
                 return <TestFetchComponent/>
             default:

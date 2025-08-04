@@ -1,7 +1,8 @@
-
 export const ScanRackQrCodeContainer = 'h-full flex flex-col overflow-hidden overflow-y-auto pb-[15px]';
-export const ScanRackQrCodeScanBlock = 'flex flex-col grow h-max p-[10px] my-[10px]'
-export const ScanRackQrWarning = 'text-[#ff0000] w-full text-[14px] h-[14px] m-0 p-0'
+export const ScanRackQrCodeScanBlock = 'flex flex-col grow h-max p-[10px] mb-[10px]'
+export const ScanRackQrCodeInputBlock = 'h-[46px] mt-[10px] mb-[15px] flex justify-between items-center relative'
+export const ScanRackQrCodeInputButton = 'h-[46px] px-[8px] ml-[5px] basis-[60%] text-[12px] text-[#ffa500]'
+export const ScanRackQrWarning = 'absolute -bottom-[14px] my-[2px] text-[#ff0000] w-full text-[14px] h-[14px] m-0 p-0'
 export const ScanRackQrCodeResultOfScan = 'bg-[#f5f5f5] my-[10px] grow text-[14px] rounded-lg border-1 border-gray-300 p-2'
 export const ScanRackQrCodeResultOfScanInfo = 'grid grid-cols-2 grid-cols-[56%_auto] gap-x-1 [&_p:nth-child(odd)]:font-bold text-gray-700 rounded-lg [&_p]:mb-2'
 export const ScanRackQrCodeButtonsBlock = 'h-max flex flex-col  items-center justify-around'

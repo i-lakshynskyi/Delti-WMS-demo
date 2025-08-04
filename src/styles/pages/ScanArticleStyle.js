@@ -5,8 +5,8 @@ export const scanArticleWrap = "bg-[#f5f5f5] grow border border-gray-300 rounded
 export const scanArticleScannerBlock = 'mx-[10px] bg-[#ffffff] h-[150px] min-h-[150px] flex items-center justify-center overflow-hidden border-[2px] border-dashed border-[#8fa2b6] rounded-lg'
 
 export const scanArticleSInputBlock = 'h-[46px] m-[10px] flex justify-between items-center relative'
-export const scanArticleEanInputWarning = 'absolute -bottom-[16px] left-[0px] text-[#ff0000] text-[12px] w-full'
-export const scanArticleInputButton = 'h-[46px] px-[8px] ml-[5px] basis-[40%] text-[12px] text-[#ffa500]'
+export const scanArticleEanInputWarning = 'absolute -bottom-[14px] my-[2px] text-[#ff0000] w-full text-[14px] h-[14px] m-0 p-0'
+export const scanArticleInputButton = 'h-[46px] px-[8px] ml-[5px] basis-[60%] text-[12px] text-[#ffa500]'
 export const scanArticleEAN = 'font-bold text-[#1f456e] text-[16px]'
 
 export const scanArticleSResultBlock = ' grid grid-rows-[auto_auto_max-content] text-gray-700 [&_p]:mb-2 text-[14px]'

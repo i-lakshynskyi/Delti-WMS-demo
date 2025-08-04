@@ -5,6 +5,7 @@ import {useState} from "react";
 import ModalConfirmJob from "./ModalConfirmJob.jsx";
 import useStore from "../../store/useStore.js";
 import StickyTitle from "../../components/StickyTitle.jsx";
+import {sortJobsByStatus} from "../../utils/functions.js";
 
 
 function GoodsReceivingJobs() {
@@ -12,6 +13,7 @@ function GoodsReceivingJobs() {
     const jobSummary = useStore(state => state.jobSummary);
     const setCurrentPage = useStore((state) => state.setCurrentPage)
     const setJobSummary = useStore((state) => state.setJobSummary)
+    const sortingJobs = sortJobsByStatus(goodsReceivingJobs);
 
 
     const handleTakeJob = (job) => {
@@ -43,7 +45,7 @@ function GoodsReceivingJobs() {
             <StickyTitle title1={'Goods Receiving Jobs'} title2={"Select a job to process"}/>
 
             <div className={goodsJobListContainer}>
-                {goodsReceivingJobs.map(task => (<JobCard key={task.poId} task={task} handleTakeJob={handleTakeJob}/>))}
+                {sortingJobs.map(task => (<JobCard key={task.poId} task={task} handleTakeJob={handleTakeJob}/>))}
             </div>
         </div>
     );

@@ -225,7 +225,7 @@ const useStore = create((set, get) => ({
         set(() => ({
             isShowSpinner: false,
             user: null,
-            isLoggedIn: false,
+            isLoggedIn: true,
             currentPage: { page: 'jobs', params: null },
             articleSummary: {},
             rackSummary: getInitialRackSummary(),

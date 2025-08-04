@@ -230,11 +230,11 @@ function ScanArticle() {
             <div className={scanArticleSInputBlock}>
                 <PrimeInput value={eanInputValue} placeholder={"EAN"} onChange={handleEanInput}
                             idInput={"EAN"} onFocus={() => stopRef.current?.()} type={'number'}/>
-                <div className={scanArticleEanInputWarning}>{eanInputWarning}</div>
                 <PrimeButton className={scanArticleInputButton}
                              onClick={handleScanButtonClick}>
                     {getScanButtonLabel(renderScanProps, eanInputValue)}
                 </PrimeButton>
+                <div className={scanArticleEanInputWarning}>{eanInputWarning}</div>
             </div>
             <div className={scanArticleWrap}>
                 <div className={scanArticleSResultBlock}>
@@ -266,6 +266,7 @@ function ScanArticle() {
                     Quantity</PrimeButton>
                 <PrimeButton className={orangeButton} onClick={() => handleGoTo("articleSummary")}
                              disabled={!(Object.keys(articleSummary).length)}>Article Summary</PrimeButton>
+                <PrimeButton onClick={() => handleGoTo("scanRackQR")}>Add Rack</PrimeButton>
             </div>
         </div>
     );

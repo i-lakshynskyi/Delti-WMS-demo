@@ -10,7 +10,7 @@ import {
     qrScanImg,
     qrScanVideo,
     ScanRackQrCodeResultOfScanInfo,
-    getStatusRack, ScanRackQrWarning, textPX
+    getStatusRack, ScanRackQrWarning, textPX, ScanRackQrCodeInputBlock, ScanRackQrCodeInputButton
 } from "../../styles/pages/ScanRackQrCodeStyles.js";
 import StickyTitle from "../../components/StickyTitle.jsx";
 import PrimeButton from "../../components/PrimeButton.jsx";
@@ -18,6 +18,7 @@ import useStore from "../../store/useStore.js";
 import ZxingQrEanScanner from "../../utils/zxingQrEanScanner/ZxingQrEanScanner.jsx";
 import {orangeButton} from "../../styles/components/reusableСomponentsStyle.js";
 import {racksData} from "../../data/mock/mockData_Racks.js";
+import PrimeInput from "../../components/PrimeInput.jsx";
 
 function ScanRackQrCode() {
    const [renderScanProps, setRenderScanProps] = useState({
@@ -30,7 +31,10 @@ function ScanRackQrCode() {
             video: qrScanVideo
         }
     });
+    const setIsShowSpinner = useStore((state) => state.setIsShowSpinner)
+
     const [qrScanWarning, setQrScanWarning] = useState("");
+    const [rackInputValue, setRackInputValue] = useState('')
 
     const rackSummary = useStore((state) => state.rackSummary)
     const setRackSummary = useStore((state) => state.setRackSummary)
@@ -55,20 +59,51 @@ function ScanRackQrCode() {
     }
     /*//------------------------------//*/
 
+    // Input Rack ID + Scan BTN
+    function getScanButtonLabel(renderScanProps, eanInputValue) {
+        if (eanInputValue) {
+            return "Add Rack";
+        }
+        return !renderScanProps.isScanning ? "Scan" : "Stop";
+    }
+
+    const handleRackIdInput = (value) => {
+        if (qrScanWarning) {
+            setQrScanWarning('');
+        }
+        setRackInputValue(value);
+    }
+
+    function handleScanBtnClick() {
+        if (rackInputValue) {
+            handleQRResult(rackInputValue);
+        } else if (!renderScanProps.isScanning) {
+            handleScanStart();
+        } else {
+            stopRef.current?.();
+        }
+    }
+    //////////////////////////////////////////////////////
      /*ScanProcess*/
     const handleQRResult = (data) => {
-        const rackID = data.trim().toUpperCase();
+        setIsShowSpinner(true);
 
-        const fromHistory = scannedRacksHistory.find(r => String(r.rackID).toUpperCase() === rackID);
-        if (fromHistory) return setRackSummary(fromHistory);
+        setTimeout(() => {
+            const rackID = data.trim().toUpperCase();
 
-        const fromMock = racksData.find(r => String(r.rackID).toUpperCase() === rackID);
-        if (fromMock) {
-            setRackSummary(fromMock);
-            setUpdateScannedRacksHistory(fromMock);
-        } else {
-            setQrScanWarning("Rack not Found!!!!");
-        }
+            const fromHistory = scannedRacksHistory.find(r => String(r.rackID).toUpperCase() === rackID);
+            if (fromHistory) return setRackSummary(fromHistory);
+
+            const fromMock = racksData.find(r => String(r.rackID).toUpperCase() === rackID);
+            if (fromMock) {
+                setRackSummary(fromMock);
+                setUpdateScannedRacksHistory(fromMock);
+            } else {
+                setQrScanWarning("Rack not Found!!!!");
+            }
+
+            setIsShowSpinner(false);
+        }, 500);
     };
 
     const handleScanStart = () => {
@@ -123,7 +158,15 @@ function ScanRackQrCode() {
                     startScanProcess={(fn) => (startRef.current = fn)}
                     stopScanProcess={(fn) => (stopRef.current = fn)}
                 />
-                <div className={ScanRackQrWarning}>{qrScanWarning}</div>
+                <div className={ScanRackQrCodeInputBlock}>
+                    <PrimeInput value={rackInputValue} placeholder={"Rack ID"} onChange={handleRackIdInput}
+                                onFocus={() => stopRef.current?.()} idInput={"RackID"}/>
+                    <PrimeButton className={ScanRackQrCodeInputButton} onClick={handleScanBtnClick}>
+                        {getScanButtonLabel(renderScanProps, rackInputValue)}
+                    </PrimeButton>
+                    <div className={ScanRackQrWarning}>{qrScanWarning}</div>
+                </div>
+
                 <div className={ScanRackQrCodeResultOfScan}>
                     <div className={ScanRackQrCodeResultOfScanInfo}>
                         <p className={textPX}>Rack Information:</p>
@@ -142,8 +185,6 @@ function ScanRackQrCode() {
                 </div>
             </div>
             <div className={ScanRackQrCodeButtonsBlock}>
-                <PrimeButton className={ScanRackQrCodeButton}
-                             onClick={!renderScanProps.isScanning ? handleScanStart : () => stopRef.current?.()}>{!renderScanProps.isScanning ? "Scan Rack" : "Stop Scan"}</PrimeButton>
                 <PrimeButton className={ScanRackQrCodeButton} disabled={isAddArticleDisableBtn}
                              onClick={() => handleGoTo('scanArticle')}>{articleSummary?.quantity > 0 ? "Continue Add Article" : "Add New Article"}</PrimeButton>
                 <PrimeButton className={orangeButton} onClick={() => handleGoTo('rackSummary')} disabled={!rackSummary.rackID}>Rack Summary</PrimeButton>

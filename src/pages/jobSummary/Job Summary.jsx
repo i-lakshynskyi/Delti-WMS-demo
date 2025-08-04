@@ -9,12 +9,14 @@ import {
 } from "../../styles/pages/jobSummaryStyles.js";
 import PrimeButton from "../../components/PrimeButton.jsx";
 import JobSummaryArticleCard from "./JobSummaryArticleCard.jsx";
+import {sortArticlesByStatus} from "../../utils/functions.js";
 
 function JobSummary() {
     const jobSummary = useStore(state => state.jobSummary);
     const { currentJob, completeTimeJob} = jobSummary;
     const setCurrentPage = useStore((state) => state.setCurrentPage)
     const scannedArticlesHistory = useStore((state) => state.scannedArticlesHistory);
+    const sortedArticles = sortArticlesByStatus(scannedArticlesHistory);
     const scannedRacksHistory = useStore((state) => state.scannedRacksHistory);
 
     function handleGoTo(page) {
@@ -38,7 +40,7 @@ function JobSummary() {
                 </div>
                 <div className={jobOSummarySKUs}>
                     {
-                        scannedArticlesHistory.map((article, i) => {
+                        sortedArticles.map((article, i) => {
                             return (<JobSummaryArticleCard key={`${i}-${article.ean}`} article={article}/>)
                         })
                     }
