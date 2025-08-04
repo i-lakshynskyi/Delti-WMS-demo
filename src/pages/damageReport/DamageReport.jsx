@@ -14,51 +14,23 @@ function DamageReport() {
     const canvasRef = useRef(null);
     const [tempPhoto, setTempPhoto] = useState(null);
     const [stream, setStream] = useState(null);
-    const [devices, setDevices] = useState([]);
-    const [currentDeviceId, setCurrentDeviceId] = useState(null);
+    const [isUserCamera, setIsUserCamera] = useState(false);
 
 
 
-
-    /*const startCamera = async () => {
-        setAddPhoto(true);
-        if (stream) return;
-        const mediaStream = await navigator.mediaDevices.getUserMedia({video: true});
-        if (videoRef.current) {
-            videoRef.current.srcObject = mediaStream;
-            videoRef.current.play();
-            setStream(mediaStream);
-        }
-    };*/
-
-    const startCamera = async (deviceId = null) => {
+    const startCamera = async (facingMode = "environment") => {
         try {
             setAddPhoto(true);
 
             if (stream) {
-                stream.getTracks().forEach(track => track.stop());
+                stream.getTracks().forEach((track) => track.stop());
             }
-
-            const allDevices = await navigator.mediaDevices.enumerateDevices();
-            const videoDevices = allDevices.filter(device => device.kind === "videoinput");
-            setDevices(videoDevices);
-
-            let targetDeviceId = deviceId;
-            if (!deviceId) {
-                const environmentCam = videoDevices.find(device =>
-                    device.label.toLowerCase().includes("back") ||
-                    device.label.toLowerCase().includes("environment")
-                );
-                targetDeviceId = environmentCam
-                    ? environmentCam.deviceId
-                    : videoDevices[0]?.deviceId;
-            }
-
-            setCurrentDeviceId(targetDeviceId);
 
             const constraints = {
-                video: { deviceId: { exact: targetDeviceId } },
-                audio: false
+                video: {
+                    facingMode: { exact: facingMode },
+                },
+                audio: false,
             };
 
             const mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
@@ -68,20 +40,23 @@ function DamageReport() {
             }
 
             setStream(mediaStream);
-        } catch (err) {
-            console.error("Camera launch failed:", err);
+            setIsUserCamera(facingMode === "user");
+        } catch (error) {
+            console.warn("Failed to start with facingMode, fallback on deviceId", error);
+
+            const fallbackStream = await navigator.mediaDevices.getUserMedia({ video: true });
+            videoRef.current.srcObject = fallbackStream;
+            videoRef.current.play();
+            setStream(fallbackStream);
         }
     };
 
+
     const switchToNextCamera = () => {
-        if (devices.length < 2) return;
-
-        const currentIndex = devices.findIndex(d => d.deviceId === currentDeviceId);
-        const nextIndex = (currentIndex + 1) % devices.length;
-        const nextDeviceId = devices[nextIndex].deviceId;
-
-        startCamera(nextDeviceId).then();
+        const nextMode = isUserCamera ? "environment" : "user";
+        startCamera(nextMode).then();
     };
+
 
 
 
