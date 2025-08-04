@@ -1,7 +1,7 @@
 import {
     btnBase, btnImgBase,
     btnTakePhotoIMG,
-    buttonsBlock,
+    buttonsBlock, darkenOverlay,
     gridItem,
     gridWrap, imgBlockWrap, imgJustifyCenter,
     responsiveCameraContainer,
@@ -15,6 +15,8 @@ export default function ResponsiveCamera({canvasRef, videoRef, onStopCamera, onT
 
     return (
         <div className={responsiveCameraContainer}>
+            <div id="darken-overlay" className={darkenOverlay}></div>
+
             <video className={videoContainer} ref={videoRef} autoPlay playsInline/>
             {/*Grid*/}
             <div className={gridWrap}>
