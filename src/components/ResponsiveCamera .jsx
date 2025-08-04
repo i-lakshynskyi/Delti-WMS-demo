@@ -12,7 +12,7 @@ import switchCamera from "../assets/icons/switch-camera.svg"
 import take_Photo from "../assets/icons/take-photo.svg"
 import stepBack from "../assets/icons/arrows-back.svg"
 
-export default function ResponsiveCamera({canvasRef, videoRef, onStopCamera, onTakePhoto}) {
+export default function ResponsiveCamera({canvasRef, videoRef, onStopCamera, onTakePhoto, onSwitchCamera}) {
 
     return (
         <div className={responsiveCameraContainer}>
@@ -31,7 +31,7 @@ export default function ResponsiveCamera({canvasRef, videoRef, onStopCamera, onT
                 </div>
                 <div className={`${imgBlockWrap} ${imgJustifyAround}`}>
                     <button className={btnBase}><img src={`${flash}`} alt="flash"/></button>
-                    <button className={btnBase}><img src={`${switchCamera}`} alt="switchCamera"/></button>
+                    <button className={btnBase} onClick={onSwitchCamera}><img src={`${switchCamera}`} alt="switchCamera"/></button>
                 </div>
             </div>
             <canvas ref={canvasRef} style={{display: "none"}}/>

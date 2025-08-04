@@ -14,10 +14,13 @@ function DamageReport() {
     const canvasRef = useRef(null);
     const [tempPhoto, setTempPhoto] = useState(null);
     const [stream, setStream] = useState(null);
+    const [devices, setDevices] = useState([]);
+    const [currentDeviceId, setCurrentDeviceId] = useState(null);
 
 
 
-    const startCamera = async () => {
+
+    /*const startCamera = async () => {
         setAddPhoto(true);
         if (stream) return;
         const mediaStream = await navigator.mediaDevices.getUserMedia({video: true});
@@ -26,10 +29,63 @@ function DamageReport() {
             videoRef.current.play();
             setStream(mediaStream);
         }
+    };*/
+
+    const startCamera = async (deviceId = null) => {
+        try {
+            setAddPhoto(true);
+
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+
+            const allDevices = await navigator.mediaDevices.enumerateDevices();
+            const videoDevices = allDevices.filter(device => device.kind === "videoinput");
+            setDevices(videoDevices);
+
+            let targetDeviceId = deviceId;
+            if (!deviceId) {
+                const environmentCam = videoDevices.find(device =>
+                    device.label.toLowerCase().includes("back") ||
+                    device.label.toLowerCase().includes("environment")
+                );
+                targetDeviceId = environmentCam
+                    ? environmentCam.deviceId
+                    : videoDevices[0]?.deviceId;
+            }
+
+            setCurrentDeviceId(targetDeviceId);
+
+            const constraints = {
+                video: { deviceId: { exact: targetDeviceId } },
+                audio: false
+            };
+
+            const mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
+            if (videoRef.current) {
+                videoRef.current.srcObject = mediaStream;
+                videoRef.current.play();
+            }
+
+            setStream(mediaStream);
+        } catch (err) {
+            console.error("Camera launch failed:", err);
+        }
     };
 
+    const switchToNextCamera = () => {
+        if (devices.length < 2) return;
+
+        const currentIndex = devices.findIndex(d => d.deviceId === currentDeviceId);
+        const nextIndex = (currentIndex + 1) % devices.length;
+        const nextDeviceId = devices[nextIndex].deviceId;
+
+        startCamera(nextDeviceId).then();
+    };
+
+
+
     const stopCamera = () => {
-        console.log("Stop camera")
         if (stream) {
             stream.getTracks().forEach((track) => track.stop());
             setStream(null);
@@ -68,7 +124,7 @@ function DamageReport() {
             <StickyTitle title1={'Image Report'} title2={'Create Image Report'}/>
             {addPhoto &&
                 <div className={damageReportCreatePhotoWrap}>
-                    <ResponsiveCamera onStopCamera={stopCamera} onTakePhoto={takePhoto} videoRef={videoRef} canvasRef={canvasRef}/>
+                    <ResponsiveCamera onStopCamera={stopCamera} onTakePhoto={takePhoto} videoRef={videoRef} canvasRef={canvasRef} onSwitchCamera={switchToNextCamera}/>
                 </div>
             }
             <div>

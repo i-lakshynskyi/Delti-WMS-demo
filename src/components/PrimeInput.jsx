@@ -18,7 +18,6 @@ function PrimeInput({
                     onFocus={onFocus}
                     id={idInput}
                     required={required}
-                    inputMode="numeric"
                     pattern="\d*"
                     {...rest}
                 />
