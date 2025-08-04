@@ -1,6 +1,6 @@
 export const damageReportContainer = 'relative h-full flex flex-col overflow-hidden overflow-y-auto'
 export const damageReportCreatePhotoWrap = 'fixed z-20 top-0 left-0 flex flex-col items-center justify-center ' +
-    'h-[100vh] w-full border-2 border-[#1f456e] overflow-hidden bg-[#ffffff]'
+    'h-[100vh] w-full overflow-hidden bg-[#0f2237]'
 
 // Photo Processing
 export const responsiveCameraContainer = 'relative w-full h-full'
@@ -14,7 +14,7 @@ export const gridItem = (i) => {
     return classes.join(" ");
 };
 
-export const buttonsBlock = 'absolute bottom-0 left-0 flex items-center justify-around min-h-[60px] py-10 w-full bg-[#000000d4] z-[21]'
+export const buttonsBlock = 'absolute bottom-0 left-0 flex items-center justify-around min-h-[60px] pb-8 pt-4 w-full bg-[#20456e70] z-[21]'
 export const btnBase = 'h-[50px] w-[50px] m-3 flex items-center justify-center active:bg-[#f16600] active:rounded-[50%]'
 export const btnImgBase = 'h-[26px] w-[26px]'
 export const imgBlockWrap = "w-[33%] flex items-center"
