@@ -1,5 +1,8 @@
 
-export const scanArticleContainer = "h-full flex grow flex-col overflow-hidden pb-[15px] overflow-y-auto [&_input]:bg-white"
+export const scanArticleContainer = "h-full flex grow flex-col overflow-hidden pb-[15px] overflow-y-auto [&_input]:bg-white relative"
+export const scanArticleDamageBtn = "absolute -top-[7px] right-0 z-[21] bg-[#1f456e] rounded-bl-lg rounded-br-lg flex items-center justify-center w-[44px]"
+export const scanArticleDamageBtnDisabled = `${scanArticleDamageBtn} disabled:opacity-50`
+export const scanArticleDamageBtnImg = "h-[30px] w-[30px]"
 export const scanArticleWrap = "bg-[#f5f5f5] grow border border-gray-300 rounded-lg m-[10px] p-[10px] flex flex-col"
 
 export const scanArticleScannerBlock = 'mx-[10px] bg-[#ffffff] h-[150px] min-h-[150px] flex items-center justify-center overflow-hidden border-[2px] border-dashed border-[#8fa2b6] rounded-lg'

@@ -7,7 +7,8 @@ import {
     barScanImg,
     barScanOverlay,
     barScanVideo,
-    scanArticleContainer, scanArticleEAN, scanArticleEanInputWarning, scanArticleFormBlock,
+    scanArticleContainer, scanArticleDamageBtn, scanArticleDamageBtnDisabled,
+    scanArticleDamageBtnImg, scanArticleEAN, scanArticleEanInputWarning, scanArticleFormBlock,
     scanArticleInputButton,
     scanArticleScannerBlock,
     scanArticleSInputBlock,
@@ -20,6 +21,7 @@ import useStore from "../../store/useStore.js";
 import {orangeButton} from "../../styles/components/reusableСomponentsStyle.js";
 import PrimeInput from "../../components/PrimeInput.jsx";
 import ArticleQuantityDotForm from "../../components/ArticleQuantityDotForm.jsx";
+import warming from "../../assets/icons/warning.svg";
 
 
 function ScanArticle() {
@@ -57,6 +59,8 @@ function ScanArticle() {
 
     const setUpdateScannedRacksHistory = useStore((state) => state.setUpdateScannedRacksHistory)
     const setUpdateScannedArticlesHistory = useStore((state) => state.setUpdateScannedArticlesHistory);
+
+    const isArticleSummaryExist = Boolean(Object.keys(articleSummary).length);
 
 
     function resetArticle() {
@@ -218,6 +222,11 @@ function ScanArticle() {
     return (
         <div className={scanArticleContainer}>
             <StickyTitle title1={"Scan Article"} title2={"Scan and add articles to the current rack"}/>
+            <button className={isArticleSummaryExist ? scanArticleDamageBtn : scanArticleDamageBtnDisabled}
+                    disabled={!isArticleSummaryExist}
+            onClick={() => handleGoTo("damageReport")}>
+                <img className={scanArticleDamageBtnImg} src={`${warming}`} alt="warning"/>
+            </button>
             <div className={scanArticleScannerBlock}>
                 <ZxingQrEanScanner
                     renderProps={renderScanProps}
@@ -265,7 +274,7 @@ function ScanArticle() {
                              disabled={!(Number(quantityInputValue) > 0 && isValidQuantityAndDate && articleSummary.ean)}>Confirm
                     Quantity</PrimeButton>
                 <PrimeButton className={orangeButton} onClick={() => handleGoTo("articleSummary")}
-                             disabled={!(Object.keys(articleSummary).length)}>Article Summary</PrimeButton>
+                             disabled={!isArticleSummaryExist}>Article Summary</PrimeButton>
                 <PrimeButton onClick={() => handleGoTo("scanRackQR")}>Add Rack</PrimeButton>
             </div>
         </div>

@@ -40,6 +40,30 @@ const useStore = create((set, get) => ({
 
     articleSummary: {},
     setArticleSummary: (summary) => set({articleSummary: summary}),
+    setAddDamageReportToArticleSummary: ({ comment, galleryList }) => set(state => {
+        const currentArticle = state.articleSummary || {};
+
+        const damageReports = Array.isArray(currentArticle.damageReports)
+            ? [...currentArticle.damageReports]
+            : [];
+
+        damageReports.push({
+            comment,
+            galleryList,
+            timestamp: new Date().toISOString()
+        });
+
+        const statusesSet = new Set(currentArticle.statuses || []);
+        statusesSet.add("Damaged");
+
+        const updatedArticle = {
+            ...currentArticle,
+            damageReports,
+            statuses: Array.from(statusesSet)
+        };
+
+        return { articleSummary: updatedArticle };
+    }),
 
     rackSummary: getInitialRackSummary(),
     setRackSummary: (update) =>
@@ -89,7 +113,7 @@ const useStore = create((set, get) => ({
 
     scannedArticlesHistory: [],
     setUpdateScannedArticlesHistory: (article, quantityToAdd, rack) =>
-        set((state) => {
+        set(state => {
             const updatedHistory = [...state.scannedArticlesHistory];
             const index = updatedHistory.findIndex(a => a.ean === article.ean);
 
@@ -119,27 +143,44 @@ const useStore = create((set, get) => ({
                 }
 
                 const placedQuantity = updatedRacks.reduce((sum, r) => sum + r.quantity, 0);
-
                 const dotsUsed = Array.from(new Set(updatedRacks.map(r => r.dot)));
+
+                let recalculatedStatuses = recalculateStatuses({
+                    expectedQuantity: existing.expectedQuantity,
+                    placedQuantity,
+                    dotsUsed
+                });
+
+                if (article.statuses && article.statuses.includes("Damaged")) {
+                    recalculatedStatuses = Array.from(new Set([...recalculatedStatuses, "Damaged"]));
+                }
 
                 updatedHistory[index] = {
                     ...existing,
                     placedQuantity,
                     racksUsed: updatedRacks,
                     dotsUsed,
-                    statuses: recalculateStatuses({
-                        expectedQuantity: existing.expectedQuantity,
-                        placedQuantity,
-                        dotsUsed
-                    })
-                };
+                    statuses: recalculatedStatuses,
+                    damageReports: article.damageReports ?? []
+
+            };
 
             } else {
                 const placedQuantity = quantityToAdd;
                 const originalArticle = state.jobSummary.currentJob?.skuTires?.find(sku => sku.ean === article.ean);
                 const expectedQuantity = originalArticle?.quantity ?? article.quantity;
 
-                const newArticle = {
+                let recalculatedStatuses = recalculateStatuses({
+                    expectedQuantity,
+                    placedQuantity,
+                    dotsUsed: [article.dot]
+                });
+
+                if (article.statuses && article.statuses.includes("Damaged")) {
+                    recalculatedStatuses = Array.from(new Set([...recalculatedStatuses, "Damaged"]));
+                }
+
+                updatedHistory.push({
                     ean: article.ean,
                     name: article.name,
                     size: article.size,
@@ -147,21 +188,13 @@ const useStore = create((set, get) => ({
                     placedQuantity,
                     racksUsed: [rackUsed],
                     dotsUsed: [article.dot],
-                };
-
-                updatedHistory.push({
-                    ...newArticle,
-                    statuses: recalculateStatuses({
-                        expectedQuantity,
-                        placedQuantity,
-                        dotsUsed: [article.dot]
-                    })
+                    statuses: recalculatedStatuses,
+                    damageReports: Array.isArray(article.damageReports) ? article.damageReports : []
                 });
             }
 
             return { scannedArticlesHistory: updatedHistory };
         }),
-
 
     setFixDotQuantityForArticle: ({ rackID, originalDot, newQuantity, newDot, ean }) =>
         set((state) => {
@@ -188,8 +221,10 @@ const useStore = create((set, get) => ({
             const dotsUsed = [...new Set(updatedRacks.map(r => r.dot))];
 
             const expectedQuantity = article.expectedQuantity;
-            const statuses = [];
+            const previousStatuses = article.statuses || [];
 
+            const statuses = [];
+            if(previousStatuses.includes("Damaged")) statuses.push("Damaged");
             if (placedQuantity < expectedQuantity) statuses.push("Quantity_Mismatch");
             if (dotsUsed.some(dot => isOldDot(dot))) statuses.push("Old_DOT");
             if (statuses.length === 0) statuses.push("OK");

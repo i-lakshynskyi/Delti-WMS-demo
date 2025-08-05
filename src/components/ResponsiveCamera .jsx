@@ -1,10 +1,11 @@
 import {
-    btnBase, btnImgBase,
-    btnTakePhotoIMG,
-    buttonsBlock, darkenOverlay,
     gridItem,
-    gridWrap, imgBlockWrap, imgJustifyCenter,
+    gridWrap,
     responsiveCameraContainer,
+    takePhotoBtnBase, takePhotoBtnImgBase, takePhotoBtnTakePhotoIMG,
+    takePhotoButtonsBlock,
+    takePhotoImgBlockWrap,
+    takePhotoImgJustifyCenter,
     videoContainer
 } from "../styles/pages/DamageReportStyles.js";
 import switchCamera from "../assets/icons/switch-camera.svg"
@@ -15,23 +16,21 @@ export default function ResponsiveCamera({canvasRef, videoRef, onStopCamera, onT
 
     return (
         <div className={responsiveCameraContainer}>
-            <div id="darken-overlay" className={darkenOverlay}></div>
-
             <video className={videoContainer} ref={videoRef} autoPlay playsInline/>
             {/*Grid*/}
             <div className={gridWrap}>
                 {[...Array(9)].map((_, i) => (<div key={i} className={gridItem(i)}/>))}
             </div>
             {/*//////////////////////////////*/}
-            <div className={buttonsBlock}>
-                <div className={`${imgBlockWrap} ${imgJustifyCenter}`}>
-                    <button className={btnBase} onClick={onStopCamera}><img className={btnImgBase} src={`${stepBack}`} alt="stepBack"/></button>
+            <div className={takePhotoButtonsBlock}>
+                <div className={`${takePhotoImgBlockWrap} ${takePhotoImgJustifyCenter}`}>
+                    <button className={takePhotoBtnBase} onClick={onStopCamera}><img className={takePhotoBtnImgBase} src={`${stepBack}`} alt="stepBack"/></button>
                 </div>
-                <div className={`${imgBlockWrap} ${imgJustifyCenter}`}>
-                    <button className={btnTakePhotoIMG} onClick={onTakePhoto}><img src={`${take_Photo}`} alt="takePhoto"/></button>
+                <div className={`${takePhotoImgBlockWrap} ${takePhotoImgJustifyCenter}`}>
+                    <button className={takePhotoBtnTakePhotoIMG} onClick={onTakePhoto}><img src={`${take_Photo}`} alt="takePhoto"/></button>
                 </div>
-                <div className={`${imgBlockWrap} ${imgJustifyCenter}`}>
-                    <button className={btnBase} onClick={onSwitchCamera}><img className={btnImgBase} src={`${switchCamera}`} alt="switchCamera"/></button>
+                <div className={`${takePhotoImgBlockWrap} ${takePhotoImgJustifyCenter}`}>
+                    <button className={takePhotoBtnBase} onClick={onSwitchCamera}><img className={takePhotoBtnImgBase} src={`${switchCamera}`} alt="switchCamera"/></button>
                 </div>
             </div>
             <canvas ref={canvasRef} style={{display: "none"}}/>

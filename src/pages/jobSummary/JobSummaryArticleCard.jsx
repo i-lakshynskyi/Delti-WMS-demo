@@ -34,7 +34,7 @@ function JobSummaryArticleCard({article, delBtn = false}) {
                     <span>
                     {
                         statuses.map((status, index) => (
-                            <p className={getStatusArticle(status)} key={index}>{`${status}`}</p>))
+                            <span className={getStatusArticle(status)} key={index}>{status}{index < statuses.length - 1 ? ', ' : ''}</span>))
                     }
                 </span>
                     <span>EAN:</span> <span>{ean}</span>
