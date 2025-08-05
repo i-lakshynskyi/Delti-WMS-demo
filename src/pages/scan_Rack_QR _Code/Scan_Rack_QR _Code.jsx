@@ -101,7 +101,7 @@ function ScanRackQrCode() {
             } else {
                 setQrScanWarning("Rack not Found!!!!");
             }
-
+            setRackInputValue('');
             setIsShowSpinner(false);
         }, 500);
     };
