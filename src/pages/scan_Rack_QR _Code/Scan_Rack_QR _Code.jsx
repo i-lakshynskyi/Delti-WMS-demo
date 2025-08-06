@@ -35,7 +35,6 @@ function ScanRackQrCode() {
             video: qrScanVideo
         }
     });
-    const setIsShowSpinner = useStore((state) => state.setIsShowSpinner)
 
     const [qrScanWarning, setQrScanWarning] = useState("");
     const [rackInputValue, setRackInputValue] = useState('')
@@ -90,24 +89,20 @@ function ScanRackQrCode() {
     //////////////////////////////////////////////////////
      /*ScanProcess*/
     const handleQRResult = (data) => {
-        setIsShowSpinner(true);
+        const rackID = data.trim().toUpperCase();
 
-        setTimeout(() => {
-            const rackID = data.trim().toUpperCase();
+        const fromHistory = scannedRacksHistory.find(r => String(r.rackID).toUpperCase() === rackID);
+        if (fromHistory) return setRackSummary(fromHistory);
 
-            const fromHistory = scannedRacksHistory.find(r => String(r.rackID).toUpperCase() === rackID);
-            if (fromHistory) return setRackSummary(fromHistory);
+        const fromMock = racksData.find(r => String(r.rackID).toUpperCase() === rackID);
+        if (fromMock) {
+            setRackSummary(fromMock);
+            setUpdateScannedRacksHistory(fromMock);
+        } else {
+            setQrScanWarning(`${scanRackQrT("qrScanWarning")}`);
+        }
 
-            const fromMock = racksData.find(r => String(r.rackID).toUpperCase() === rackID);
-            if (fromMock) {
-                setRackSummary(fromMock);
-                setUpdateScannedRacksHistory(fromMock);
-            } else {
-                setQrScanWarning(`${scanRackQrT("qrScanWarning")}`);
-            }
-            setRackInputValue('');
-            setIsShowSpinner(false);
-        }, 500);
+        setRackInputValue('');
     };
 
     const handleScanStart = () => {
