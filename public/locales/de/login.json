@@ -1,0 +1,20 @@
+{
+  "logo": "DeltiStore",
+  "form": {
+    "username": {
+      "placeholderText": "Benutzernamen eingeben",
+      "labelText": "Benutzername"
+    },
+    "password": {
+      "placeholderText": "Passwort eingeben",
+      "labelText": "Passwort"
+    }
+  },
+  "buttons": {
+    "login": "Anmelden"
+  },
+  "info": {
+    "loginExtraText": "Automatisches Ausfüllen aktiviert, wenn Sitzungsdaten verfügbar sind",
+    "loginInfo": "Für das MVP werden die Login-Felder automatisch ausgefüllt, wenn Sitzungsdaten vorhanden sind"
+  }
+}

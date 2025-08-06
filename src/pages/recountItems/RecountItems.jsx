@@ -20,8 +20,12 @@ import confirm from "../../assets/icons/confirm.svg";
 import cancel from "../../assets/icons/cancel.svg";
 import ArticleQuantityDotForm from "../../components/ArticleQuantityDotForm.jsx";
 import JobSummaryArticleCard from "../jobSummary/JobSummaryArticleCard.jsx";
+import {usePageTranslation} from "../../i18n/hooks/hooks.js";
 
 function RecountItems() {
+    // Translations
+    const { t: recountT } = usePageTranslation();
+
     const [racksList, setRacksList] = useState(null);
     const [editingRack, setEditingRack] = useState(null);
     const [quantityInputValue, setQuantityInputValue] = useState('');
@@ -91,19 +95,19 @@ function RecountItems() {
 
     return (
         <div className={recountItemsContainer}>
-            <StickyTitle title1={"Recount Items"} title2={`Article EAN: ${ean ? ean : ".."}`}/>
+            <StickyTitle title1={recountT("stickyTitle.title1")} title2={`${recountT("stickyTitle.title2")} ${ean ? ean : ".."}`}/>
 
             <div className={recountItemsArticleInfo}>
                 <JobSummaryArticleCard article={currentEditArticle} delBtn={true}/>
             </div>
 
-            <p className={title}>Rack Used:</p>
+            <p className={title}>{recountT("rackUsed")}</p>
             <div className={recountItemsRacksList}>
                 <div className={recountItemsTableRowHeader}>
-                    <span className={boldText}>Rack</span>
-                    <span className={boldText}>Quantity</span>
-                    <span className={boldText}>DOT</span>
-                    <span className={boldText}>Edit</span>
+                    <span className={boldText}>{recountT("table.rack")}</span>
+                    <span className={boldText}>{recountT("table.quantity")}</span>
+                    <span className={boldText}>{recountT("table.dot")}</span>
+                    <span className={boldText}>{recountT("table.edit")}</span>
                 </div>
                 {racksList?.racksUsed?.map((rack, index) => {
                     const isEditingThisRack =
@@ -123,7 +127,7 @@ function RecountItems() {
                             </div>
                             {isEditingThisRack && (
                                 <div className={recountItemsTableEditContainer}>
-                                    <h3 className={editTitle}>Edit Rack: {rack.rackID}</h3>
+                                    <h3 className={editTitle}>{`${recountT("editRack")} ${rack.rackID}`}</h3>
                                     <ArticleQuantityDotForm
                                         ref={formRef}
                                         objSummary={rack}
@@ -159,7 +163,7 @@ function RecountItems() {
 
             <div className={recountItemsButtonBlock}>
                 <PrimeButton onClick={() => handleGoTo("jobSummary")}
-                             disabled={false}>Confirm</PrimeButton>
+                             disabled={false}>{recountT("btns.confirm")}</PrimeButton>
             </div>
         </div>
     );

@@ -1,0 +1,31 @@
+{
+  "stickyTitle": {
+    "title1": "Jobübersicht",
+    "title2": "GR-Job:"
+  },
+  "jobInfoCard": {
+    "po": "Bestellnummer:",
+    "sup": "Lieferant:",
+    "delNot": "Lieferschein:",
+    "expTire": "Erwartete Reifen:",
+    "arrivalDate": "Ankunftsdatum:",
+    "gate": "Zugewiesenes Tor:"
+  },
+  "jobOverviewSKUsTitle": {
+    "jobOverviewH1": "Reifen-SKUs:",
+    "jobOverviewH2": "Gesamtanzahl Racks:"
+  },
+  "skuCard": {
+    "size": "Größe:",
+    "ean": "EAN:",
+    "quantity": "Menge:",
+    "racks": "Racks:"
+  },
+  "overviewConveyor": {
+    "title": "Förderbandmodus",
+    "label": "Förderband mit automatischem Scannen"
+  },
+  "btns": {
+    "addRack": "Rack hinzufügen"
+  }
+}

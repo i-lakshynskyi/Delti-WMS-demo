@@ -1,0 +1,13 @@
+{
+  "stickyTitle": {
+    "title1": "Damage Report",
+    "title2": "Create Damage Report"
+  },
+  "leaveCom": "Leave a comment...",
+  "btns": {
+    "saveReport": "Save Report",
+    "addArticle": "Add Article",
+    "takePhoto": "Take Photo",
+    "downloadPhoto": "Download Photo"
+  }
+}

@@ -1,3 +1,4 @@
+import {usePageTranslation} from "../../i18n/hooks/hooks.js";
 import {useEffect, useState} from 'react'
 import useStore from '../../store/useStore.js'
 import Logo from "../../assets/icons/Logo.svg";
@@ -19,12 +20,15 @@ import {
     loginLogoText,
     loginExtraText,
     loginWrapper,
-    loginButton
+    loginButton, loginLanguageContainer
 } from "../../styles/pages/loginStyle.js";
+import LanguageSelector from "../../components/LanguageSelector.jsx";
 
 
 
 function Login() {
+    // Translations
+    const { t: loginT } = usePageTranslation();
     //Local state
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -69,24 +73,27 @@ function Login() {
 
     return (
         <div className={loginWrapper}>
+            <div className={loginLanguageContainer}>
+                <LanguageSelector/>
+            </div>
             <div className={loginLogo}>
                 <img className={loginLogoImg} src={`${Logo}`} alt="trackLogo" />
-                <span className={loginLogoText}>DeltiStore</span>
+                <span className={loginLogoText}>{loginT('logo')}</span>
             </div>
 
             <PrimeInput value={username}
                         onChange={e => setUsername(e)}
-                        placeholderText={"Enter your username"}
-                        labelText={"Username"}
+                        placeholderText={loginT('form.username.placeholderText')}
+                        labelText={loginT('form.username.labelText')}
                         idInput={'username'}
                         className={'mb-[10px]'}
             />
 
             <PrimeInput value={password}
                         onChange={e => setPassword(e)}
-                        placeholderText={"Enter your password"}
+                        placeholderText={loginT('form.password.placeholderText')}
                         type={showPassword ? 'text' : 'password'}
-                        labelText={"Password"}
+                        labelText={loginT('form.password.labelText')}
                         idInput={'password'}
                         className={'pr-[45px] mb-[10px]'}
             >
@@ -105,16 +112,16 @@ function Login() {
                 </div>
             </PrimeInput>
             <PrimeButton className={loginButton} onClick={handleLogin} disabled={isValid}>
-                Login
+                {loginT('buttons.login')}
             </PrimeButton>
 
             <p className={loginExtraText}>
-                Auto-fill enabled if session data is available
+                {loginT('info.loginExtraText')}
             </p>
 
             <div className={loginInfo}>
                 <img className={loginInfoImg} src={`${info}`} alt="info" />
-                <span>For MVP, login fields auto-fill if session data is found.</span>
+                <span>{loginT('info.loginInfo')}</span>
             </div>
         </div>
     )

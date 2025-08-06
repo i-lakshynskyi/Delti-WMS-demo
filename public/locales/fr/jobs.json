@@ -1,0 +1,22 @@
+{
+  "stickyTitle": {
+    "title1": "Tâches de réception des marchandises",
+    "title2": "Sélectionnez une tâche à traiter"
+  },
+  "modalConfirmJobTitle": "Confirmer la tâche",
+  "jobCard": {
+    "po": "Commande :",
+    "sup": "Fournisseur :",
+    "delNot": "Bon de livraison :",
+    "expTire": "Pneus attendus",
+    "sku": "SKU",
+    "gate": "Porte :"
+  },
+  "statuses": {
+    "Pending": "En attente",
+    "Scheduled": "Planifié"
+  },
+  "btns": {
+    "takeJob": "Prendre la tâche"
+  }
+}

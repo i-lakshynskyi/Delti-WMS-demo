@@ -1,0 +1,31 @@
+{
+  "stickyTitle": {
+    "title1": "Prezentare generală a jobului",
+    "title2": "Job GR:"
+  },
+  "jobInfoCard": {
+    "po": "Număr PO:",
+    "sup": "Furnizor:",
+    "delNot": "Aviz de însoțire:",
+    "expTire": "Anvelope așteptate:",
+    "arrivalDate": "Data sosirii:",
+    "gate": "Poartă atribuită:"
+  },
+  "jobOverviewSKUsTitle": {
+    "jobOverviewH1": "Coduri SKU anvelope:",
+    "jobOverviewH2": "Total rafturi:"
+  },
+  "skuCard": {
+    "size": "Mărime:",
+    "ean": "EAN:",
+    "quantity": "Cantitate:",
+    "racks": "Rafturi:"
+  },
+  "overviewConveyor": {
+    "title": "Mod bandă transportoare",
+    "label": "Bandă transportoare cu scanare automată"
+  },
+  "btns": {
+    "addRack": "Adaugă raft"
+  }
+}

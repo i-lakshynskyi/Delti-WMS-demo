@@ -11,8 +11,12 @@ import {
 import PrimeButton from "../../components/PrimeButton.jsx";
 import {useEffect, useRef, useState} from "react";
 import cancel from '../../assets/icons/cancel.svg'
+import {usePageTranslation} from "../../i18n/hooks/hooks.js";
 
 function DamageReport() {
+    // Translations
+    const { t: dmgReportT } = usePageTranslation();
+
     const setCurrentPage = useStore((state) => state.setCurrentPage);
     const [addPhoto, setAddPhoto] = useState(false);
     const [galleryList, setGalleryList] = useState([]);
@@ -140,7 +144,7 @@ function DamageReport() {
 
     return (
         <div className={damageReportContainer}>
-            <StickyTitle title1={'Image Report'} title2={'Create Image Report'}/>
+            <StickyTitle title1={dmgReportT("stickyTitle.title1")} title2={dmgReportT("stickyTitle.title2")}/>
             {addPhoto &&
                 <div className={damageReportCreatePhotoWrap}>
                     <ResponsiveCamera onStopCamera={stopCamera} onTakePhoto={takePhoto} videoRef={videoRef} canvasRef={canvasRef} onSwitchCamera={switchToNextCamera}/>
@@ -149,16 +153,16 @@ function DamageReport() {
             <div className={damageReportCommentContainer}>
                 <textarea
                     className={damageReportCommentTextArea}
-                    placeholder="Leave a comment..."
+                    placeholder={dmgReportT("leaveCom")}
                     value={comment}
                     onChange={(e) => handleAddComment(e)}
                 />
                 <div className={damageReportCommentTextAreaBtnBlock}>
                     <>
-                        <PrimeButton onClick={() => fileInputRef.current.click()} className="mr-[10px]">Download Photo</PrimeButton>
+                        <PrimeButton onClick={() => fileInputRef.current.click()} className="mr-[10px]">{dmgReportT("btns.downloadPhoto")}</PrimeButton>
                         <input type="file" ref={fileInputRef} className="hidden" onChange={handleAddPhoto} accept="image/*" multiple/>
                     </>
-                    <PrimeButton onClick={() => startCamera()}>Take Photo</PrimeButton>
+                    <PrimeButton onClick={() => startCamera()}>{dmgReportT("btns.takePhoto")}</PrimeButton>
                 </div>
             </div>
             <div className={damageReportGalleryContainer}>
@@ -169,9 +173,7 @@ function DamageReport() {
                             alt={`photo-${index}`}
                             className={damageReportGalleryImg}
                         />
-                        <button onClick={() => removePhoto(index)}
-                            className={damageReportGalleryImgBtnDelete}
-                            aria-label="delete photo">
+                        <button className={damageReportGalleryImgBtnDelete} onClick={() => removePhoto(index)}>
                             <img className={damageReportGalleryImgBtnDeleteIcon} src={`${cancel}`} alt="delete photo"/>
                         </button>
                     </div>
@@ -179,8 +181,8 @@ function DamageReport() {
                 }
             </div>
             <div className={damageReportButtonsBlock}>
-                <PrimeButton onClick={() => onSubmitData(comment, galleryList)} disabled={galleryList.length === 0 && comment.length === 0}>Save Report</PrimeButton>
-                <PrimeButton onClick={() => handleGoTo('scanArticle')}>Add Article</PrimeButton>
+                <PrimeButton onClick={() => onSubmitData(comment, galleryList)} disabled={galleryList.length === 0 && comment.length === 0}>{dmgReportT("btns.saveReport")}</PrimeButton>
+                <PrimeButton onClick={() => handleGoTo('scanArticle')}>{dmgReportT("btns.addArticle")}</PrimeButton>
             </div>
         </div>
     );

@@ -6,9 +6,13 @@ import ModalConfirmJob from "./ModalConfirmJob.jsx";
 import useStore from "../../store/useStore.js";
 import StickyTitle from "../../components/StickyTitle.jsx";
 import {sortJobsByStatus} from "../../utils/functions.js";
+import {usePageTranslation} from "../../i18n/hooks/hooks.js";
 
 
 function GoodsReceivingJobs() {
+    // Translations
+    const { t: jobsT } = usePageTranslation();
+
     const [selectedJob, setSelectedJob] = useState(null);
     const jobSummary = useStore(state => state.jobSummary);
     const setCurrentPage = useStore((state) => state.setCurrentPage)
@@ -42,7 +46,7 @@ function GoodsReceivingJobs() {
                 <ModalConfirmJob job={selectedJob} onConfirm={handleConfirmJob} onClose={handleCloseModal}/>
             )}
 
-            <StickyTitle title1={'Goods Receiving Jobs'} title2={"Select a job to process"}/>
+            <StickyTitle title1={jobsT("stickyTitle.title1")} title2={jobsT("stickyTitle.title2")}/>
 
             <div className={goodsJobListContainer}>
                 {sortingJobs.map(task => (<JobCard key={task.poId} task={task} handleTakeJob={handleTakeJob}/>))}

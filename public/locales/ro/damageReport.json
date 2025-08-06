@@ -1,0 +1,13 @@
+{
+  "stickyTitle": {
+    "title1": "Raport de daune",
+    "title2": "Creează raport de daune"
+  },
+  "leaveCom": "Lasă un comentariu...",
+  "btns": {
+    "saveReport": "Salvează raportul",
+    "addArticle": "Adaugă articol",
+    "takePhoto": "Fă o poză",
+    "downloadPhoto": "Descarcă poza"
+  }
+}

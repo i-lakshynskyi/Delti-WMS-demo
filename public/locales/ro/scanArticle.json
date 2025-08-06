@@ -1,0 +1,34 @@
+{
+  "stickyTitle": {
+    "title1": "Scanează Articol",
+    "title2": "Scanează și adaugă articole în raftul curent"
+  },
+  "artInfo": {
+    "ean": "EAN:",
+    "brand": "Marcă:",
+    "size": "Mărime:",
+    "dot": "DOT:",
+    "unplacedQuantity": "Cantitate Neplasată:"
+  },
+  "inputs": {
+    "ean": "EAN",
+    "quantity": "Cantitate",
+    "dot": "DOT"
+  },
+  "warnings": {
+    "eanInCorrect": "EAN-ul nu este corect",
+    "onlyDigits": "Sunt permise doar cifre",
+    "week1": "Prima cifră a săptămânii trebuie să fie între 0 și 5",
+    "week2": "Săptămâna trebuie să fie între 01 și 53",
+    "year1": "Anul nu poate începe cu un număr mai mare decât",
+    "year2": "Anul nu poate fi mai mare decât"
+  },
+  "btns": {
+    "addEan": "Adaugă EAN",
+    "scan": "Scanează",
+    "stop": "Oprește",
+    "confirmQtty": "Confirmă Cantitatea",
+    "articleSummary": "Rezumat Articol",
+    "addRack": "Adaugă Raft"
+  }
+}

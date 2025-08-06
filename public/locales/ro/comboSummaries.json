@@ -1,0 +1,53 @@
+{
+  "stickyTitle": {
+    "racSumm": {
+      "title1": "Rezumat Raft",
+      "title2": "ID Raft:"
+    },
+    "articSumm": {
+      "title1": "Rezumat Articol",
+      "title2": "EAN Articol:"
+    }
+  },
+  "capacity": {
+    "rackTitle": "Capacitate Raft",
+    "articleTitle": "Raft utilizat"
+  },
+  "table": {
+    "rack": {
+      "theadSku": "SKU",
+      "theadQuantity": "Cantitate",
+      "theadDOT": "DOT"
+    },
+    "article": {
+      "theadRack": "Raft",
+      "theadQuantity": "Cantitate",
+      "theadDOT": "DOT"
+    }
+  },
+  "conclusion": {
+    "rack": {
+      "totalItems": "Total Articole:",
+      "availableCapacity": "Capacitate Disponibilă:",
+      "totalSKUs": "Total SKU-uri:",
+      "earliestDOT": "Cel Mai Vechi DOT:"
+    },
+    "article": {
+      "totalItems": "Total Articole:",
+      "totalRacks": "Total Rafturi:",
+      "earliestDOT": "Cel Mai Vechi DOT:"
+    }
+  },
+  "btns": {
+    "rackSummary": "Rezumat Raft",
+    "articSummery": "Rezumat Articol",
+    "rack": {
+      "scanRack": "Scanează Raft",
+      "addArticle": "Adaugă Articol"
+    },
+    "article": {
+      "scanArticle": "Scanează Articol",
+      "addRack": "Adaugă Raft"
+    }
+  }
+}

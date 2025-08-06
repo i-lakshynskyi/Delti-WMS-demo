@@ -4,6 +4,7 @@ import {
     scanArticleSResultForm,
     scanArticleSResultFormWarning
 } from "../styles/components/ArticleQuantityDotFormStyles.js";
+import {useTranslation} from "react-i18next";
 
 const ArticleQuantityDotForm = forwardRef(({
                                                objSummary,
@@ -17,8 +18,12 @@ const ArticleQuantityDotForm = forwardRef(({
                                                dateInputWarning
                                            }, ref) => {
 
+    // Translations
+    const { t: scanArticleT } = useTranslation("scanArticle");
+
+
     const handleNumberInput = (value) => {
-        const numeric = value.replace(/[^\d]/g, '');
+        const numeric = value.replace(/\D/g, '');
         const val = parseInt(numeric, 10);
         const maxQty = tireQuantity || 0;
 
@@ -33,7 +38,7 @@ const ArticleQuantityDotForm = forwardRef(({
 
     const handleDateInput = (value) => {
         if (!/^\d{0,4}$/.test(value)) {
-            setDateInputWarning("Only digits are allowed");
+            setDateInputWarning(scanArticleT("warnings.onlyDigits"));
             return;
         }
 
@@ -44,7 +49,7 @@ const ArticleQuantityDotForm = forwardRef(({
         // Check WW
         const week1 = parseInt(value[0], 10);
         if (week1 < 0 || week1 > 5) {
-            setDateInputWarning("The first digit of the week must be between 0 and 5");
+            setDateInputWarning(scanArticleT("warnings.week1"));
             return;
         } else {
             setDateInputWarning('');
@@ -52,7 +57,7 @@ const ArticleQuantityDotForm = forwardRef(({
 
         const fullWeek = parseInt(value.slice(0, 2), 10);
         if (fullWeek < 0 || fullWeek > 53) {
-            setDateInputWarning("Week must be between 01 and 53");
+            setDateInputWarning(scanArticleT("warnings.week2"));
             return;
         } else {
             setDateInputWarning('');
@@ -64,7 +69,7 @@ const ArticleQuantityDotForm = forwardRef(({
             const thirdDigit = parseInt(value[2], 10);
             const currentThird = parseInt(currentShortYear.toString()[0]);
             if (thirdDigit > currentThird) {
-                setDateInputWarning(`The year cannot start with a number greater than ${currentThird}`);
+                setDateInputWarning(`${scanArticleT("warnings.year1")} ${currentThird}`);
                 return;
             } else {
                 setDateInputWarning('');
@@ -74,7 +79,7 @@ const ArticleQuantityDotForm = forwardRef(({
         if (value.length === 4) {
             const shortYear = parseInt(value.slice(2), 10);
             if (shortYear > currentShortYear) {
-                setDateInputWarning(`The year cannot be greater than ${currentShortYear}`);
+                setDateInputWarning(`${scanArticleT("warnings.year2")} ${currentShortYear}`);
                 return;
             } else {
                 setDateInputWarning('');
@@ -94,7 +99,7 @@ const ArticleQuantityDotForm = forwardRef(({
         const week = Math.floor(value / 100);
 
         if (week < 1 || week > 53) {
-            setDateInputWarning("Week must be between 01 and 53");
+            setDateInputWarning(scanArticleT("warnings.week2"));
             return;
         }
 
@@ -107,11 +112,11 @@ const ArticleQuantityDotForm = forwardRef(({
         <>
             <div className={scanArticleSResultForm}>
                 <div>
-                    <PrimeInput labelText={"Quantity"} idInput={'Quantity'}
-                                value={quantityInputValue} onChange={handleNumberInput} placeholderText={"Quantity"}/>
+                    <PrimeInput labelText={scanArticleT("inputs.quantity")} idInput={'Quantity'}
+                                value={quantityInputValue} onChange={handleNumberInput} placeholderText={scanArticleT("inputs.quantity")}/>
                 </div>
                 <div>
-                    <PrimeInput labelText={"DOT (WWYY)"} idInput={'DOT(WWYY)'} value={dateInputValue}
+                    <PrimeInput labelText={`${scanArticleT("inputs.dot")} (WWYY)`} idInput={'DOT(WWYY)'} value={dateInputValue}
                                 onChange={handleDateInput} maxLength={4} placeholderText={"WWYY"}/>
                 </div>
             </div>

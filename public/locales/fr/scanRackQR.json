@@ -1,0 +1,22 @@
+{
+  "stickyTitle": {
+    "title1": "Scanner le code QR du rack",
+    "title2": "Placez le code QR dans le cadre du scanner"
+  },
+  "rackInfo": {
+    "title": "Informations sur le rack:",
+    "rackID": "ID du rack:",
+    "location": "Emplacement:",
+    "type": "Type:"
+  },
+  "qrScanWarning": "Rack non trouvé !!!",
+  "btns": {
+    "addRack": "Ajout rack",
+    "scan": "Scanner",
+    "stop": "Arrêter",
+    "continueArt": "Continuer l’ajout d’article",
+    "newArt": "Ajouter un nouvel article",
+    "rackSummary": "Résumé du rack",
+    "completeJob": "Terminer le travail"
+  }
+}

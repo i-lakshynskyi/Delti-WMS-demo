@@ -1,0 +1,20 @@
+{
+  "logo": "DeltiStore",
+  "form": {
+    "username": {
+      "placeholderText": "Introduceți numele de utilizator",
+      "labelText": "Nume utilizator"
+    },
+    "password": {
+      "placeholderText": "Introduceți parola",
+      "labelText": "Parolă"
+    }
+  },
+  "buttons": {
+    "login": "Autentificare"
+  },
+  "info": {
+    "loginExtraText": "Completare automată activată dacă există date de sesiune",
+    "loginInfo": "Pentru MVP, câmpurile de conectare se completează automat dacă există date de sesiune"
+  }
+}

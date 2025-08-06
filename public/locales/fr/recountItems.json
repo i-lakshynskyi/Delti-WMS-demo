@@ -1,0 +1,25 @@
+{
+  "stickyTitle": {
+    "title1": "Recompter les articles",
+    "title2": "EAN de l'article :"
+  },
+  "rackUsed": "Rack utilisé :",
+  "table": {
+    "rack": "Rack",
+    "quantity": "Quantité",
+    "dot": "DOT",
+    "edit": "Modifier"
+  },
+  "editRack": "Modifier le rack :",
+  "jobInfoCard": {
+    "po": "Numéro de commande :",
+    "sup": "Fournisseur :",
+    "delNot": "Bon de livraison :",
+    "expTire": "Pneus attendus :",
+    "arrivalDate": "Date d'arrivée :",
+    "gate": "Porte assignée :"
+  },
+  "btns": {
+    "confirm": "Confirmer"
+  }
+}

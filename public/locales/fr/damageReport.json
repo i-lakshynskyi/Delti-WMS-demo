@@ -1,0 +1,13 @@
+{
+  "stickyTitle": {
+    "title1": "Rapport de dommages",
+    "title2": "Créer un rapport de dommages"
+  },
+  "leaveCom": "Laisser un commentaire...",
+  "btns": {
+    "saveReport": "Enregistrer le rapport",
+    "addArticle": "Ajouter un article",
+    "takePhoto": "Photo",
+    "downloadPhoto": "Téléch."
+  }
+}

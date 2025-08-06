@@ -10,8 +10,12 @@ import {
 import Shimmer from "../../components/Shimmer.jsx";
 import {preloadImage} from "../../utils/functions.js";
 import TyrePlaceholder from "../../components/TyrePlaceholder.jsx";
+import {usePageTranslation} from "../../i18n/hooks/hooks.js";
 
 function JobOverviewTyreCard({skuTires}) {
+    // Translations
+    const { t: overviewT } = usePageTranslation();
+
     const {ean, img, name, quantity, size, racks} = skuTires;
     const [isImgLoaded, setIsImgLoaded] = useState(false);
     const [isErrorIMG, setIsErrorIMG] = useState(false);
@@ -44,10 +48,10 @@ function JobOverviewTyreCard({skuTires}) {
                     }
                 </div>
                 <div className={jobOverviewSKUsCardInfo}>
-                    <p>Size:</p> <p>{size}</p>
-                    <p>EAN:</p> <p>{ean}</p>
-                    <p>Quantity:</p> <p>{quantity}</p>
-                    <p className={jobOverviewSKUsCardsRacks}>Racks:</p> <p className={jobOverviewSKUsCardsRacks}>{racks}</p>
+                    <p>{overviewT("skuCard.size")}</p> <p>{size}</p>
+                    <p>{overviewT("skuCard.ean")}</p> <p>{ean}</p>
+                    <p>{overviewT("skuCard.quantity")}</p> <p>{quantity}</p>
+                    <p className={jobOverviewSKUsCardsRacks}>{overviewT("skuCard.racks")}</p> <p className={jobOverviewSKUsCardsRacks}>{racks}</p>
                 </div>
             </div>
         </div>

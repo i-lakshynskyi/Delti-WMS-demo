@@ -1,0 +1,34 @@
+{
+  "stickyTitle": {
+    "title1": "Artikel scannen",
+    "title2": "Scannen und Artikel dem aktuellen Regal hinzufügen"
+  },
+  "artInfo": {
+    "ean": "EAN:",
+    "brand": "Marke:",
+    "size": "Größe:",
+    "dot": "DOT:",
+    "unplacedQuantity": "Unplatziert"
+  },
+  "inputs": {
+    "ean": "EAN",
+    "quantity": "Menge",
+    "dot": "DOT"
+  },
+  "warnings": {
+    "eanInCorrect": "EAN ist nicht korrekt",
+    "onlyDigits": "Nur Ziffern sind erlaubt",
+    "week1": "Die erste Ziffer der Woche muss zwischen 0 und 5 liegen",
+    "week2": "Woche muss zwischen 01 und 53 liegen",
+    "year1": "Das Jahr darf nicht mit einer Zahl größer als beginnen",
+    "year2": "Das Jahr darf nicht größer sein als"
+  },
+  "btns": {
+    "addEan": "Neu EAN",
+    "scan": "Scannen",
+    "stop": "Stopp",
+    "confirmQtty": "Menge bestätigen",
+    "articleSummary": "Artikelübersicht",
+    "addRack": "Regal hinzufügen"
+  }
+}

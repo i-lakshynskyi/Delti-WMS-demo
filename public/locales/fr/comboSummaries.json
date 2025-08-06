@@ -1,0 +1,53 @@
+{
+  "stickyTitle": {
+    "racSumm": {
+      "title1": "Résumé du Rayonnage",
+      "title2": "ID Rayonnage:"
+    },
+    "articSumm": {
+      "title1": "Résumé de l'Article",
+      "title2": "EAN de l'Article:"
+    }
+  },
+  "capacity": {
+    "rackTitle": "Capacité du Rayonnage",
+    "articleTitle": "Rayonnage utilisé"
+  },
+  "table": {
+    "rack": {
+      "theadSku": "SKU",
+      "theadQuantity": "Quantité",
+      "theadDOT": "DOT"
+    },
+    "article": {
+      "theadRack": "Rayonnage",
+      "theadQuantity": "Quantité",
+      "theadDOT": "DOT"
+    }
+  },
+  "conclusion": {
+    "rack": {
+      "totalItems": "Articles Totals:",
+      "availableCapacity": "Capacité Disponible:",
+      "totalSKUs": "Total SKUs:",
+      "earliestDOT": "DOT le Plus Ancien:"
+    },
+    "article": {
+      "totalItems": "Articles Totals:",
+      "totalRacks": "Total Rayonnages:",
+      "earliestDOT": "DOT le Plus Ancien:"
+    }
+  },
+  "btns": {
+    "rackSummary": "Résumé Rayonnage",
+    "articSummery": "Résumé Article",
+    "rack": {
+      "scanRack": "Scanner Rayonnage",
+      "addArticle": "Ajouter Article"
+    },
+    "article": {
+      "scanArticle": "Scanner Article",
+      "addRack": "Ajouter Rayonnage"
+    }
+  }
+}

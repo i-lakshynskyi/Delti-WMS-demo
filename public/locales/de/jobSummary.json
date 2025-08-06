@@ -1,0 +1,23 @@
+{
+  "stickyTitle": {
+    "title1": "Auftragsübersicht",
+    "title2": "GR Auftrag:"
+  },
+  "info": {
+    "summaryDetails": "Übersicht Details",
+    "completed": "Abgeschlossen",
+    "totalArticles": "Gesamtanzahl Artikel:",
+    "assignedRacks": "Zugewiesene Regale:",
+    "completedTime": "Abschlusszeit:"
+  },
+  "jobSummArtCard": {
+    "status": "Status:",
+    "ean": "EAN:",
+    "dot": "DOT:",
+    "quantity": "Menge:"
+  },
+  "btns": {
+    "finishJob": "GR-Auftrag abschließen",
+    "recountItems": "Artikel nachzählen"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "graz1": "Félicitations !",
+  "graz2": "Travail terminé avec succès",
+  "titleSumm": "Résumé du travail",
+  "summary": {
+    "grID": "ID du travail GR :",
+    "totalTyres": "Pneus au total :",
+    "racksUsed": "Racks utilisés :",
+    "timeTaken": "Temps écoulé :",
+    "stockLocation": "Emplacement du stock :"
+  },
+  "info": "Stock enregistré dans le système",
+  "btn": "Retour à la liste"
+}

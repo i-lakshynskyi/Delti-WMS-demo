@@ -1,0 +1,16 @@
+{
+  "buttons": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
+  "messages": {
+    "loading": "Loading...",
+    "error": "Something went wrong.",
+    "success": "Operation successful!"
+  },
+  "labels": {
+    "search": "Search",
+    "language": "Language"
+  }
+}

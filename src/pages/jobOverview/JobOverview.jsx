@@ -8,10 +8,14 @@ import PrimeButton from "../../components/PrimeButton.jsx";
 import JobOverviewTyreCard from "./JobOverviewTyreCard.jsx";
 import useStore from "../../store/useStore.js";
 import JobOverviewInfoCard from "./jobOverviewInfoCard.jsx";
+import {usePageTranslation} from "../../i18n/hooks/hooks.js";
 
 function JobOverview() {
+    // Translations
+    const { t: overviewT } = usePageTranslation();
+
     const currentJob = useStore(state => state.jobSummary.currentJob);
-    const {skuTires} = currentJob;
+    const {grID, skuTires} = currentJob;
 
     const totalRacks = skuTires.reduce((sum, item) => sum + (item.racks || 0), 0);
 
@@ -24,12 +28,12 @@ function JobOverview() {
 
     return (
         <div className={jobOverviewContainer}>
-            <StickyTitle title1={'Job Overview'} title2={'GR Job: GR-2025-061901'}/>
+            <StickyTitle title1={overviewT("stickyTitle.title1")} title2={`${overviewT("stickyTitle.title2")} ${grID}`}/>
             <div className={jobOverviewBlocksWrap}>
                 <JobOverviewInfoCard currentJob={currentJob}/>
                 <div className={jobOverviewSKUsTitle}>
-                    <h1 className={jobOverviewH1}>{`Tyre SKUs: ${currentJob?.skuTires.length || 0}`}</h1>
-                    <h1 className={jobOverviewH2}>{`Total Racks: ${totalRacks || 0}`}</h1>
+                    <h1 className={jobOverviewH1}>{`${overviewT("jobOverviewSKUsTitle.jobOverviewH1")} ${currentJob?.skuTires.length || 0}`}</h1>
+                    <h1 className={jobOverviewH2}>{`${overviewT("jobOverviewSKUsTitle.jobOverviewH2")} ${totalRacks || 0}`}</h1>
                 </div>
                 <div className={jobOverviewSKUs}>
                     {
@@ -40,12 +44,12 @@ function JobOverview() {
                 </div>
 
                 <div className={jobOverviewConveyor}>
-                    <h1 className={jobOverviewH1}>{"Conveyor Belt Mode"}</h1>
+                    <h1 className={jobOverviewH1}>{overviewT("overviewConveyor.title")}</h1>
                     <div className={jobOverviewConveyorBeltMode}>
                         <input className={jobOverviewConveyorBeltModeRadio} id={"beltMode"} type="radio"/>
-                        <label htmlFor="beltMode">Conveyor Belt with Auto-Scanning</label>
+                        <label htmlFor="beltMode">{overviewT("overviewConveyor.label")}</label>
                     </div>
-                    <PrimeButton onClick={handleStartScanRackQrCode}>Add Rack</PrimeButton>
+                    <PrimeButton onClick={handleStartScanRackQrCode}>{overviewT("btns.addRack")}</PrimeButton>
                 </div>
             </div>
         </div>

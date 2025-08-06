@@ -1,0 +1,25 @@
+{
+  "stickyTitle": {
+    "title1": "Recount Items",
+    "title2": "Article EAN:"
+  },
+  "rackUsed": "Rack Used:",
+  "table": {
+    "rack": "Rack",
+    "quantity": "Quantity",
+    "dot": "DOT",
+    "edit": "Edit"
+  },
+  "editRack": "Edit Rack:",
+  "jobInfoCard": {
+    "po": "PO Number:",
+    "sup": "Supplier:",
+    "delNot": "Delivery Note:",
+    "expTire": "Expected Tyres:",
+    "arrivalDate": "Arrival Date:",
+    "gate": "Gate Assigned:"
+  },
+  "btns": {
+    "confirm": "Confirm"
+  }
+}

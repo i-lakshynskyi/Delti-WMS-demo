@@ -1,0 +1,13 @@
+{
+  "stickyTitle": {
+    "title1": "Schadensbericht",
+    "title2": "Schadensbericht erstellen"
+  },
+  "leaveCom": "Kommentar hinterlassen...",
+  "btns": {
+    "saveReport": "Bericht speichern",
+    "addArticle": "Artikel hinzufügen",
+    "takePhoto": "Foto",
+    "downloadPhoto": "Laden"
+  }
+}

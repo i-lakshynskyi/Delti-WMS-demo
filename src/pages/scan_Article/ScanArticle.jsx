@@ -22,9 +22,13 @@ import {orangeButton} from "../../styles/components/reusableСomponentsStyle.js"
 import PrimeInput from "../../components/PrimeInput.jsx";
 import ArticleQuantityDotForm from "../../components/ArticleQuantityDotForm.jsx";
 import warming from "../../assets/icons/warning.svg";
+import {usePageTranslation} from "../../i18n/hooks/hooks.js";
 
 
 function ScanArticle() {
+    // Translations
+    const { t: scanArticleT } = usePageTranslation();
+
     const [eanInputValue, setEanInputValue] = useState("");
     const [eanInputWarning, setEanInputWarning] = useState("");
     const [quantityInputValue, setQuantityInputValue] = useState('');
@@ -90,7 +94,7 @@ function ScanArticle() {
             formRef.current?.handleDateInput(currentArticle.dot);
             setEanInputValue('');
         } else {
-            setEanInputWarning("EAN is not correct")
+            setEanInputWarning(scanArticleT("warnings.eanInCorrect"));
         }
     };
 
@@ -108,9 +112,9 @@ function ScanArticle() {
 
     function getScanButtonLabel(renderScanProps, eanInputValue) {
         if (eanInputValue) {
-            return "Add Ean";
+            return scanArticleT("btns.addEan");
         }
-        return !renderScanProps.isScanning ? "Scan" : "Stop";
+        return !renderScanProps.isScanning ? scanArticleT("btns.scan") : scanArticleT("btns.stop");
     }
 
     function handleScanButtonClick() {
@@ -221,7 +225,7 @@ function ScanArticle() {
 
     return (
         <div className={scanArticleContainer}>
-            <StickyTitle title1={"Scan Article"} title2={"Scan and add articles to the current rack"}/>
+            <StickyTitle title1={scanArticleT("stickyTitle.title1")} title2={scanArticleT("stickyTitle.title2")}/>
             <button className={isArticleSummaryExist ? scanArticleDamageBtn : scanArticleDamageBtnDisabled}
                     disabled={!isArticleSummaryExist}
             onClick={() => handleGoTo("damageReport")}>
@@ -237,7 +241,7 @@ function ScanArticle() {
                 />
             </div>
             <div className={scanArticleSInputBlock}>
-                <PrimeInput value={eanInputValue} placeholder={"EAN"} onChange={handleEanInput}
+                <PrimeInput value={eanInputValue} placeholder={scanArticleT("inputs.ean")} onChange={handleEanInput}
                             idInput={"EAN"} onFocus={() => stopRef.current?.()} type={'number'}/>
                 <PrimeButton className={scanArticleInputButton}
                              onClick={handleScanButtonClick}>
@@ -248,16 +252,16 @@ function ScanArticle() {
             <div className={scanArticleWrap}>
                 <div className={scanArticleSResultBlock}>
                     <div className={scanArticleSResultArticleDetails}>
-                        <p className={scanArticleEAN}>EAN:</p>
+                        <p className={scanArticleEAN}>{scanArticleT("artInfo.ean")}</p>
                         <p className={scanArticleEAN}>{articleSummary.ean ? articleSummary.ean : ".."}</p>
-                        <p>Brand:</p>
+                        <p>{scanArticleT("artInfo.brand")}</p>
                         <p>{articleSummary.name ? articleSummary.name : ".."}</p>
-                        <p>Size:</p>
+                        <p>{scanArticleT("artInfo.size")}</p>
                         <p>{articleSummary.size ? articleSummary.size : ".."}</p>
-                        <p>DOT:</p>
+                        <p>{scanArticleT("artInfo.dot")}</p>
                         <p>{articleSummary.dot ? articleSummary.dot : ".."}</p>
 
-                        <p>Unplaced Quantity:</p>
+                        <p>{scanArticleT("artInfo.unplacedQuantity")}</p>
                         <p>{articleSummary.quantity ? articleSummary.quantity : ".."}</p>
                     </div>
                 </div>
@@ -271,11 +275,10 @@ function ScanArticle() {
             </div>
             <div className={scanArticleSRButtons}>
                 <PrimeButton onClick={handleConfirmQuantity}
-                             disabled={!(Number(quantityInputValue) > 0 && isValidQuantityAndDate && articleSummary.ean)}>Confirm
-                    Quantity</PrimeButton>
+                             disabled={!(Number(quantityInputValue) > 0 && isValidQuantityAndDate && articleSummary.ean)}>{scanArticleT("btns.confirmQtty")}</PrimeButton>
                 <PrimeButton className={orangeButton} onClick={() => handleGoTo("articleSummary")}
-                             disabled={!isArticleSummaryExist}>Article Summary</PrimeButton>
-                <PrimeButton onClick={() => handleGoTo("scanRackQR")}>Add Rack</PrimeButton>
+                             disabled={!isArticleSummaryExist}>{scanArticleT("btns.articleSummary")}</PrimeButton>
+                <PrimeButton onClick={() => handleGoTo("scanRackQR")}>{scanArticleT("btns.addRack")}</PrimeButton>
             </div>
         </div>
     );

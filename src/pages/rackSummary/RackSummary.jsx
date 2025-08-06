@@ -1,4 +1,3 @@
-import React from 'react';
 import PrimeButton from "../../components/PrimeButton.jsx";
 import StickyTitle from "../../components/StickyTitle.jsx";
 import useStore from "../../store/useStore.js";
@@ -14,8 +13,12 @@ import {
 } from "../../styles/pages/rackSummaryStyles.js";
 import CapacityInPercent from "../../components/CapacityInPercent.jsx";
 import {getEarliestDot} from "../../utils/functions.js";
+import {useTranslation} from "react-i18next";
 
 function RackSummary() {
+    // Translations
+    const { t: comboSummaryT } = useTranslation('comboSummaries');
+
     const rackSummary = useStore((state) => state.rackSummary)
     const setCurrentPage = useStore((state) => state.setCurrentPage)
 
@@ -45,24 +48,24 @@ function RackSummary() {
 
     return (
         <div className={rackSummaryContainer}>
-            <StickyTitle title1={'Rack Summary'} title2={`Rack ID: ${rackSummary.rackID ? rackSummary.rackID : ''}`} />
+            <StickyTitle title1={comboSummaryT("stickyTitle.racSumm.title1")} title2={`${comboSummaryT("stickyTitle.racSumm.title2")} ${rackSummary.rackID ? rackSummary.rackID : ''}`} />
             <div className={rackSummaryContainer}>
                 <div className={rackSummaryRackCapacityBlock}>
-                    <CapacityInPercent maxCapacity={rackSummary.maxCapacity} totalItems={rackSummary.totalItems}  title={'Rack Capacity'} type={'Rack'}/>
+                    <CapacityInPercent maxCapacity={rackSummary.maxCapacity} totalItems={rackSummary.totalItems}  title={comboSummaryT("capacity.rackTitle")} type={'Rack'}/>
                 </div>
                 <div className={rackSummarySKUsTableWrap}>
                     <table className={rackSummarySKUsTable}>
                         <thead className={rackSummarySKUsTableThead}>
                         <tr>
-                            <th>SKU</th>
-                            <th>Quantity</th>
-                            <th>DOT</th>
+                            <th>{comboSummaryT("table.rack.theadSku")}</th>
+                            <th>{comboSummaryT("table.rack.theadQuantity")}</th>
+                            <th>{comboSummaryT("table.rack.theadDOT")}</th>
                         </tr>
                         </thead>
                         <tbody className={rackSummarySKUsTableBody}>
                         {rackSummary.SKUs.map((sku, index) => (
                             <tr key={`${sku.ean}-${index}`}>
-                                <td >{`SCU-${sku.ean}`}</td>
+                                <td>{sku.ean}</td>
                                 <td>{sku.quantity}</td>
                                 <td>{sku.dot}</td>
                             </tr>
@@ -71,14 +74,14 @@ function RackSummary() {
                     </table>
                 </div>
                 <div className={rackSummaryConclusionBlock}>
-                    <p>Total Items:</p>  <p>{rackSummary.totalItems ? rackSummary.totalItems : "0"}</p>
-                    <p>Available Capacity:</p>  <p>{availableCapacityRes}</p>
-                    <p>Total SKUs:</p>   <p>{rackSummary?.SKUs?.length}</p>
-                    <p>Earliest DOT:</p> <p>{getEarliestDot(rackSummary.SKUs)}</p>
+                    <p>{comboSummaryT("conclusion.rack.totalItems")}</p>  <p>{rackSummary.totalItems ? rackSummary.totalItems : "0"}</p>
+                    <p>{comboSummaryT("conclusion.rack.availableCapacity")}</p>  <p>{availableCapacityRes}</p>
+                    <p>{comboSummaryT("conclusion.rack.totalSKUs")}</p>   <p>{rackSummary?.SKUs?.length}</p>
+                    <p>{comboSummaryT("conclusion.rack.earliestDOT")}</p> <p>{getEarliestDot(rackSummary.SKUs)}</p>
                 </div>
                 <div className={rackSummaryButtonsBlock}>
-                    <PrimeButton onClick={() => handleGoTo("scanRackQR")}>Scan Rack</PrimeButton>
-                    <PrimeButton onClick={() => handleGoTo("scanArticle")} disabled={!availableCapacityRes || articleSummary?.quantity === 0}>Add Article</PrimeButton>
+                    <PrimeButton onClick={() => handleGoTo("scanRackQR")}>{comboSummaryT("btns.rack.scanRack")}</PrimeButton>
+                    <PrimeButton onClick={() => handleGoTo("scanArticle")} disabled={!availableCapacityRes || articleSummary?.quantity === 0}>{comboSummaryT("btns.rack.addArticle")}</PrimeButton>
                 </div>
             </div>
         </div>

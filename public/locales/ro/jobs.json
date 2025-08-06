@@ -1,0 +1,22 @@
+{
+  "stickyTitle": {
+    "title1": "Sarcini de recepție marfă",
+    "title2": "Selectați o sarcină de procesat"
+  },
+  "modalConfirmJobTitle": "Confirmă sarcina",
+  "jobCard": {
+    "po": "Comandă:",
+    "sup": "Furnizor:",
+    "delNot": "Aviz de însoțire:",
+    "expTire": "Anvelope așteptate",
+    "sku": "SKU-uri",
+    "gate": "Poartă:"
+  },
+  "statuses": {
+    "Pending": "În așteptare",
+    "Scheduled": "Programat"
+  },
+  "btns": {
+    "takeJob": "Preia sarcina"
+  }
+}

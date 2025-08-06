@@ -1,0 +1,25 @@
+{
+  "stickyTitle": {
+    "title1": "Artikel nachzählen",
+    "title2": "Artikel EAN:"
+  },
+  "rackUsed": "Verwendetes Regal:",
+  "table": {
+    "rack": "Regal",
+    "quantity": "Menge",
+    "dot": "DOT",
+    "edit": "Bearbeiten"
+  },
+  "editRack": "Regal bearbeiten:",
+  "jobInfoCard": {
+    "po": "PO-Nummer:",
+    "sup": "Lieferant:",
+    "delNot": "Lieferschein:",
+    "expTire": "Erwartete Reifen:",
+    "arrivalDate": "Ankunftsdatum:",
+    "gate": "Zugewiesenes Tor:"
+  },
+  "btns": {
+    "confirm": "Bestätigen"
+  }
+}

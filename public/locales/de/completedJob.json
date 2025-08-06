@@ -1,0 +1,14 @@
+{
+  "graz1": "Glückwunsch!",
+  "graz2": "Auftrag erfolgreich abgeschlossen",
+  "titleSumm": "Auftragsübersicht",
+  "summary": {
+    "grID": "GR-Auftrags-ID:",
+    "totalTyres": "Reifen insgesamt:",
+    "racksUsed": "Verwendete Racks:",
+    "timeTaken": "Benötigte Zeit:",
+    "stockLocation": "Lagerort:"
+  },
+  "info": "Bestand im System erfasst",
+  "btn": "Zurück zur Liste"
+}

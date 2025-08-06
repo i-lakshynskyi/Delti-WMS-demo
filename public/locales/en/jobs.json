@@ -1,0 +1,22 @@
+{
+  "stickyTitle": {
+    "title1": "Goods Receiving Jobs",
+    "title2": "Select a job to process"
+  },
+  "modalConfirmJobTitle": "Confirm Job",
+  "jobCard": {
+    "po": "PO:",
+    "sup": "Supplier:",
+    "delNot": "Delivery Note:",
+    "expTire": "Expected Tyres",
+    "sku": "SKUs",
+    "gate": "Gate:"
+  },
+  "statuses": {
+    "Pending": "Pending",
+    "Scheduled": "Scheduled"
+  },
+  "btns": {
+    "takeJob": "Take job"
+  }
+}

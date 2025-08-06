@@ -7,8 +7,12 @@ import {
 import RackSummary from "../pages/rackSummary/RackSummary.jsx";
 import ArticleSummary from "../pages/articleSummary/ArticleSummary.jsx";
 import useStore from "../store/useStore.js";
+import {useTranslation} from "react-i18next";
 
 function CombinedRackArticleSummary() {
+    // Translations
+    const { t: comboSummaryT } = useTranslation('comboSummaries');
+
     const [isRackSummaryOpen, setIsRackSummaryOpen] = React.useState(true);
     const currentPage = useStore((state) => state.currentPage);
     const articleSummary = useStore((state) => state.articleSummary);
@@ -27,9 +31,9 @@ function CombinedRackArticleSummary() {
         <div className={combinedRASummaryContainer}>
             <div className={combinedRASummaryTabs}>
                 <button className={combinedRASummaryBtn}
-                        onClick={() => {handleGoToSummary("rack")}} disabled={isRackSummaryOpen}>Rack Summary</button>
+                        onClick={() => {handleGoToSummary("rack")}} disabled={isRackSummaryOpen}>{comboSummaryT("btns.rackSummary")}</button>
                 <button className={combinedRASummaryBtn}
-                        onClick={() => {handleGoToSummary("article")}} disabled={!isRackSummaryOpen || Object.keys(articleSummary).length === 0}>Article Summery</button>
+                        onClick={() => {handleGoToSummary("article")}} disabled={!isRackSummaryOpen || Object.keys(articleSummary).length === 0}>{comboSummaryT("btns.articSummery")}</button>
             </div>
             <div className={combinedRASummaryWrap}>
                 {isRackSummaryOpen ? <RackSummary/> : <ArticleSummary/>}

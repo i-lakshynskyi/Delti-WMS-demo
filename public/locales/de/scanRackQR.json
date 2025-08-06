@@ -1,0 +1,22 @@
+{
+  "stickyTitle": {
+    "title1": "QR-Code des Regals scannen",
+    "title2": "Positioniere den QR-Code im Scannerrahmen"
+  },
+  "rackInfo": {
+    "title": "Regalinformationen:",
+    "rackID": "Regal-ID:",
+    "location": "Standort:",
+    "type": "Typ:"
+  },
+  "qrScanWarning": "Regal nicht gefunden!!!",
+  "btns": {
+    "addRack": "Neu Regal",
+    "scan": "Scannen",
+    "stop": "Stopp",
+    "continueArt": "Artikel hinzufügen fortsetzen",
+    "newArt": "Neuen Artikel hinzufügen",
+    "rackSummary": "Regalübersicht",
+    "completeJob": "Job abschließen"
+  }
+}

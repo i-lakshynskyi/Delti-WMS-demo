@@ -1,0 +1,31 @@
+{
+  "stickyTitle": {
+    "title1": "Job Overview",
+    "title2": "GR Job:"
+  },
+  "jobInfoCard": {
+    "po": "PO Number:",
+    "sup": "Supplier:",
+    "delNot": "Delivery Note:",
+    "expTire": "Expected Tyres:",
+    "arrivalDate": "Arrival Date:",
+    "gate": "Gate Assigned:"
+  },
+  "jobOverviewSKUsTitle": {
+    "jobOverviewH1": "Tyre SKUs:",
+    "jobOverviewH2": "Total Racks:"
+  },
+  "skuCard": {
+    "size": "Size:",
+    "ean": "EAN:",
+    "quantity": "Quantity:",
+    "racks": "Racks:"
+  },
+  "overviewConveyor": {
+    "title": "Conveyor Belt Mode",
+    "label": "Conveyor Belt with Auto-Scanning"
+  },
+  "btns": {
+    "addRack": "Add Rack"
+  }
+}

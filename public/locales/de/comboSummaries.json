@@ -1,0 +1,53 @@
+{
+  "stickyTitle": {
+    "racSumm": {
+      "title1": "Regalübersicht",
+      "title2": "Regal-ID:"
+    },
+    "articSumm": {
+      "title1": "Artikelübersicht",
+      "title2": "Artikel-EAN:"
+    }
+  },
+  "capacity": {
+    "rackTitle": "Regalkapazität",
+    "articleTitle": "Regal verwendet"
+  },
+  "table": {
+    "rack": {
+      "theadSku": "SKU",
+      "theadQuantity": "Menge",
+      "theadDOT": "DOT"
+    },
+    "article": {
+      "theadRack": "Regal",
+      "theadQuantity": "Menge",
+      "theadDOT": "DOT"
+    }
+  },
+  "conclusion": {
+    "rack": {
+      "totalItems": "Gesamtanzahl:",
+      "availableCapacity": "Verfügbare Kapazität:",
+      "totalSKUs": "Gesamt-SKUs:",
+      "earliestDOT": "Frühestes DOT:"
+    },
+    "article": {
+      "totalItems": "Gesamtanzahl:",
+      "totalRacks": "Gesamtregale:",
+      "earliestDOT": "Frühestes DOT:"
+    }
+  },
+  "btns": {
+    "rackSummary": "Regalübersicht",
+    "articSummery": "Artikelübersicht",
+    "rack": {
+      "scanRack": "Regal scannen",
+      "addArticle": "Artikel hinzufügen"
+    },
+    "article": {
+      "scanArticle": "Artikel scannen",
+      "addRack": "Regal hinzufügen"
+    }
+  }
+}

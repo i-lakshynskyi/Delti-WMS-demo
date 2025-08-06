@@ -1,0 +1,31 @@
+{
+  "stickyTitle": {
+    "title1": "Aperçu du travail",
+    "title2": "Travail GR :"
+  },
+  "jobInfoCard": {
+    "po": "Numéro de commande :",
+    "sup": "Fournisseur :",
+    "delNot": "Bon de livraison :",
+    "expTire": "Pneus attendus :",
+    "arrivalDate": "Date d'arrivée :",
+    "gate": "Porte assignée :"
+  },
+  "jobOverviewSKUsTitle": {
+    "jobOverviewH1": "Références de pneus :",
+    "jobOverviewH2": "Total des racks :"
+  },
+  "skuCard": {
+    "size": "Taille :",
+    "ean": "EAN :",
+    "quantity": "Quantité :",
+    "racks": "Racks :"
+  },
+  "overviewConveyor": {
+    "title": "Mode tapis roulant",
+    "label": "Tapis roulant avec scan automatique"
+  },
+  "btns": {
+    "addRack": "Ajouter un rack"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "stickyTitle": {
+    "title1": "Scan Rack QR Code",
+    "title2": "Position the QR code within the scanner frame"
+  },
+  "rackInfo": {
+    "title": "Rack Information:",
+    "rackID": "Rack ID:",
+    "location": "Location:",
+    "type": "Type:"
+  },
+  "qrScanWarning": "Rack not Found!!!",
+  "btns": {
+    "addRack": "Add Rack",
+    "scan": "Scan",
+    "stop": "Stop",
+    "continueArt": "Continue Add Article",
+    "newArt": "Add New Article",
+    "rackSummary": "Rack Summary",
+    "completeJob": "Complete Job"
+  }
+}

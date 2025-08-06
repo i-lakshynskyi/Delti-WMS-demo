@@ -1,0 +1,23 @@
+{
+  "stickyTitle": {
+    "title1": "Sumarul lucrării",
+    "title2": "Lucrare GR:"
+  },
+  "info": {
+    "summaryDetails": "Detalii sumar",
+    "completed": "Finalizat",
+    "totalArticles": "Articole totale:",
+    "assignedRacks": "Rafturi alocate:",
+    "completedTime": "Timp finalizare:"
+  },
+  "jobSummArtCard": {
+    "status": "Stare:",
+    "ean": "EAN:",
+    "dot": "DOT:",
+    "quantity": "Cantitate:"
+  },
+  "btns": {
+    "finishJob": "Confirmă și finalizează lucrarea GR",
+    "recountItems": "Recensământ articole"
+  }
+}

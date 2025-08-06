@@ -1,0 +1,22 @@
+{
+  "stickyTitle": {
+    "title1": "Warenannahme-Jobs",
+    "title2": "Wählen Sie einen Job zur Bearbeitung"
+  },
+  "modalConfirmJobTitle": "Job bestätigen",
+  "jobCard": {
+    "po": "Bestellung:",
+    "sup": "Lieferant:",
+    "delNot": "Lieferschein:",
+    "expTire": "Erwartete Reifen",
+    "sku": "SKUs",
+    "gate": "Tor:"
+  },
+  "statuses": {
+    "Pending": "Ausstehend",
+    "Scheduled": "Geplant"
+  },
+  "btns": {
+    "takeJob": "Job übernehmen"
+  }
+}

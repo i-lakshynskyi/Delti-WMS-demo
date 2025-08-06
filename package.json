@@ -14,8 +14,12 @@
     "@tailwindcss/postcss": "^4.1.11",
     "@zxing/browser": "^0.1.5",
     "@zxing/library": "^0.21.3",
+    "i18next": "^25.3.2",
+    "i18next-http-backend": "^3.0.2",
+    "i18next-localstorage-backend": "^4.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-i18next": "^15.6.1",
     "vite-plugin-pwa": "^0.16.4",
     "zustand": "^5.0.6"
   },

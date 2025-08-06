@@ -1,0 +1,22 @@
+{
+  "stickyTitle": {
+    "title1": "Scanează codul QR al raftului",
+    "title2": "Așează codul QR în cadrul scannerului"
+  },
+  "rackInfo": {
+    "title": "Informații raft:",
+    "rackID": "ID raft:",
+    "location": "Locație:",
+    "type": "Tip:"
+  },
+  "qrScanWarning": "Raftul nu a fost găsit!!!",
+  "btns": {
+    "addRack": "Adaugă raft",
+    "scan": "Scanează",
+    "stop": "Oprește",
+    "continueArt": "Continuă adăugarea articolului",
+    "newArt": "Adaugă articol nou",
+    "rackSummary": "Sumar raft",
+    "completeJob": "Finalizare job"
+  }
+}

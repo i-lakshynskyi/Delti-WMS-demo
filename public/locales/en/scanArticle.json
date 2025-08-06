@@ -1,0 +1,34 @@
+{
+  "stickyTitle": {
+    "title1": "Scan Article",
+    "title2": "Scan and add articles to the current rack"
+  },
+  "artInfo": {
+    "ean": "EAN:",
+    "brand": "Brand:",
+    "size": "Size:",
+    "dot": "DOT:",
+    "unplacedQuantity": "Unplaced Quantity:"
+  },
+  "inputs": {
+    "ean": "EAN",
+    "quantity": "Quantity",
+    "dot": "DOT"
+  },
+  "warnings": {
+    "eanInCorrect": "EAN is not correct",
+    "onlyDigits": "Only digits are allowed",
+    "week1": "The first digit of the week must be between 0 and 5",
+    "week2": "Week must be between 01 and 53",
+    "year1": "The year cannot start with a number greater than",
+    "year2": "The year cannot be greater than"
+  },
+  "btns": {
+    "addEan": "Add Ean",
+    "scan": "Scan",
+    "stop": "Stop",
+    "confirmQtty": "Confirm Quantity",
+    "articleSummary": "Article Summary",
+    "addRack": "Add Rack"
+  }
+}

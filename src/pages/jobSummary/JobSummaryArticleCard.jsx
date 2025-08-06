@@ -11,8 +11,12 @@ import {
     roundedBottom,
 } from "../../styles/pages/jobSummaryStyles.js";
 import useStore from "../../store/useStore.js";
+import {useTranslation} from "react-i18next";
 
 function JobSummaryArticleCard({article, delBtn = false}) {
+    // Translations
+    const { t: jobSummaryT } = useTranslation("jobSummary");
+
     const {statuses, name, ean, size, expectedQuantity, placedQuantity, dotsUsed} = article;
     const isRecountDisabled = !(statuses[0] === "OK" || delBtn);
     const setCurrentPage = useStore((state) => state.setCurrentPage)
@@ -30,23 +34,21 @@ function JobSummaryArticleCard({article, delBtn = false}) {
                 </div>
 
                 <div className={JobSummaryArticleCardWrap}>
-                    <span>Status:</span>
+                    <span>{jobSummaryT("jobSummArtCard.status")}</span>
                     <span>
                     {
                         statuses.map((status, index) => (
                             <span className={getStatusArticle(status)} key={index}>{status}{index < statuses.length - 1 ? ', ' : ''}</span>))
                     }
                 </span>
-                    <span>EAN:</span> <span>{ean}</span>
-                    <span>DOT:</span> <span>{dotsUsed.join(", ")}</span>
-                    <span>Quantity:</span> <span>{placedQuantity}\{expectedQuantity}</span>
+                    <span>{jobSummaryT("jobSummArtCard.ean")}</span> <span>{ean}</span>
+                    <span>{jobSummaryT("jobSummArtCard.dot")}</span> <span>{dotsUsed.join(", ")}</span>
+                    <span>{jobSummaryT("jobSummArtCard.quantity")}</span> <span>{placedQuantity}\{expectedQuantity}</span>
                 </div>
             </div>
             {isRecountDisabled &&
                 <div className={JobSummaryArticleCardButtonBlock}>
-                    <button className={JobSummaryArticleCardButton} onClick={() => handleRecountItem(article)}>Recount
-                        Items
-                    </button>
+                    <button className={JobSummaryArticleCardButton} onClick={() => handleRecountItem(article)}>{jobSummaryT("btns.recountItems")}</button>
                 </div>
             }
         </>

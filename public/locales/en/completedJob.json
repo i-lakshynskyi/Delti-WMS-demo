@@ -1,0 +1,14 @@
+{
+  "graz1": "Congratulations!",
+  "graz2": "Job Completed Successfully",
+  "titleSumm": "Job Summary",
+  "summary": {
+    "grID": "GR Job ID:",
+    "totalTyres": "Total Tyres:",
+    "racksUsed": "Racks Used:",
+    "timeTaken": "Time Taken:",
+    "stockLocation": "Stock Location:"
+  },
+  "info": "Stock Recorded in System",
+  "btn": "Back to Job List"
+}

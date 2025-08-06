@@ -1,0 +1,14 @@
+{
+  "graz1": "Felicitări!",
+  "graz2": "Sarcină finalizată cu succes",
+  "titleSumm": "Rezumatul sarcinii",
+  "summary": {
+    "grID": "ID sarcină GR:",
+    "totalTyres": "Anvelope totale:",
+    "racksUsed": "Racks utilizate:",
+    "timeTaken": "Timp total:",
+    "stockLocation": "Locație stoc:"
+  },
+  "info": "Stoc înregistrat în sistem",
+  "btn": "Înapoi la listă"
+}

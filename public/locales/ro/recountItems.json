@@ -1,0 +1,25 @@
+{
+  "stickyTitle": {
+    "title1": "Recensământ articole",
+    "title2": "EAN articol:"
+  },
+  "rackUsed": "Raft utilizat:",
+  "table": {
+    "rack": "Raft",
+    "quantity": "Cantitate",
+    "dot": "DOT",
+    "edit": "Editare"
+  },
+  "editRack": "Editare raft:",
+  "jobInfoCard": {
+    "po": "Număr PO:",
+    "sup": "Furnizor:",
+    "delNot": "Aviz de livrare:",
+    "expTire": "Anvelope așteptate:",
+    "arrivalDate": "Data sosirii:",
+    "gate": "Poartă alocată:"
+  },
+  "btns": {
+    "confirm": "Confirmă"
+  }
+}

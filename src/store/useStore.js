@@ -27,6 +27,12 @@ const useStore = create((set, get) => ({
     isShowSpinner: false,
     setIsShowSpinner: (status) => set({isShowSpinner: status}),
 
+    currentLocale: localStorage.getItem('i18nextLng') || 'en',
+    setLocale: (locale) => {
+        localStorage.setItem('i18nextLng', locale);
+        set({ currentLocale: locale });
+    },
+
     user: null,
     setUser: (user) => set({user}),
 

@@ -1,0 +1,53 @@
+{
+  "stickyTitle": {
+    "racSumm": {
+      "title1": "Rack Summary",
+      "title2": "Rack ID:"
+    },
+    "articSumm": {
+      "title1": "Article Summary",
+      "title2": "Article EAN:"
+    }
+  },
+  "capacity": {
+    "rackTitle": "Rack Capacity",
+    "articleTitle": "Rack used"
+  },
+  "table": {
+    "rack": {
+      "theadSku": "SKU",
+      "theadQuantity": "Quantity",
+      "theadDOT": "DOT"
+    },
+    "article": {
+      "theadRack": "Rack",
+      "theadQuantity": "Quantity",
+      "theadDOT": "DOT"
+    }
+  },
+  "conclusion": {
+    "rack": {
+      "totalItems": "Total Items:",
+      "availableCapacity": "Available Capacity:",
+      "totalSKUs": "Total SKUs:",
+      "earliestDOT": "Earliest DOT:"
+    },
+    "article": {
+      "totalItems": "Total Items:",
+      "totalRacks": "Total Racks:",
+      "earliestDOT": "Earliest DOT:"
+    }
+  },
+  "btns": {
+    "rackSummary": "Rack Summary",
+    "articSummery": "Article Summery",
+    "rack": {
+      "scanRack": "Scan Rack",
+      "addArticle": "Add Article"
+    },
+    "article": {
+      "scanArticle": "Scan Article",
+      "addRack": "Add Rack"
+    }
+  }
+}

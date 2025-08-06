@@ -1,0 +1,23 @@
+{
+  "stickyTitle": {
+    "title1": "Job Summary",
+    "title2": "GR Job:"
+  },
+  "info": {
+    "summaryDetails": "Summary Details",
+    "completed": "Completed",
+    "totalArticles": "Total Articles:",
+    "assignedRacks": "Assigned Racks:",
+    "completedTime": "Completion Time:"
+  },
+  "jobSummArtCard": {
+    "status": "Status:",
+    "ean": "EAN:",
+    "dot": "DOT:",
+    "quantity": "Quantity:"
+  },
+  "btns": {
+    "finishJob": "Confirm & Finish GR Job",
+    "recountItems": "Recount Items"
+  }
+}

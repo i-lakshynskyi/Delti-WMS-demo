@@ -10,8 +10,12 @@ import {
 import PrimeButton from "../../components/PrimeButton.jsx";
 import JobSummaryArticleCard from "./JobSummaryArticleCard.jsx";
 import {sortArticlesByStatus} from "../../utils/functions.js";
+import {usePageTranslation} from "../../i18n/hooks/hooks.js";
 
 function JobSummary() {
+    // Translations
+    const { t: jobSummaryT } = usePageTranslation();
+
     const jobSummary = useStore(state => state.jobSummary);
     const { currentJob, completeTimeJob} = jobSummary;
     const setCurrentPage = useStore((state) => state.setCurrentPage)
@@ -27,13 +31,13 @@ function JobSummary() {
 
     return (
         <div className={jobSummaryContainer}>
-            <StickyTitle title1={"Job Summary"} title2={`GR Job: ${currentJob.grID}`}/>
+            <StickyTitle title1={jobSummaryT("stickyTitle.title1")} title2={`${jobSummaryT("stickyTitle.title2")} ${currentJob.grID}`}/>
             <div className={jobSummaryBlocksWrap}>
                 <div className={jobOSummaryInfoCard}>
-                    <p>Summary Details</p> <p>Completed</p>
-                    <p>Total Articles:</p> <p>{scannedArticlesHistory.length > 0 ? scannedArticlesHistory.length : ".."}</p>
-                    <p>Assigned Racks:</p> <p>{scannedRacksHistory.length > 0 ? scannedRacksHistory.length : "0"}</p>
-                    <p>Completion Time:</p> <p>{completeTimeJob ? completeTimeJob : ".."}</p>
+                    <p>{jobSummaryT("info.summaryDetails")}</p> <p>{jobSummaryT("info.completed")}</p>
+                    <p>{jobSummaryT("info.totalArticles")}</p> <p>{scannedArticlesHistory.length > 0 ? scannedArticlesHistory.length : ".."}</p>
+                    <p>{jobSummaryT("info.assignedRacks")}</p> <p>{scannedRacksHistory.length > 0 ? scannedRacksHistory.length : "0"}</p>
+                    <p>{jobSummaryT("info.completedTime")}</p> <p>{completeTimeJob ? completeTimeJob : ".."}</p>
                 </div>
                 <div className={jobSummarySKUsTitle}>
                     <p className={jobSummaryH1}>Received Articles</p>
@@ -47,7 +51,7 @@ function JobSummary() {
                 </div>
             </div>
             <div className={jobSummaryButtons}>
-                <PrimeButton onClick={() => handleGoTo("completedJob")}>Confirm & Finish GR Job</PrimeButton>
+                <PrimeButton onClick={() => handleGoTo("completedJob")}>{jobSummaryT("btns.finishJob")}</PrimeButton>
             </div>
         </div>
     );
